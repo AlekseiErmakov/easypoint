@@ -4,9 +4,9 @@ import com.geo.easypoint.api.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.api.employee.dto.response.EmployeeDto;
 import com.geo.easypoint.iml.employee.repository.EmployeeRepository;
 import com.geo.easypoint.iml.mapper.EasyPointMapper;
-import com.geo.easypoint.iml.mapper.EmployeeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,12 +15,15 @@ import java.util.List;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
+    @Transactional(readOnly = true)
     public List<EmployeeDto> findAll() {
         return EasyPointMapper.toEmployeeDto(employeeRepository.findAll());
     }
 
-    public Long create(CreateEmployeeRequest createEmployeeRequest) {
-        return employeeRepository.save(EasyPointMapper.toEmployee(createEmployeeRequest))
-                .getId();
+    @Transactional
+    public EmployeeDto create(CreateEmployeeRequest createEmployeeRequest) {
+        return EasyPointMapper.toEmployeeDto(
+                employeeRepository.saveAndFlush(EasyPointMapper.toEmployee(createEmployeeRequest))
+        );
     }
 }

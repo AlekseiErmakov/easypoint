@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -20,7 +21,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Long create(@RequestBody CreateEmployeeRequest createEmployeeRequest) {
+    public EmployeeDto create(@RequestBody CreateEmployeeRequest createEmployeeRequest) {
         return employeeService.create(createEmployeeRequest);
     }
 }

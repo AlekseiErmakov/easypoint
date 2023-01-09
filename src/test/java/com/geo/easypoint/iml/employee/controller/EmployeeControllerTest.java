@@ -3,36 +3,35 @@ package com.geo.easypoint.iml.employee.controller;
 import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.TestData;
 import com.geo.easypoint.api.employee.dto.response.EmployeeDto;
-import com.geo.easypoint.iml.employee.entity.Employee;
-import org.assertj.core.api.AbstractLongAssert;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Comparator;
 
 public class EmployeeControllerTest extends AbstractAppTest {
 
 
+    @BeforeEach
+    public void clear() {
+        employeeRepository.deleteAll();
+    }
+
     @Test
     public void create() {
-        Long lastSavedId = employeeRepository.findAll()
-                .stream()
-                .max(Comparator.comparing(Employee::getId))
-                .map(Employee::getId)
-                .orElse(0L);
-        Long savedId = employeeController.create(TestData.createEmployeeRequest());
-        EmployeeDto employeeDto = employeeController.findAll()
-                .stream()
-                .filter(it -> savedId.longValue() == it.id())
-                .findFirst()
-                .get();
-
-        Assertions.assertThat(savedId)
-                .isEqualTo(lastSavedId + 1);
+        EmployeeDto savedEmployee = employeeController.create(TestData.createEmployeeRequest());
 
         Assertions.assertThat(TestData.employeeDto())
                 .usingRecursiveComparison()
                 .ignoringFields("id")
-                .isEqualTo(employeeDto);
+                .isEqualTo(savedEmployee);
+    }
+
+    @Test
+    public void findAllTest() {
+        employeeRepository.save(TestData.employee());
+
+        Assertions.assertThat(TestData.employeeDto())
+                .usingRecursiveComparison()
+                .ignoringFields("id")
+                .isEqualTo(employeeController.findAll().get(0));
     }
 }
