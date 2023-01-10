@@ -13,7 +13,7 @@ public final class TestData {
     public static final String SURNAME = "surname";
     public static final String MIDDLE_NAME = "middle name";
     public static final LocalDateTime CREATED = LocalDateTime.now();
-    public static final LocalDateTime UPDATED = LocalDateTime.now();
+    public static final LocalDateTime UPDATED = CREATED.plusDays(1);
 
     private TestData() {
     }

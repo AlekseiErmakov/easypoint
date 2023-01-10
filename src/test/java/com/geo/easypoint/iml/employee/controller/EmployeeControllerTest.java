@@ -7,6 +7,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 public class EmployeeControllerTest extends AbstractAppTest {
 
 
@@ -21,8 +23,14 @@ public class EmployeeControllerTest extends AbstractAppTest {
 
         Assertions.assertThat(TestData.employeeDto())
                 .usingRecursiveComparison()
-                .ignoringFields("id")
+                .ignoringFields("id", "created", "updated")
                 .isEqualTo(savedEmployee);
+        Assertions.assertThat(savedEmployee.id())
+                .isNotNull();
+        Assertions.assertThat(savedEmployee.created())
+                .isNotNull();
+        Assertions.assertThat(savedEmployee.updated())
+                .isNotNull();
     }
 
     @Test
@@ -31,7 +39,7 @@ public class EmployeeControllerTest extends AbstractAppTest {
 
         Assertions.assertThat(TestData.employeeDto())
                 .usingRecursiveComparison()
-                .ignoringFields("id")
+                .ignoringFields("id", "created", "updated")
                 .isEqualTo(employeeController.findAll().get(0));
     }
 }
