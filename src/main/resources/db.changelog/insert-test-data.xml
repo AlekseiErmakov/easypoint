@@ -12,7 +12,7 @@
             <column name="id" valueComputed="${employee_seq_next_val}"/>
             <column name="firstname" value="Aleksey"/>
             <column name="surname" value="Ivanov"/>
-            <column name="middlename" value="Ivanovich"/>
+            <column name="lastname" value="Ivanovich"/>
             <column name="created" valueComputed="${now}"/>
             <column name="updated" valueComputed="${now}"/>
         </insert>

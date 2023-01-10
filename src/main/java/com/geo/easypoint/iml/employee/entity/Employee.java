@@ -24,7 +24,7 @@ public class Employee {
     private Long id;
     private String firstname;
     private String surname;
-    private String middlename;
+    private String lastname;
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp

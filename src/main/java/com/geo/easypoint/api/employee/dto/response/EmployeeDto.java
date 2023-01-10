@@ -6,7 +6,7 @@ public record EmployeeDto(
         Long id,
         String firstname,
         String surname,
-        String middlename,
+        String lastname,
         LocalDateTime created,
         LocalDateTime updated) {
 }

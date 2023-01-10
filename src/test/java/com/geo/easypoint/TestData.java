@@ -22,7 +22,7 @@ public final class TestData {
         return Employee.builder()
                 .id(EMPLOYEE_ID)
                 .firstname(FIRSTNAME)
-                .middlename(MIDDLE_NAME)
+                .lastname(MIDDLE_NAME)
                 .surname(SURNAME)
                 .created(CREATED)
                 .updated(UPDATED)
