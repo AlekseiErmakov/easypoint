@@ -7,12 +7,24 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <property name="now" value="CURRENT_TIMESTAMP()" dbms="h2"/>
     <property name="employee_seq_next_val" value="nextval('employee_sequence')" dbms="h2"/>
+    <property name="work_shift_type_sequence_next_val" value="nextval('work_shift_type_sequence')" dbms="h2"/>
     <changeSet id="2" author="Aleksey">
         <insert tableName="employees">
             <column name="id" valueComputed="${employee_seq_next_val}"/>
             <column name="firstname" value="Aleksey"/>
             <column name="surname" value="Ivanov"/>
             <column name="lastname" value="Ivanovich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="work_shift_types">
+            <column name="id" valueComputed="${work_shift_type_sequence_next_val}"/>
+            <column name="name"  value="Morning shift"/>
+            <column name="shortname"  value="M"/>
+            <column name="start_hour" value="8"/>
+            <column name="start_minute" value="0"/>
+            <column name="end_hour" value="15"/>
+            <column name="end_minute" value="0"/>
             <column name="created" valueComputed="${now}"/>
             <column name="updated" valueComputed="${now}"/>
         </insert>

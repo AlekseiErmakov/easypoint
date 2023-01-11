@@ -24,7 +24,7 @@
         <createTable tableName="work_shift_types">
             <column name="id" type="bigint"/>
             <column name="name" type="varchar(255)"/>
-            <column name="short_name" type="varchar(255)"/>
+            <column name="shortname" type="varchar(255)"/>
             <column name="start_hour" type="integer"/>
             <column name="start_minute" type="integer"/>
             <column name="end_hour" type="integer"/>
@@ -34,7 +34,7 @@
         </createTable>
         <addNotNullConstraint tableName="work_shift_types" columnName="id"/>
         <addNotNullConstraint tableName="work_shift_types" columnName="name"/>
-        <addNotNullConstraint tableName="work_shift_types" columnName="short_name"/>
+        <addNotNullConstraint tableName="work_shift_types" columnName="shortname"/>
         <addNotNullConstraint tableName="work_shift_types" columnName="start_hour"/>
         <addNotNullConstraint tableName="work_shift_types" columnName="start_minute"/>
         <addNotNullConstraint tableName="work_shift_types" columnName="end_hour"/>

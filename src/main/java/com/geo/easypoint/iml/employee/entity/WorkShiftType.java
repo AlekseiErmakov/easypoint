@@ -17,7 +17,7 @@ public class WorkShiftType {
     @SequenceGenerator(name = "work_shift_type_sequence_generator", sequenceName = "work_shift_type_sequence")
     private Long id;
     private String name;
-    private String shortName;
+    private String shortname;
     private Integer startHour;
     private Integer startMinute;
     private Integer endHour;

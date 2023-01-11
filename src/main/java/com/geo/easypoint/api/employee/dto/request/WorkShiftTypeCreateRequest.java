@@ -2,7 +2,7 @@ package com.geo.easypoint.api.employee.dto.request;
 
 public record WorkShiftTypeCreateRequest(
         String name,
-        String shortName,
+        String shortname,
         Integer startHour,
         Integer startMinute,
         Integer endHour,
