@@ -8,6 +8,8 @@
     <property name="now" value="CURRENT_TIMESTAMP()" dbms="h2"/>
     <property name="employee_seq_next_val" value="nextval('employee_sequence')" dbms="h2"/>
     <property name="work_shift_type_sequence_next_val" value="nextval('work_shift_type_sequence')" dbms="h2"/>
+    <property name="easy_point_user_sequence_next_val" value="nextval('easy_point_user_sequence')" dbms="h2"/>
+    <property name="point_sequence_next_val" value="nextval('point_seq')" dbms="h2"/>
     <changeSet id="2" author="Aleksey">
         <insert tableName="employees">
             <column name="id" valueComputed="${employee_seq_next_val}"/>
@@ -17,10 +19,42 @@
             <column name="created" valueComputed="${now}"/>
             <column name="updated" valueComputed="${now}"/>
         </insert>
+        <insert tableName="employees">
+            <column name="id" valueComputed="${employee_seq_next_val}"/>
+            <column name="firstname" value="Aleksey"/>
+            <column name="surname" value="Ivanov"/>
+            <column name="lastname" value="Ivanovich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueComputed="${employee_seq_next_val}"/>
+            <column name="firstname" value="Aleksandr"/>
+            <column name="surname" value="Aleksandrov"/>
+            <column name="lastname" value="Fedorovich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueComputed="${employee_seq_next_val}"/>
+            <column name="firstname" value="Sidorov"/>
+            <column name="surname" value="Sergey"/>
+            <column name="lastname" value="Sergeich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueComputed="${employee_seq_next_val}"/>
+            <column name="firstname" value="Bakshuk"/>
+            <column name="surname" value="Vladimir"/>
+            <column name="lastname" value="Igorevich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
         <insert tableName="work_shift_types">
             <column name="id" valueComputed="${work_shift_type_sequence_next_val}"/>
-            <column name="name"  value="Morning shift"/>
-            <column name="shortname"  value="M"/>
+            <column name="name" value="Morning shift"/>
+            <column name="shortname" value="M"/>
             <column name="start_hour" value="8"/>
             <column name="start_minute" value="0"/>
             <column name="end_hour" value="15"/>
@@ -28,5 +62,32 @@
             <column name="created" valueComputed="${now}"/>
             <column name="updated" valueComputed="${now}"/>
         </insert>
+        <insert tableName="easy_point_users">
+            <column name="id" valueComputed="${easy_point_user_sequence_next_val}"/>
+            <column name="username" value="alex"/>
+            <column name="password" value="$2a$10$qldoNknOUMzBLwxU9uqD5ew9urH0m0/cSVF2tN0h8hQtwmsXIkQWy"/>
+            <column name="employee_id" value="1"/>
+        </insert>
+        <insert tableName="points">
+            <column name="id" valueComputed="${point_sequence_next_val}"/>
+            <column name="name" value="PZ-2030"/>
+            <column name="x" value="1564.303"/>
+            <column name="y" value="2423.303"/>
+            <column name="h" value="67.113"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+            <column name="employee_id" value="1"/>
+        </insert>
+        <insert tableName="points">
+            <column name="id" valueComputed="${point_sequence_next_val}"/>
+            <column name="name" value="PZ-2032"/>
+            <column name="x" value="1534.111"/>
+            <column name="y" value="4356.221"/>
+            <column name="h" value="64.353"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+            <column name="employee_id" valueComputed="(SELECT ID FROM EMPLOYEES WHERE SURNAME = 'Sergey')"/>
+        </insert>
+        <rollback/>
     </changeSet>
 </databaseChangeLog>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1675424327723" author="Ermakov Aleksey">
+        <createTable tableName="employees">
+            <column name="id" type="bigint"/>
+            <column name="firstname" type="varchar(255)"/>
+            <column name="surname" type="varchar(255)"/>
+            <column name="lastname" type="varchar(255)"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="employees"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1675424372322" author="Ermakov Aleksey">
+        <createSequence sequenceName="employee_sequence" incrementBy="50"/>
+    </changeSet>
+    <changeSet id="1675424372387" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="employees" columnName="id" catalogName="employee_id_unique"/>
+        <rollback>
+            <dropNotNullConstraint tableName="employees" columnName="id"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1675431326926" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="employees" columnName="firstname" catalogName="employees_firstname_unique"/>
+        <rollback>
+            <dropNotNullConstraint tableName="employees" columnName="firstname"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1675431387994" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="employees" columnName="surname" catalogName="employees_surname_unique"/>
+        <rollback>
+            <dropNotNullConstraint tableName="employees" columnName="surname"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1675431387995" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="employees" columnName="lastname" catalogName="employees_lastname_unique"/>
+        <rollback>
+            <dropNotNullConstraint tableName="employees" columnName="lastname"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1676219630181" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="employees" columnName="created"/>
+        <rollback>
+            <dropNotNullConstraint tableName="employees" columnName="created"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1676219744662" author="Ermakov Aleksey">
+        <addUniqueConstraint tableName="employees" columnNames="id" constraintName="id_unique"/>
+        <rollback>
+            <dropUniqueConstraint tableName="employees" constraintName="id_unique"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1676220177724" author="Ermakov Aleksey">
+        <createTable tableName="work_shift_types">
+            <column name="id" type="bigint"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="shortname" type="varchar(255)"/>
+            <column name="start_hour" type="integer"/>
+            <column name="start_minute" type="integer"/>
+            <column name="end_hour" type="integer"/>
+            <column name="end_minute" type="integer"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="work_shift_types"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1676220230909" author="Ermakov Aleksey">
+        <addUniqueConstraint tableName="work_shift_types" columnNames="id" constraintName="unique_id_work_shift_types"/>
+        <rollback>
+            <dropUniqueConstraint tableName="work_shift_types" constraintName="unique_id_work_shift_types"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1676220327466" author="Ermakov Aleksey">
+        <createSequence sequenceName="work_shift_type_sequence" incrementBy="50"/>
+        <rollback>
+            <dropSequence sequenceName="work_shift_type_sequence"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1676883203710" author="Ermakov Aleksey">
+        <createTable tableName="easy_point_users">
+            <column name="id" type="bigint"/>
+            <column name="username" type="varchar(256)"/>
+            <column name="password" type="varchar(256)"/>
+            <column name="employee_id" type="bigint"/>
+            <column name="account_non_expired" type="boolean" defaultValue="true"/>
+            <column name="account_non_locked" type="boolean" defaultValue="true"/>
+            <column name="credentials_non_expired" type="boolean" defaultValue="true"/>
+            <column name="enabled" type="boolean" defaultValue="true"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="easy_point_users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1676883401194" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="easy_point_users" columnName="id"/>
+    </changeSet>
+
+    <changeSet id="1676883401195" author="Ermakov Aleksey">
+        <addPrimaryKey tableName="easy_point_users" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1676883401196" author="Ermakov Aleksey">
+        <createSequence sequenceName="easy_point_user_sequence" incrementBy="50"/>
+        <rollback>
+            <dropSequence sequenceName="easy_point_user_sequence"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1676883669930" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="easy_point_users" baseColumnNames="employee_id"
+                                 constraintName="fk_easy_point_users_to_employees" referencedTableName="employees"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="easy_point_users"
+                                      constraintName="fk_easy_point_users_to_employees"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677143365104" author="Ermakov Aleksey">
+        <createTable tableName="tokens">
+            <column name="id" type="bigint"/>
+            <column name="expired" type="boolean"/>
+            <column name="revoked" type="boolean"/>
+            <column name="token" type="varchar(255)"/>
+            <column name="token_type" type="varchar(255)"/>
+            <column name="user_id" type="bigint"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="tokens"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677143778794" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="tokens" baseColumnNames="user_id" constraintName="tokens_to_users"
+                                 referencedTableName="easy_point_users"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="tokens" constraintName="tokens_to_users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677143778796" author="Ermakov Aleksey">
+        <createSequence sequenceName="tokens_seq" incrementBy="50"/>
+        <rollback>
+            <dropSequence sequenceName="tokens_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677339634358" author="Ermakov Aleksey">
+        <createTable tableName="points">
+            <column name="id" type="bigint"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="x" type="numeric(8, 3)"/>
+            <column name="y" type="numeric(8, 3)"/>
+            <column name="h" type="numeric(8, 3)"/>
+            <column name="employee_id" type="bigint"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="points"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677339634359" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="points" columnName="id"/>
+    </changeSet>
+
+    <changeSet id="1677339634360" author="Ermakov Aleksey">
+        <addPrimaryKey tableName="points" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1677340762234" author="Ermakov Aleksey">
+        <createSequence sequenceName="point_seq" incrementBy="50"/>
+        <rollback>
+            <dropSequence sequenceName="point_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677345045880" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="points" baseColumnNames="employee_id"
+                                 constraintName="points_to_employees"
+                                 referencedTableName="employees"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="points" constraintName="points_to_employees"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

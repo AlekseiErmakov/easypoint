@@ -1,5 +1,5 @@
 databaseChangeLog:
-  - include:
-      file: db.changelog/create-schema.xml
+  - includeAll:
+      path: db.changelog/version-0.0.1/migrations
   - include:
       file: db.changelog/insert-test-data.xml

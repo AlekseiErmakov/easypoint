@@ -34,6 +34,6 @@ public final class TestData {
     }
 
     public static CreateEmployeeRequest createEmployeeRequest() {
-        return new CreateEmployeeRequest(FIRSTNAME,SURNAME, MIDDLE_NAME);
+        return new CreateEmployeeRequest(FIRSTNAME, SURNAME, MIDDLE_NAME);
     }
 }

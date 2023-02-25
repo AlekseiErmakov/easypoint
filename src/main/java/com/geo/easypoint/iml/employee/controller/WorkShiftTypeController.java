@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("*")
+
 @RequestMapping("/work-shift-types")
 public class WorkShiftTypeController {
 

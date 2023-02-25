@@ -1,7 +1,6 @@
 package com.geo.easypoint.iml.employee.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
