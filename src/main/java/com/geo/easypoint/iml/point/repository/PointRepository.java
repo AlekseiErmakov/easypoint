@@ -1,7 +1,6 @@
 package com.geo.easypoint.iml.point.repository;
 
 import com.geo.easypoint.iml.point.entity.Point;
-import jakarta.persistence.NamedEntityGraph;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,6 +11,7 @@ public interface PointRepository extends JpaRepository<Point, Long> {
 
     @EntityGraph("point-entity-graph")
     List<Point> findAll();
+
     @EntityGraph("point-entity-graph")
     Optional<Point> findById(Long id);
 }

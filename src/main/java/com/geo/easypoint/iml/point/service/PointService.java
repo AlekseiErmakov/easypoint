@@ -5,6 +5,7 @@ import com.geo.easypoint.api.point.dto.request.PointCreateRequestDto;
 import com.geo.easypoint.iml.mapper.EasyPointMapper;
 import com.geo.easypoint.iml.point.entity.Point;
 import com.geo.easypoint.iml.point.repository.PointRepository;
+import com.geo.easypoint.iml.point.repository.PointTypeRepository;
 import com.geo.easypoint.iml.utill.UserUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PointService {
     private final PointRepository pointRepository;
+    private final PointTypeRepository pointTypeRepository;
 
     @Transactional(readOnly = true)
     public List<PointDto> findAll() {
@@ -24,7 +26,7 @@ public class PointService {
 
     @Transactional
     public PointDto createPoint(PointCreateRequestDto request) {
-        Point point = pointRepository.saveAndFlush(EasyPointMapper.toPoint(request, UserUtils.getCurrentEmployee()));
+        Point point = pointRepository.saveAndFlush(EasyPointMapper.toPoint(request, UserUtils.getCurrentEmployee(), pointTypeRepository.findById(request.pointTypeId()).get()));
         return EasyPointMapper.toPointDto(point);
     }
 }

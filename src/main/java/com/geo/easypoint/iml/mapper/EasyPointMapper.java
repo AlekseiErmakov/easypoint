@@ -5,11 +5,13 @@ import com.geo.easypoint.api.employee.dto.request.WorkShiftTypeCreateRequest;
 import com.geo.easypoint.api.employee.dto.response.EmployeeDto;
 import com.geo.easypoint.api.employee.dto.response.WorkShiftTypeDto;
 import com.geo.easypoint.api.point.dto.PointDto;
+import com.geo.easypoint.api.point.dto.PointTypeDto;
 import com.geo.easypoint.api.point.dto.request.PointCreateRequestDto;
 import com.geo.easypoint.api.users.response.AuthenticationResponse;
 import com.geo.easypoint.iml.employee.entity.Employee;
 import com.geo.easypoint.iml.employee.entity.WorkShiftType;
 import com.geo.easypoint.iml.point.entity.Point;
+import com.geo.easypoint.iml.point.entity.PointType;
 import com.geo.easypoint.iml.users.entity.EasyPointUser;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -71,7 +73,14 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toPointDto(point);
     }
 
-    public static Point toPoint(PointCreateRequestDto request, Employee employee) {
-        return APPLICATION_MAPPER.toPoint(request, employee);
+    public static Point toPoint(PointCreateRequestDto request, Employee employee, PointType pointType) {
+        return APPLICATION_MAPPER.toPoint(request, employee, pointType);
+    }
+
+    public static PointTypeDto toPointTypeDto(PointType pointType){
+        return APPLICATION_MAPPER.toPointTypeDto(pointType);
+    }
+    public static List<PointTypeDto> toPointTypeDto(List<PointType> pointTypes) {
+        return APPLICATION_MAPPER.toPointTypeDto(pointTypes);
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <property name="point_type_sequence_next_val" value="nextval('point_type_seq')" dbms="h2"/>
+    <changeSet id="1677392385345" author="Ermakov Aleksey">
+        <insert tableName="point_types">
+            <column name="id" valueComputed="${point_type_sequence_next_val}"/>
+            <column name="code" value="REFERENCE_POINT"/>
+            <column name="name" value="reference point"/>
+            <column name="description" value="Reference point with only "/>
+        </insert>
+        <insert tableName="point_types">
+            <column name="id" valueComputed="${point_type_sequence_next_val}"/>
+            <column name="code" value="WALL_MARK"/>
+            <column name="name" value="Wall mark"/>
+            <column name="description" value="Mark on the wall "/>
+        </insert>
+        <insert tableName="point_types">
+            <column name="id" valueComputed="${point_type_sequence_next_val}"/>
+            <column name="code" value="FIXED_POINT"/>
+            <column name="name" value="Fixed point"/>
+            <column name="description" value="Fixed point on the ground"/>
+        </insert>
+        <rollback/>
+    </changeSet>
+
+</databaseChangeLog>

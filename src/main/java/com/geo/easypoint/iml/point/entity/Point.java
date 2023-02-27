@@ -34,6 +34,9 @@ public class Point {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee creator;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "point_type_id")
+    private PointType pointType;
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp

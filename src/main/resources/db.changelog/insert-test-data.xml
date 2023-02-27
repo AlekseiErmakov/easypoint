@@ -77,6 +77,7 @@
             <column name="created" valueComputed="${now}"/>
             <column name="updated" valueComputed="${now}"/>
             <column name="employee_id" value="1"/>
+            <column name="point_type_id" value="1"/>
         </insert>
         <insert tableName="points">
             <column name="id" valueComputed="${point_sequence_next_val}"/>
@@ -87,6 +88,7 @@
             <column name="created" valueComputed="${now}"/>
             <column name="updated" valueComputed="${now}"/>
             <column name="employee_id" valueComputed="(SELECT ID FROM EMPLOYEES WHERE SURNAME = 'Sergey')"/>
+            <column name="point_type_id" value="2"/>
         </insert>
         <rollback/>
     </changeSet>
