@@ -14,6 +14,7 @@ public class PointTypeService {
     private final PointTypeRepository pointTypeRepository;
 
     public List<PointTypeDto> findAll() {
+
         return EasyPointMapper.toPointTypeDto(pointTypeRepository.findAll());
     }
 }
