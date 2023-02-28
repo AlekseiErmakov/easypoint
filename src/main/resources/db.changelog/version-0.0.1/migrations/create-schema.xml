@@ -175,6 +175,7 @@
             <column name="y" type="numeric(8, 3)"/>
             <column name="h" type="numeric(8, 3)"/>
             <column name="point_type_id" type="bigint"/>
+            <column name="point_state_id" type="bigint"/>
             <column name="employee_id" type="bigint"/>
             <column name="created" type="timestamp"/>
             <column name="updated" type="timestamp"/>
@@ -243,6 +244,43 @@
                                  referencedColumnNames="id"/>
         <rollback>
             <dropForeignKeyConstraint baseTableName="points" constraintName="points_to_point_types"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677601735322" author="Ermakov Aleksey">
+        <createTable tableName="point_states">
+            <column name="id" type="bigint"/>
+            <column name="code" type="varchar(255)"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="point_states"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677601735323" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="point_states" columnName="id"/>
+    </changeSet>
+
+    <changeSet id="1677601735324" author="Ermakov Aleksey">
+        <addPrimaryKey tableName="point_states" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1677601735325" author="Ermakov Aleksey">
+        <createSequence sequenceName="point_state_seq" incrementBy="1"/>
+        <rollback>
+            <dropSequence sequenceName="point_state_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677601735326" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="points" baseColumnNames="point_state_id"
+                                 constraintName="points_to_point_states"
+                                 referencedTableName="point_states"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="points" constraintName="points_to_point_states"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>

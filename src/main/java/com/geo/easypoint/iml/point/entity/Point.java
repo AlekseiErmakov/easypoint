@@ -19,7 +19,9 @@ import java.time.LocalDateTime;
 @NamedEntityGraph(
         name = "point-entity-graph",
         attributeNodes = {
-                @NamedAttributeNode("creator")
+                @NamedAttributeNode("creator"),
+                @NamedAttributeNode("pointType"),
+                @NamedAttributeNode("pointState")
         }
 )
 public class Point {
@@ -37,6 +39,9 @@ public class Point {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "point_type_id")
     private PointType pointType;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "point_state_id")
+    private PointState pointState;
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp

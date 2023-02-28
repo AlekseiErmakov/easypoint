@@ -6,6 +6,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <property name="point_type_sequence_next_val" value="nextval('point_type_seq')" dbms="h2"/>
+    <property name="point_state_sequence_next_val" value="nextval('point_state_seq')" dbms="h2"/>
     <changeSet id="1677392385345" author="Ermakov Aleksey">
         <insert tableName="point_types">
             <column name="id" valueComputed="${point_type_sequence_next_val}"/>
@@ -27,5 +28,38 @@
         </insert>
         <rollback/>
     </changeSet>
-
+    <!--    CREATED, LOST, UPDATE_REQUIRED, NOT_AVAILABLE, READY_TO_USE-->
+    <changeSet id="1677602094639" author="Ermakov Aleksey">
+        <insert tableName="point_states">
+            <column name="id" valueComputed="${point_state_sequence_next_val}"/>
+            <column name="code" value="CREATED"/>
+            <column name="name" value="created"/>
+            <column name="description" value="Point is created"/>
+        </insert>
+        <insert tableName="point_states">
+            <column name="id" valueComputed="${point_state_sequence_next_val}"/>
+            <column name="code" value="LOST"/>
+            <column name="name" value="lost"/>
+            <column name="description" value="Point is lost"/>
+        </insert>
+        <insert tableName="point_states">
+            <column name="id" valueComputed="${point_state_sequence_next_val}"/>
+            <column name="code" value="UPDATE_REQUIRED"/>
+            <column name="name" value="update required"/>
+            <column name="description" value="Too much time has passed since the last definition"/>
+        </insert>
+        <insert tableName="point_states">
+            <column name="id" valueComputed="${point_state_sequence_next_val}"/>
+            <column name="code" value="NOT_AVAILABLE"/>
+            <column name="name" value="not available"/>
+            <column name="description" value="Point is not available for some reasons"/>
+        </insert>
+        <insert tableName="point_states">
+            <column name="id" valueComputed="${point_state_sequence_next_val}"/>
+            <column name="code" value="READY_TO_USE"/>
+            <column name="name" value="ready to use"/>
+            <column name="description" value="Point is available for usage"/>
+        </insert>
+        <rollback/>
+    </changeSet>
 </databaseChangeLog>
