@@ -29,7 +29,12 @@ public class PointService {
 
     @Transactional
     public PointDto createPoint(PointCreateRequestDto request) {
-        Point point = pointRepository.saveAndFlush(EasyPointMapper.toPoint(request, UserUtils.getCurrentEmployee(), pointTypeRepository.findById(request.pointTypeId()).get(), pointStateRepository.findByCode(PointStates.CREATED)));
+        Point point = pointRepository.saveAndFlush(
+                EasyPointMapper.toPoint(
+                        request,
+                        UserUtils.getCurrentEmployee(),
+                        pointTypeRepository.findById(request.pointTypeId()).get(),
+                        pointStateRepository.findByCode(PointStates.CREATED)));
         return EasyPointMapper.toPointDto(point);
     }
 }
