@@ -10,7 +10,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public final class UserUtils {
 
     public static EasyPointUser getCurrentUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return (EasyPointUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 

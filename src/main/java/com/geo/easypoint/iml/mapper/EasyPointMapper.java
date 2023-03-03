@@ -13,7 +13,6 @@ import com.geo.easypoint.iml.employee.entity.Employee;
 import com.geo.easypoint.iml.employee.entity.WorkShiftType;
 import com.geo.easypoint.iml.point.entity.Point;
 import com.geo.easypoint.iml.point.entity.PointState;
-import com.geo.easypoint.iml.point.entity.PointStates;
 import com.geo.easypoint.iml.point.entity.PointType;
 import com.geo.easypoint.iml.users.entity.EasyPointUser;
 import lombok.AccessLevel;
@@ -80,9 +79,10 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toPoint(request, employee, pointType, pointState);
     }
 
-    public static PointTypeDto toPointTypeDto(PointType pointType){
+    public static PointTypeDto toPointTypeDto(PointType pointType) {
         return APPLICATION_MAPPER.toPointTypeDto(pointType);
     }
+
     public static List<PointTypeDto> toPointTypeDto(List<PointType> pointTypes) {
         return APPLICATION_MAPPER.toPointTypeDto(pointTypes);
     }
