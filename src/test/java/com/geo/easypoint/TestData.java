@@ -2,7 +2,7 @@ package com.geo.easypoint;
 
 import com.geo.easypoint.api.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.api.employee.dto.response.EmployeeDto;
-import com.geo.easypoint.iml.employee.entity.Employee;
+import com.geo.easypoint.impl.employee.entity.Employee;
 
 import java.time.LocalDateTime;
 

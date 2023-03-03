@@ -283,4 +283,33 @@
             <dropForeignKeyConstraint baseTableName="points" constraintName="points_to_point_states"/>
         </rollback>
     </changeSet>
+
+   <changeSet id="1677839812411" author="Ermakov Aleksey">
+       <createTable tableName="total_stations">
+           <column name="id" type="bigint"/>
+           <column name="firm" type="varchar(255)"/>
+           <column name="serial_number" type="varchar(255)"/>
+           <column name="model" type="varchar(255)"/>
+           <column name="created" type="timestamp"/>
+           <column name="updated" type="timestamp"/>
+       </createTable>
+       <rollback>
+           <dropTable tableName="total_stations"/>
+       </rollback>
+   </changeSet>
+
+   <changeSet id="1677839821985" author="Ermakov Aleksey">
+       <addNotNullConstraint tableName="total_stations" columnName="id"/>
+   </changeSet>
+
+   <changeSet id="1677839821989" author="Ermakov Aleksey">
+       <addPrimaryKey tableName="total_stations" columnNames="id"/>
+   </changeSet>
+
+   <changeSet id="1677839821993" author="Ermakov Aleksey">
+       <createSequence sequenceName="total_stations_seq" incrementBy="50"/>
+       <rollback>
+           <dropSequence sequenceName="total_stations_seq"/>
+       </rollback>
+   </changeSet>
 </databaseChangeLog>

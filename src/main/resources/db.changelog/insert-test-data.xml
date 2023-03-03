@@ -9,6 +9,7 @@
     <property name="employee_seq_next_val" value="nextval('employee_sequence')" dbms="h2"/>
     <property name="work_shift_type_sequence_next_val" value="nextval('work_shift_type_sequence')" dbms="h2"/>
     <property name="easy_point_user_sequence_next_val" value="nextval('easy_point_user_sequence')" dbms="h2"/>
+    <property name="total_stations_sequence_next_val" value="nextval('total_stations_seq')" dbms="h2"/>
     <property name="point_sequence_next_val" value="nextval('point_seq')" dbms="h2"/>
     <changeSet id="2" author="Aleksey">
         <insert tableName="employees">
@@ -91,6 +92,14 @@
             <column name="employee_id" valueComputed="(SELECT ID FROM EMPLOYEES WHERE SURNAME = 'Sergey')"/>
             <column name="point_type_id" value="2"/>
             <column name="point_state_id" value="2"/>
+        </insert>
+        <insert tableName="total_stations">
+            <column name="id" valueComputed="${total_stations_sequence_next_val}"/>
+            <column name="firm" value="Sokkia"/>
+            <column name="model" value="Rx-520"/>
+            <column name="serial_number" value="serial-number"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
         </insert>
         <rollback/>
     </changeSet>
