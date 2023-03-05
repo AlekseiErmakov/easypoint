@@ -1,5 +1,10 @@
 package com.geo.easypoint.impl.mapper;
 
+import com.geo.easypoint.api.area.dto.AreaDto;
+import com.geo.easypoint.api.area.dto.AreaStructureDto;
+import com.geo.easypoint.api.area.dto.AreaStructureTypeDto;
+import com.geo.easypoint.api.area.dto.request.AreaStructureCreateRequestDto;
+import com.geo.easypoint.api.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.api.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.api.employee.dto.request.WorkShiftTypeCreateRequest;
 import com.geo.easypoint.api.employee.dto.response.EmployeeDto;
@@ -11,6 +16,8 @@ import com.geo.easypoint.api.point.dto.request.PointCreateRequestDto;
 import com.geo.easypoint.api.tool.total.station.TotalStationDto;
 import com.geo.easypoint.api.tool.total.station.request.TotalStationCreateRequestDto;
 import com.geo.easypoint.api.users.response.AuthenticationResponse;
+import com.geo.easypoint.impl.area.entity.AreaStructure;
+import com.geo.easypoint.impl.area.entity.AreaStructureType;
 import com.geo.easypoint.impl.employee.entity.Employee;
 import com.geo.easypoint.impl.employee.entity.WorkShiftType;
 import com.geo.easypoint.impl.point.entity.Point;
@@ -94,11 +101,36 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toPointStateDto(pointStates);
     }
 
-    public static List<TotalStationDto> toTotalStationDto(Collection<TotalStation> totalStations){
+    public static List<TotalStationDto> toTotalStationDto(Collection<TotalStation> totalStations) {
         return APPLICATION_MAPPER.toTotalStationDto(totalStations);
     }
 
-    public static TotalStation toTotalStation(TotalStationCreateRequestDto createRequestDto){
+    public static TotalStation toTotalStation(TotalStationCreateRequestDto createRequestDto) {
         return APPLICATION_MAPPER.toTotalStation(createRequestDto);
+    }
+
+    public static List<AreaStructureDto> toAreaStructureDto(List<AreaStructure> areaStructures) {
+        return APPLICATION_MAPPER.toAreaStructureDto(areaStructures);
+    }
+
+    public static List<AreaStructureTypeDto> toAreaStructureTypeDto(List<AreaStructureType> all) {
+        return APPLICATION_MAPPER.toAreaStructureTypeDto(all);
+
+    }
+
+    public static AreaStructureType toAreaStructureType(AreaStructureTypeCreateRequestDto createRequestDto) {
+        return APPLICATION_MAPPER.toAreaStructureType(createRequestDto);
+    }
+
+    public static AreaStructure toAreaStructure(AreaStructureCreateRequestDto request) {
+        return APPLICATION_MAPPER.toAreaStructure(request);
+    }
+
+    public static List<AreaDto> toAreaDto(List<AreaStructure> areas) {
+        return APPLICATION_MAPPER.toAreaDto(areas);
+    }
+
+    public static AreaStructure toAreaStructureType(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent) {
+        return APPLICATION_MAPPER.toAreaStructure(createRequestDto, parent);
     }
 }

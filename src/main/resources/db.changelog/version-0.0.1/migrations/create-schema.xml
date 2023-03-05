@@ -312,4 +312,82 @@
            <dropSequence sequenceName="total_stations_seq"/>
        </rollback>
    </changeSet>
+
+    <changeSet id="1677864279397" author="Ermakov Aleksey">
+        <createTable tableName="area_structures">
+            <column name="id" type="bigint"/>
+            <column name="area_structure_type_id" type="bigint"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="parent_area_structure_id" type="bigint"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="area_structures"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864290408" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="area_structures" columnName="id"/>
+    </changeSet>
+
+    <changeSet id="1677864290412" author="Ermakov Aleksey">
+        <addPrimaryKey tableName="area_structures" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1677864290415" author="Ermakov Aleksey">
+        <createSequence sequenceName="area_structures_seq" incrementBy="1"/>
+        <rollback>
+            <dropSequence sequenceName="area_structures_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864306986" author="Ermakov Aleksey">
+        <createTable tableName="area_structure_types">
+            <column name="id" type="bigint"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="area_structure_types"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864316928" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="area_structure_types" columnName="id"/>
+    </changeSet>
+
+    <changeSet id="1677864316932" author="Ermakov Aleksey">
+        <addPrimaryKey tableName="area_structure_types" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1677864316936" author="Ermakov Aleksey">
+        <createSequence sequenceName="area_structure_types_seq" incrementBy="1"/>
+        <rollback>
+            <dropSequence sequenceName="area_structure_types_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864316937" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="area_structures" baseColumnNames="area_structure_type_id"
+                                 constraintName="area_structures_to_area_structures_types"
+                                 referencedTableName="area_structure_types"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="area_structures" constraintName="area_structures_to_area_structures_types"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864316938" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="area_structures" baseColumnNames="parent_area_structure_id"
+                                 constraintName="area_structures_to_area_structures"
+                                 referencedTableName="area_structures"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="area_structures" constraintName="area_structures_to_area_structures"/>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>
