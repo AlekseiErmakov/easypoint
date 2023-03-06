@@ -71,30 +71,7 @@
             <column name="password" value="$2a$10$qldoNknOUMzBLwxU9uqD5ew9urH0m0/cSVF2tN0h8hQtwmsXIkQWy"/>
             <column name="employee_id" value="1"/>
         </insert>
-        <insert tableName="points">
-            <column name="id" valueComputed="${point_sequence_next_val}"/>
-            <column name="name" value="PZ-2030"/>
-            <column name="x" value="1564.303"/>
-            <column name="y" value="2423.303"/>
-            <column name="h" value="67.113"/>
-            <column name="created" valueComputed="${now}"/>
-            <column name="updated" valueComputed="${now}"/>
-            <column name="employee_id" value="1"/>
-            <column name="point_type_id" value="1"/>
-            <column name="point_state_id" value="1"/>
-        </insert>
-        <insert tableName="points">
-            <column name="id" valueComputed="${point_sequence_next_val}"/>
-            <column name="name" value="PZ-2032"/>
-            <column name="x" value="1534.111"/>
-            <column name="y" value="4356.221"/>
-            <column name="h" value="64.353"/>
-            <column name="created" valueComputed="${now}"/>
-            <column name="updated" valueComputed="${now}"/>
-            <column name="employee_id" valueComputed="(SELECT ID FROM EMPLOYEES WHERE SURNAME = 'Sergey')"/>
-            <column name="point_type_id" value="2"/>
-            <column name="point_state_id" value="2"/>
-        </insert>
+
         <insert tableName="total_stations">
             <column name="id" valueComputed="${total_stations_sequence_next_val}"/>
             <column name="firm" value="Sokkia"/>
@@ -123,57 +100,49 @@
 
         <insert tableName="area_structure_types">
             <column name="id" valueComputed="${area_structure_type_next_val}"/>
-            <column name="name">Plaza</column>
-            <column name="description">A public open space that often features fountains, sculptures, and other decorative elements</column>
+            <column name="name">Ground area</column>
+            <column name="description">A public open space</column>
             <column name="created">2022-01-02 12:00:00</column>
             <column name="updated">2022-01-02 12:00:00</column>
         </insert>
 
         <insert tableName="area_structure_types">
             <column name="id" valueComputed="${area_structure_type_next_val}"/>
-            <column name="name">Park</column>
-            <column name="description">An area of land set aside for recreational and aesthetic purposes</column>
+            <column name="name">Mine Shaft</column>
+            <column name="description">Mine Shaft</column>
             <column name="created">2022-01-03 12:00:00</column>
             <column name="updated">2022-01-03 12:00:00</column>
         </insert>
 
         <insert tableName="area_structure_types">
             <column name="id" valueComputed="${area_structure_type_next_val}"/>
-            <column name="name">Mall</column>
-            <column name="description">A large indoor shopping complex with multiple stores and amenities</column>
+            <column name="name">Tunnel</column>
+            <column name="description">Tunnel</column>
             <column name="created">2022-01-04 12:00:00</column>
             <column name="updated">2022-01-04 12:00:00</column>
         </insert>
 
         <insert tableName="area_structure_types">
             <column name="id" valueComputed="${area_structure_type_next_val}"/>
-            <column name="name">Stadium</column>
-            <column name="description">A large venue used for sporting events, concerts, and other types of performances</column>
+            <column name="name">Gallery</column>
+            <column name="description">Gallery</column>
             <column name="created">2022-01-05 12:00:00</column>
             <column name="updated">2022-01-05 12:00:00</column>
         </insert>
 
         <insert tableName="area_structure_types">
             <column name="id" valueComputed="${area_structure_type_next_val}"/>
-            <column name="name">Hospital</column>
-            <column name="description">A medical facility that provides care to the sick and injured</column>
+            <column name="name">Oblique course</column>
+            <column name="description">Oblique course</column>
             <column name="created">2022-01-06 12:00:00</column>
             <column name="updated">2022-01-06 12:00:00</column>
-        </insert>
-
-        <insert tableName="area_structure_types">
-            <column name="id" valueComputed="${area_structure_type_next_val}"/>
-            <column name="name">Church</column>
-            <column name="description">A religious building used for worship and other religious activities</column>
-            <column name="created">2022-01-07 12:00:00</column>
-            <column name="updated">2022-01-07 12:00:00</column>
         </insert>
 
         <insert tableName="area_structures">
             <column name="id" valueComputed="${area_structure_next_val}"/>
             <column name="area_structure_type_id">1</column>
-            <column name="description">A large office building with multiple floors and offices</column>
-            <column name="name">Corporate Building</column>
+            <column name="description">Mine</column>
+            <column name="name">Mine 572</column>
             <column name="created">2022-02-01 12:00:00</column>
             <column name="updated">2022-02-01 12:00:00</column>
         </insert>
@@ -181,9 +150,9 @@
         <insert tableName="area_structures">
             <column name="id" valueComputed="${area_structure_next_val}"/>
             <column name="area_structure_type_id">2</column>
-            <column name="description">A public space with seating areas, fountains, and gardens</column>
+            <column name="description">Surface</column>
             <column name="parent_area_structure_id" >1</column>
-            <column name="name">Central Plaza</column>
+            <column name="name">Surface</column>
             <column name="created">2022-02-02 12:00:00</column>
             <column name="updated">2022-02-02 12:00:00</column>
         </insert>
@@ -191,9 +160,9 @@
         <insert tableName="area_structures">
             <column name="id" valueComputed="${area_structure_next_val}"/>
             <column name="area_structure_type_id">3</column>
-            <column name="description">A large public park with walking paths, playgrounds, and picnic areas</column>
+            <column name="description">Underground part of mine 572</column>
             <column name="parent_area_structure_id" >1</column>
-            <column name="name">City Park</column>
+            <column name="name">Underground</column>
             <column name="created">2022-02-03 12:00:00</column>
             <column name="updated">2022-02-03 12:00:00</column>
         </insert>
@@ -201,9 +170,9 @@
         <insert tableName="area_structures">
             <column name="id" valueComputed="${area_structure_next_val}"/>
             <column name="area_structure_type_id">4</column>
-            <column name="description">A large shopping mall with multiple levels, stores, and restaurants</column>
+            <column name="description">Mine shaft 572</column>
             <column name="parent_area_structure_id" >3</column>
-            <column name="name">Central Mall</column>
+            <column name="name">Mine shaft 572</column>
             <column name="created">2022-02-04 12:00:00</column>
             <column name="updated">2022-02-04 12:00:00</column>
         </insert>
@@ -211,13 +180,38 @@
         <insert tableName="area_structures">
             <column name="id" valueComputed="${area_structure_next_val}"/>
             <column name="area_structure_type_id">4</column>
-            <column name="description">A large stadium used for sports games, concerts, and other events</column>
+            <column name="description">NVU 572</column>
             <column name="parent_area_structure_id">3</column>
-            <column name="name">Sports Arena</column>
+            <column name="name">NVU 572</column>
             <column name="created">2022-02-05 12:00:00</column>
             <column name="updated">2022-02-05 12:00:00</column>
         </insert>
-
+        <insert tableName="points">
+            <column name="id" valueComputed="${point_sequence_next_val}"/>
+            <column name="name" value="PZ-2030"/>
+            <column name="x" value="1564.303"/>
+            <column name="y" value="2423.303"/>
+            <column name="h" value="67.113"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+            <column name="employee_id" value="1"/>
+            <column name="point_type_id" value="1"/>
+            <column name="area_structure_id">3</column>
+            <column name="point_state_id" value="1"/>
+        </insert>
+        <insert tableName="points">
+            <column name="id" valueComputed="${point_sequence_next_val}"/>
+            <column name="name" value="PZ-2032"/>
+            <column name="x" value="1534.111"/>
+            <column name="y" value="4356.221"/>
+            <column name="h" value="64.353"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+            <column name="employee_id" valueComputed="(SELECT ID FROM EMPLOYEES WHERE SURNAME = 'Sergey')"/>
+            <column name="point_type_id" value="2"/>
+            <column name="area_structure_id">3</column>
+            <column name="point_state_id" value="2"/>
+        </insert>
         <rollback/>
     </changeSet>
 </databaseChangeLog>

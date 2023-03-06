@@ -59,8 +59,11 @@ public interface ApplicationMapper {
     @Mapping(target = "creator", source = "employee")
     @Mapping(target = "pointType", source = "pointType")
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "updated", ignore = true)
     @Mapping(target = "name", source = "request.name")
-    Point toPoint(PointCreateRequestDto request, Employee employee, PointType pointType, PointState pointState);
+    @Mapping(target = "areaStructure", source = "area")
+    Point toPoint(PointCreateRequestDto request, Employee employee, PointType pointType, PointState pointState, AreaStructure area);
 
     PointTypeDto toPointTypeDto(PointType pointType);
 
@@ -97,4 +100,7 @@ public interface ApplicationMapper {
     @Mapping(target = "description", source = "createRequestDto.description")
     @Mapping(target = "parent", source = "parent")
     AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent);
+
+    @Mapping(target = "areas", source = "areas")
+    PointDto toAreaDto(Point point, List<AreaDto> areas);
 }

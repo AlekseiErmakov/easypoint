@@ -31,6 +31,8 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EasyPointMapper {
@@ -85,8 +87,8 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toPointDto(point);
     }
 
-    public static Point toPoint(PointCreateRequestDto request, Employee employee, PointType pointType, PointState pointState) {
-        return APPLICATION_MAPPER.toPoint(request, employee, pointType, pointState);
+    public static Point toPoint(PointCreateRequestDto request, Employee employee, PointType pointType, PointState pointState, AreaStructure area) {
+        return APPLICATION_MAPPER.toPoint(request, employee, pointType, pointState, area);
     }
 
     public static PointTypeDto toPointTypeDto(PointType pointType) {
@@ -130,7 +132,17 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toAreaDto(areas);
     }
 
+    public static AreaDto toAreaDto(AreaStructure area) {
+        return APPLICATION_MAPPER.toAreaDto(area);
+    }
+
     public static AreaStructure toAreaStructureType(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent) {
         return APPLICATION_MAPPER.toAreaStructure(createRequestDto, parent);
+    }
+
+    public static List<PointDto> toPointDto(List<Point> all, Function<Point, List<AreaDto>> function) {
+        return  all.stream()
+                .map(point -> APPLICATION_MAPPER.toAreaDto(point, function.apply(point)))
+                .collect(Collectors.toList());
     }
 }

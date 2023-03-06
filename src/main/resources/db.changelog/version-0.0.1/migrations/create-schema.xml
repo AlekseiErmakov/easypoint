@@ -174,6 +174,7 @@
             <column name="x" type="numeric(8, 3)"/>
             <column name="y" type="numeric(8, 3)"/>
             <column name="h" type="numeric(8, 3)"/>
+            <column name="area_structure_id" type="bigint"/>
             <column name="point_type_id" type="bigint"/>
             <column name="point_state_id" type="bigint"/>
             <column name="employee_id" type="bigint"/>
@@ -388,6 +389,16 @@
                                  referencedColumnNames="id"/>
         <rollback>
             <dropForeignKeyConstraint baseTableName="area_structures" constraintName="area_structures_to_area_structures"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864316939" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="points" baseColumnNames="area_structure_id"
+                                 constraintName="points_to_area_structures"
+                                 referencedTableName="area_structures"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="points" constraintName="points_to_area_structures"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>
