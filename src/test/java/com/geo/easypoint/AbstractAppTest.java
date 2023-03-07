@@ -1,7 +1,7 @@
 package com.geo.easypoint;
 
-import com.geo.easypoint.impl.employee.controller.EmployeeController;
-import com.geo.easypoint.impl.employee.repository.EmployeeRepository;
+import com.geo.easypoint.employee.controller.EmployeeController;
+import com.geo.easypoint.employee.repository.EmployeeRepository;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
