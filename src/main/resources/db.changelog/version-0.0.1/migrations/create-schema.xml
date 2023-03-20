@@ -428,4 +428,54 @@
             <dropSequence sequenceName="admin_structure_types_seq"/>
         </rollback>
     </changeSet>
+
+    <changeSet id="1677864316944" author="Ermakov Aleksey">
+        <createTable tableName="admin_structures">
+            <column name="id" type="bigint"/>
+            <column name="admin_structure_type_id" type="bigint"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="parent_admin_structure_id" type="bigint"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="admin_structures"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864316945" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="admin_structures" columnName="id"/>
+    </changeSet>
+
+    <changeSet id="1677864316946" author="Ermakov Aleksey">
+        <addPrimaryKey tableName="admin_structures" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1677864316947" author="Ermakov Aleksey">
+        <createSequence sequenceName="admin_structures_seq" incrementBy="1"/>
+        <rollback>
+            <dropSequence sequenceName="admin_structures_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864316948" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="admin_structures" baseColumnNames="admin_structure_type_id"
+                                 constraintName="admin_structures_to_admin_structures_types"
+                                 referencedTableName="admin_structure_types"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="admin_structures" constraintName="admin_structures_to_admin_structures_types"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864316949" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="admin_structures" baseColumnNames="parent_admin_structure_id"
+                                 constraintName="admin_structures_to_admin_structures"
+                                 referencedTableName="admin_structures"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="admin_structures" constraintName="admin_structures_to_admin_structures"/>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>

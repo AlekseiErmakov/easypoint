@@ -1,7 +1,11 @@
 package com.geo.easypoint.common.mapper;
 
+import com.geo.easypoint.administrative.dto.AdminDto;
+import com.geo.easypoint.administrative.dto.AdminStructureDto;
 import com.geo.easypoint.administrative.dto.AdminStructureTypeDto;
+import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
 import com.geo.easypoint.administrative.dto.request.AdminStructureTypeCreateRequest;
+import com.geo.easypoint.administrative.entity.AdminStructure;
 import com.geo.easypoint.administrative.entity.AdminStructureType;
 import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.dto.AreaStructureDto;
@@ -185,11 +189,27 @@ public class EasyPointMapper {
         APPLICATION_MAPPER.updatePoint(point,request, pointType, areaStructure,employee);
     }
 
-    public static List<AdminStructureTypeDto> toAdminStructureDto(List<AdminStructureType> adminStructureTypes) {
+    public static List<AdminStructureTypeDto> toAdminStructureTypeDto(List<AdminStructureType> adminStructureTypes) {
         return APPLICATION_MAPPER.toAdminStructureTypeDto(adminStructureTypes);
     }
 
-    public static AdminStructureType toAdminStructure(AdminStructureTypeCreateRequest request) {
+    public static AdminStructureType toAdminStructureType(AdminStructureTypeCreateRequest request) {
         return APPLICATION_MAPPER.toAdminStructureType(request);
+    }
+
+    public static List<AdminStructureDto> toAdminStructureDto(List<AdminStructure> adminStructures) {
+        return APPLICATION_MAPPER.toAdminStructureDto(adminStructures);
+    }
+
+    public static AdminStructure toAdminStructure(AdminStructureCreateRequest request) {
+        return APPLICATION_MAPPER.toAdminStructure(request);
+    }
+
+    public static <T> AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructure parent) {
+        return APPLICATION_MAPPER.toAdminStructure(request, parent);
+    }
+
+    public static List<AdminDto> toAdminDto(List<AdminStructure> structures) {
+        return APPLICATION_MAPPER.toAdminDto(structures);
     }
 }

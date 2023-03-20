@@ -18,11 +18,11 @@ public class AdminStructureTypeService {
 
     @Transactional(readOnly = true)
     public List<AdminStructureTypeDto> findAll() {
-        return EasyPointMapper.toAdminStructureDto(repository.findAll());
+        return EasyPointMapper.toAdminStructureTypeDto(repository.findAll());
     }
 
     @Transactional
     public void create(AdminStructureTypeCreateRequest request) {
-        repository.save(EasyPointMapper.toAdminStructure(request));
+        repository.save(EasyPointMapper.toAdminStructureType(request));
     }
 }

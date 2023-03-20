@@ -1,7 +1,11 @@
 package com.geo.easypoint.common.mapper;
 
+import com.geo.easypoint.administrative.dto.AdminDto;
+import com.geo.easypoint.administrative.dto.AdminStructureDto;
 import com.geo.easypoint.administrative.dto.AdminStructureTypeDto;
+import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
 import com.geo.easypoint.administrative.dto.request.AdminStructureTypeCreateRequest;
+import com.geo.easypoint.administrative.entity.AdminStructure;
 import com.geo.easypoint.administrative.entity.AdminStructureType;
 import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.dto.AreaStructureDto;
@@ -159,4 +163,21 @@ public interface ApplicationMapper {
     List<AdminStructureTypeDto> toAdminStructureTypeDto(List<AdminStructureType> adminStructureTypes);
 
     AdminStructureType toAdminStructureType(AdminStructureTypeCreateRequest request);
+
+    List<AdminStructureDto> toAdminStructureDto(List<AdminStructure> adminStructures);
+    AdminStructureDto toAdminStructureDto(AdminStructure adminStructure);
+
+    AdminStructure toAdminStructure(AdminStructureCreateRequest request);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "updated", ignore = true)
+    @Mapping(target = "name", source = "request.name")
+    @Mapping(target = "description", source = "request.description")
+    @Mapping(target = "parent", source = "parent")
+    AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructure parent);
+
+    List<AdminDto> toAdminDto(List<AdminStructure> structures);
+
+    AreaDto toAdminDto(AdminStructure adminStructure);
 }
