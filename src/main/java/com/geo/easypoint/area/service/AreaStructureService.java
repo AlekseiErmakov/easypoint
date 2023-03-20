@@ -32,7 +32,7 @@ public class AreaStructureService {
         log.info("Creating area Structure");
         AreaStructure areaStructure;
         if (request.isParentPresent()) {
-            areaStructure = EasyPointMapper.toAreaStructureType(request, NotFoundException.orElseThrow(request.parentId(), AreaStructure.class, areaStructureRepository::findById));
+            areaStructure = EasyPointMapper.toAreaStructure(request, NotFoundException.orElseThrow(request.parentId(), AreaStructure.class, areaStructureRepository::findById));
         } else {
             areaStructure = EasyPointMapper.toAreaStructure(request);
         }

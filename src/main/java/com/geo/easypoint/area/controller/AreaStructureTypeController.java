@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/area-structure-type")
+@RequestMapping("/area-structure-types")
 public class AreaStructureTypeController {
     private final AreaStructureTypeService areaStructureTypeService;
 

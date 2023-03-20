@@ -1,7 +1,7 @@
 package com.geo.easypoint.area.service;
 
-import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.area.dto.AreaStructureTypeDto;
+import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.area.repository.AreaStructureTypeRepository;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import lombok.RequiredArgsConstructor;

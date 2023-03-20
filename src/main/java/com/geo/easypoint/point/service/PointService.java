@@ -7,9 +7,13 @@ import com.geo.easypoint.common.exception.BadRequestException;
 import com.geo.easypoint.common.exception.NotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.common.utill.UserUtils;
+import com.geo.easypoint.files.EasyPointFile;
+import com.geo.easypoint.point.dto.CsvPointDto;
+import com.geo.easypoint.point.dto.PointCsvHeaders;
 import com.geo.easypoint.point.dto.PointDto;
 import com.geo.easypoint.point.dto.PointStates;
 import com.geo.easypoint.point.dto.request.PointCreateRequestDto;
+import com.geo.easypoint.point.dto.request.PointUpdateRequest;
 import com.geo.easypoint.point.entity.Point;
 import com.geo.easypoint.point.entity.PointType;
 import com.geo.easypoint.point.repository.PointRepository;
@@ -18,6 +22,7 @@ import com.geo.easypoint.point.repository.PointTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +41,18 @@ public class PointService {
         return EasyPointMapper.toPointDto(pointRepository.findAll(), this::findAll);
     }
 
+    @Transactional(readOnly = true)
+    public EasyPointFile findAllCsv() {
+        List<CsvPointDto> csvPoints = EasyPointMapper.toCsvPointDto(pointRepository.findAll());
+        return EasyPointMapper.toEasyPointCsvFile(PointCsvHeaders.getColumns(), csvPoints, "points.csv");
+    }
+
+    @Transactional
+    public void savePointsFromCsv(MultipartFile file) {
+        List<CsvPointDto> csvPoints = EasyPointMapper.fromFileToElements(PointCsvHeaders.getColumns(), file, CsvPointDto.class);
+        pointRepository.saveAll(EasyPointMapper.toPoint(csvPoints, pointStateRepository.findByCode(PointStates.CREATED), UserUtils.getCurrentEmployee()));
+    }
+
     @Transactional
     public PointDto createPoint(PointCreateRequestDto request) {
         Point point = pointRepository.saveAndFlush(
@@ -50,6 +67,16 @@ public class PointService {
         return EasyPointMapper.toPointDto(point);
     }
 
+    @Transactional
+    public void updatePoint(PointUpdateRequest request, Long pointId) {
+        Point point = findPoint(pointId);
+        EasyPointMapper.updatePoint(point, request, findPointType(request.pointTypeId()), NotFoundException.orElseThrow(request.pointAreaId(), AreaStructure.class, areaStructureRepository::findById),
+                UserUtils.getCurrentEmployee());
+        pointRepository.save(point);
+
+    }
+
+    @Transactional
     public void delete(Long pointId) {
         Point point = findPoint(pointId);
         if (isNotPossibleToDelete(point.getPointState().getCode())) {
@@ -70,6 +97,7 @@ public class PointService {
         return pointTypeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id, PointType.class));
     }
+
 
     private boolean isNotPossibleToDelete(PointStates pointState) {
         return PointStates.CREATED != pointState;

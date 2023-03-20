@@ -16,16 +16,16 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/area-structure")
+@RequestMapping("/areas")
 public class AreaStructureController {
     private final AreaStructureService areaStructureService;
 
-    @GetMapping
+    @GetMapping("/structure")
     public List<AreaStructureDto> findAll() {
         return areaStructureService.findAll();
     }
 
-    @GetMapping("/areas")
+    @GetMapping
     public List<AreaDto> findAllAreas() {
         return areaStructureService.findAllAreas();
     }

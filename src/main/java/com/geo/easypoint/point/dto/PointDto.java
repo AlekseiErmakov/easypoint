@@ -7,6 +7,16 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public record PointDto(Long id, String name, BigDecimal x, BigDecimal y, BigDecimal h, LocalDate created,
-                       LocalDate updated, EmployeeDto creator, PointTypeDto pointType, PointStateDto pointState, List<AreaDto> areas) {
+public record PointDto(Long id,
+                       String name,
+                       BigDecimal x,
+                       BigDecimal y,
+                       BigDecimal h,
+                       LocalDate created,
+                       Long rootAreaId,
+                       LocalDate updated,
+                       EmployeeDto creator,
+                       PointTypeDto pointType,
+                       PointStateDto pointState,
+                       List<AreaDto> areas) {
 }

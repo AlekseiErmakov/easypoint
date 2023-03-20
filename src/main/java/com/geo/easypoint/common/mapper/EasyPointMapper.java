@@ -1,5 +1,8 @@
 package com.geo.easypoint.common.mapper;
 
+import com.geo.easypoint.administrative.dto.AdminStructureTypeDto;
+import com.geo.easypoint.administrative.dto.request.AdminStructureTypeCreateRequest;
+import com.geo.easypoint.administrative.entity.AdminStructureType;
 import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.dto.AreaStructureDto;
 import com.geo.easypoint.area.dto.AreaStructureTypeDto;
@@ -7,27 +10,34 @@ import com.geo.easypoint.area.dto.request.AreaStructureCreateRequestDto;
 import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.area.entity.AreaStructureType;
-import com.geo.easypoint.employee.entity.Employee;
-import com.geo.easypoint.employee.entity.WorkShiftType;
+import com.geo.easypoint.common.DownloadResponse;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeDto;
 import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
+import com.geo.easypoint.employee.entity.Employee;
+import com.geo.easypoint.employee.entity.WorkShiftType;
+import com.geo.easypoint.files.BeanToCsvMapper;
+import com.geo.easypoint.files.CsvColumn;
+import com.geo.easypoint.files.EasyPointFile;
+import com.geo.easypoint.point.dto.CsvPointDto;
 import com.geo.easypoint.point.dto.PointDto;
 import com.geo.easypoint.point.dto.PointStateDto;
 import com.geo.easypoint.point.dto.PointTypeDto;
 import com.geo.easypoint.point.dto.request.PointCreateRequestDto;
-import com.geo.easypoint.tool.total.station.dto.TotalStationDto;
-import com.geo.easypoint.tool.total.station.dto.request.TotalStationCreateRequestDto;
-import com.geo.easypoint.users.dto.response.AuthenticationResponse;
+import com.geo.easypoint.point.dto.request.PointUpdateRequest;
 import com.geo.easypoint.point.entity.Point;
 import com.geo.easypoint.point.entity.PointState;
 import com.geo.easypoint.point.entity.PointType;
+import com.geo.easypoint.tool.total.station.dto.TotalStationDto;
+import com.geo.easypoint.tool.total.station.dto.request.TotalStationCreateRequestDto;
 import com.geo.easypoint.tool.total.station.entity.TotalStation;
+import com.geo.easypoint.users.dto.response.AuthenticationResponse;
 import com.geo.easypoint.users.entity.EasyPointUser;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.mapstruct.factory.Mappers;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
 import java.util.List;
@@ -77,10 +87,6 @@ public class EasyPointMapper {
 
     public static AuthenticationResponse toAuthenticationResponse(EasyPointUser user, String jwtToken) {
         return APPLICATION_MAPPER.toAuthenticationResponse(user, jwtToken);
-    }
-
-    public static List<PointDto> toPointDto(Collection<Point> points) {
-        return APPLICATION_MAPPER.toPointDto(points);
     }
 
     public static PointDto toPointDto(Point point) {
@@ -136,13 +142,54 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toAreaDto(area);
     }
 
-    public static AreaStructure toAreaStructureType(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent) {
+    public static AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent) {
         return APPLICATION_MAPPER.toAreaStructure(createRequestDto, parent);
     }
 
     public static List<PointDto> toPointDto(List<Point> all, Function<Point, List<AreaDto>> function) {
-        return  all.stream()
+        return all.stream()
                 .map(point -> APPLICATION_MAPPER.toAreaDto(point, function.apply(point)))
                 .collect(Collectors.toList());
+    }
+
+    public static DownloadResponse toDownloadResponse(byte[] file, String fileName) {
+        return APPLICATION_MAPPER.toDownloadResponse(file, fileName);
+    }
+
+    public static CsvPointDto toCsvPointDto(Point point) {
+        return APPLICATION_MAPPER.toCsvPointDto(point);
+    }
+
+    public static List<CsvPointDto> toCsvPointDto(Collection<Point> points) {
+        return APPLICATION_MAPPER.toCsvPointDto(points);
+    }
+
+    public static <T> EasyPointFile toEasyPointCsvFile(List<CsvColumn> columns, List<T> data, String fileName) {
+        return new EasyPointFile(fileName, BeanToCsvMapper.toCsvFile(columns, data));
+    }
+
+    public static <T> List<T> fromFileToElements(Collection<CsvColumn> columns, MultipartFile file, Class<T> clazz) {
+        return BeanToCsvMapper.fromCsvFile(columns, file, clazz);
+    }
+
+    public static List<Point> toPoint(List<CsvPointDto> csvPoints) {
+        return APPLICATION_MAPPER.toPoint(csvPoints);
+    }
+
+    public static List<Point> toPoint(List<CsvPointDto> csvPoints, PointState pointState, Employee employee) {
+        return csvPoints.stream().map(csvPoint -> APPLICATION_MAPPER.toPoint(csvPoint, pointState, employee))
+                .collect(Collectors.toList());
+    }
+
+    public static void updatePoint(Point point, PointUpdateRequest request, PointType pointType, AreaStructure areaStructure, Employee employee){
+        APPLICATION_MAPPER.updatePoint(point,request, pointType, areaStructure,employee);
+    }
+
+    public static List<AdminStructureTypeDto> toAdminStructureDto(List<AdminStructureType> adminStructureTypes) {
+        return APPLICATION_MAPPER.toAdminStructureTypeDto(adminStructureTypes);
+    }
+
+    public static AdminStructureType toAdminStructure(AdminStructureTypeCreateRequest request) {
+        return APPLICATION_MAPPER.toAdminStructureType(request);
     }
 }

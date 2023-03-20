@@ -401,4 +401,31 @@
             <dropForeignKeyConstraint baseTableName="points" constraintName="points_to_area_structures"/>
         </rollback>
     </changeSet>
+    <changeSet id="1677864316940" author="Ermakov Aleksey">
+        <createTable tableName="admin_structure_types">
+            <column name="id" type="bigint"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="admin_structure_types"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1677864316941" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="admin_structure_types" columnName="id"/>
+    </changeSet>
+
+    <changeSet id="1677864316942" author="Ermakov Aleksey">
+        <addPrimaryKey tableName="admin_structure_types" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1677864316943" author="Ermakov Aleksey">
+        <createSequence sequenceName="admin_structure_types_seq" incrementBy="1"/>
+        <rollback>
+            <dropSequence sequenceName="admin_structure_types_seq"/>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>

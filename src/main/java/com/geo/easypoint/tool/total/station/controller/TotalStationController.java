@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/tool/total-station")
+@RequestMapping("/tools/total-stations")
 public class TotalStationController {
     private final TotalStationService totalStationService;
 

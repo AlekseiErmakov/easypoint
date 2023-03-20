@@ -1,4 +1,4 @@
-package com.geo.easypoint.employee.entity;
+package com.geo.easypoint.administrative.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,26 +15,24 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Getter
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "work_shift_types")
-public class WorkShiftType {
+@Table(name = "admin_structure_types")
+public class AdminStructureType {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "work_shift_type_sequence_generator")
-    @SequenceGenerator(name = "work_shift_type_sequence_generator", sequenceName = "work_shift_type_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_structure_types_generator")
+    @SequenceGenerator(name = "admin_structure_types_generator", sequenceName = "admin_structure_types_seq", allocationSize = 1)
     private Long id;
     private String name;
-    private String shortname;
-    private Integer startHour;
-    private Integer startMinute;
-    private Integer endHour;
-    private Integer endMinute;
+    private String description;
 
     @CreationTimestamp
-    public LocalDateTime created;
+    private LocalDateTime created;
+
     @UpdateTimestamp
-    public LocalDateTime updated;
+    private LocalDateTime updated;
 }
