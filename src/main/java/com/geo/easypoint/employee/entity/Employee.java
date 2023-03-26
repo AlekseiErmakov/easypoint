@@ -1,9 +1,13 @@
 package com.geo.easypoint.employee.entity;
 
+import com.geo.easypoint.administrative.entity.AdminStructure;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,6 +18,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -30,6 +36,14 @@ public class Employee {
     private String firstname;
     private String surname;
     private String lastname;
+    @ManyToMany
+    @JoinTable(
+            name = "employees_admin_structures",
+            joinColumns = {@JoinColumn(name = "employee_id")},
+            inverseJoinColumns = {@JoinColumn(name = "admin_structure_id")}
+    )
+    @Builder.Default
+    private Set<AdminStructure> adminStructures = new HashSet<>();
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp

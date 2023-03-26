@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class BeanToCsvMapper {
-    private final static CsvMapper CSV_MAPPER = new CsvMapper();
+    private static final CsvMapper CSV_MAPPER = new CsvMapper();
 
     static {
         CSV_MAPPER.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);

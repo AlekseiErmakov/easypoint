@@ -1,9 +1,9 @@
 package com.geo.easypoint.employee.controller;
 
 
+import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
 import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
 import com.geo.easypoint.employee.service.WorkShiftTypeService;
-import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

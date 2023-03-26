@@ -60,8 +60,8 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toEmployeeDto(employees);
     }
 
-    public static Employee toEmployee(CreateEmployeeRequest createEmployeeRequest) {
-        return APPLICATION_MAPPER.toEmployee(createEmployeeRequest);
+    public static Employee toEmployee(CreateEmployeeRequest createEmployeeRequest, List<AdminStructure> adminStructures) {
+        return APPLICATION_MAPPER.toEmployee(createEmployeeRequest, adminStructures);
     }
 
     public static WorkShiftTypeDto toWorkShiftTypeDto(WorkShiftType workShiftType) {
@@ -134,8 +134,8 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toAreaStructureType(createRequestDto);
     }
 
-    public static AreaStructure toAreaStructure(AreaStructureCreateRequestDto request) {
-        return APPLICATION_MAPPER.toAreaStructure(request);
+    public static AreaStructure toAreaStructure(AreaStructureCreateRequestDto request, AreaStructureType areaStructureType) {
+        return APPLICATION_MAPPER.toAreaStructure(request, areaStructureType);
     }
 
     public static List<AreaDto> toAreaDto(List<AreaStructure> areas) {
@@ -146,8 +146,8 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toAreaDto(area);
     }
 
-    public static AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent) {
-        return APPLICATION_MAPPER.toAreaStructure(createRequestDto, parent);
+    public static AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent, AreaStructureType areaStructureType) {
+        return APPLICATION_MAPPER.toAreaStructure(createRequestDto, parent, areaStructureType);
     }
 
     public static List<PointDto> toPointDto(List<Point> all, Function<Point, List<AreaDto>> function) {
@@ -185,8 +185,8 @@ public class EasyPointMapper {
                 .collect(Collectors.toList());
     }
 
-    public static void updatePoint(Point point, PointUpdateRequest request, PointType pointType, AreaStructure areaStructure, Employee employee){
-        APPLICATION_MAPPER.updatePoint(point,request, pointType, areaStructure,employee);
+    public static void updatePoint(Point point, PointUpdateRequest request, PointType pointType, AreaStructure areaStructure, Employee employee) {
+        APPLICATION_MAPPER.updatePoint(point, request, pointType, areaStructure, employee);
     }
 
     public static List<AdminStructureTypeDto> toAdminStructureTypeDto(List<AdminStructureType> adminStructureTypes) {
@@ -201,12 +201,12 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toAdminStructureDto(adminStructures);
     }
 
-    public static AdminStructure toAdminStructure(AdminStructureCreateRequest request) {
-        return APPLICATION_MAPPER.toAdminStructure(request);
+    public static AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructureType adminStructureType) {
+        return APPLICATION_MAPPER.toAdminStructure(request, adminStructureType);
     }
 
-    public static <T> AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructure parent) {
-        return APPLICATION_MAPPER.toAdminStructure(request, parent);
+    public static <T> AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructure parent, AdminStructureType adminStructureType) {
+        return APPLICATION_MAPPER.toAdminStructure(request, parent, adminStructureType);
     }
 
     public static List<AdminDto> toAdminDto(List<AdminStructure> structures) {

@@ -22,6 +22,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "work_shift_types")
 public class WorkShiftType {
+    @CreationTimestamp
+    public LocalDateTime created;
+    @UpdateTimestamp
+    public LocalDateTime updated;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "work_shift_type_sequence_generator")
     @SequenceGenerator(name = "work_shift_type_sequence_generator", sequenceName = "work_shift_type_sequence")
@@ -32,9 +36,4 @@ public class WorkShiftType {
     private Integer startMinute;
     private Integer endHour;
     private Integer endMinute;
-
-    @CreationTimestamp
-    public LocalDateTime created;
-    @UpdateTimestamp
-    public LocalDateTime updated;
 }

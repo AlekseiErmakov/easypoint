@@ -1,7 +1,7 @@
 package com.geo.easypoint.point.repository;
 
-import com.geo.easypoint.point.entity.PointState;
 import com.geo.easypoint.point.dto.PointStates;
+import com.geo.easypoint.point.entity.PointState;
 import jakarta.persistence.QueryHint;
 import org.hibernate.jpa.AvailableHints;
 import org.springframework.data.jpa.repository.JpaRepository;

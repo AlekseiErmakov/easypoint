@@ -6,6 +6,7 @@ import com.geo.easypoint.area.dto.request.AreaStructureCreateRequestDto;
 import com.geo.easypoint.area.dto.request.AreaStructureLinkRequest;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.area.repository.AreaStructureRepository;
+import com.geo.easypoint.area.repository.AreaStructureTypeRepository;
 import com.geo.easypoint.common.exception.NotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 public class AreaStructureService {
 
     private final AreaStructureRepository areaStructureRepository;
+    private final AreaStructureTypeRepository areaStructureTypeRepository;
 
     @Transactional(readOnly = true)
     public List<AreaStructureDto> findAll() {
@@ -32,9 +34,13 @@ public class AreaStructureService {
         log.info("Creating area Structure");
         AreaStructure areaStructure;
         if (request.isParentPresent()) {
-            areaStructure = EasyPointMapper.toAreaStructure(request, NotFoundException.orElseThrow(request.parentId(), AreaStructure.class, areaStructureRepository::findById));
+            areaStructure = EasyPointMapper.toAreaStructure(request,
+                    NotFoundException.orElseThrow(request.parentId(), AreaStructure.class, areaStructureRepository::findById),
+                    NotFoundException.orElseThrow(request.areaStructureTypeId(), AreaStructure.class, areaStructureTypeRepository::findById)
+            );
         } else {
-            areaStructure = EasyPointMapper.toAreaStructure(request);
+            areaStructure = EasyPointMapper.toAreaStructure(request,
+                    NotFoundException.orElseThrow(request.areaStructureTypeId(), AreaStructure.class, areaStructureTypeRepository::findById));
         }
         areaStructureRepository.save(areaStructure);
     }

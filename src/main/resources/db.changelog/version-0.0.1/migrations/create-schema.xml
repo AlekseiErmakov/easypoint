@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
@@ -212,12 +212,12 @@
     </changeSet>
 
     <changeSet id="1677392892064" author="Ermakov Aleksey">
-            <createTable tableName="point_types">
-                <column name="id" type="bigint"/>
-                <column name="code" type="varchar(255)"/>
-                <column name="name" type="varchar(255)"/>
-                <column name="description" type="varchar(255)"/>
-            </createTable>
+        <createTable tableName="point_types">
+            <column name="id" type="bigint"/>
+            <column name="code" type="varchar(255)"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+        </createTable>
         <rollback>
             <dropTable tableName="point_types"/>
         </rollback>
@@ -285,34 +285,34 @@
         </rollback>
     </changeSet>
 
-   <changeSet id="1677839812411" author="Ermakov Aleksey">
-       <createTable tableName="total_stations">
-           <column name="id" type="bigint"/>
-           <column name="firm" type="varchar(255)"/>
-           <column name="serial_number" type="varchar(255)"/>
-           <column name="model" type="varchar(255)"/>
-           <column name="created" type="timestamp"/>
-           <column name="updated" type="timestamp"/>
-       </createTable>
-       <rollback>
-           <dropTable tableName="total_stations"/>
-       </rollback>
-   </changeSet>
+    <changeSet id="1677839812411" author="Ermakov Aleksey">
+        <createTable tableName="total_stations">
+            <column name="id" type="bigint"/>
+            <column name="firm" type="varchar(255)"/>
+            <column name="serial_number" type="varchar(255)"/>
+            <column name="model" type="varchar(255)"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="total_stations"/>
+        </rollback>
+    </changeSet>
 
-   <changeSet id="1677839821985" author="Ermakov Aleksey">
-       <addNotNullConstraint tableName="total_stations" columnName="id"/>
-   </changeSet>
+    <changeSet id="1677839821985" author="Ermakov Aleksey">
+        <addNotNullConstraint tableName="total_stations" columnName="id"/>
+    </changeSet>
 
-   <changeSet id="1677839821989" author="Ermakov Aleksey">
-       <addPrimaryKey tableName="total_stations" columnNames="id"/>
-   </changeSet>
+    <changeSet id="1677839821989" author="Ermakov Aleksey">
+        <addPrimaryKey tableName="total_stations" columnNames="id"/>
+    </changeSet>
 
-   <changeSet id="1677839821993" author="Ermakov Aleksey">
-       <createSequence sequenceName="total_stations_seq" incrementBy="50"/>
-       <rollback>
-           <dropSequence sequenceName="total_stations_seq"/>
-       </rollback>
-   </changeSet>
+    <changeSet id="1677839821993" author="Ermakov Aleksey">
+        <createSequence sequenceName="total_stations_seq" incrementBy="50"/>
+        <rollback>
+            <dropSequence sequenceName="total_stations_seq"/>
+        </rollback>
+    </changeSet>
 
     <changeSet id="1677864279397" author="Ermakov Aleksey">
         <createTable tableName="area_structures">
@@ -378,7 +378,8 @@
                                  referencedTableName="area_structure_types"
                                  referencedColumnNames="id"/>
         <rollback>
-            <dropForeignKeyConstraint baseTableName="area_structures" constraintName="area_structures_to_area_structures_types"/>
+            <dropForeignKeyConstraint baseTableName="area_structures"
+                                      constraintName="area_structures_to_area_structures_types"/>
         </rollback>
     </changeSet>
 
@@ -388,7 +389,8 @@
                                  referencedTableName="area_structures"
                                  referencedColumnNames="id"/>
         <rollback>
-            <dropForeignKeyConstraint baseTableName="area_structures" constraintName="area_structures_to_area_structures"/>
+            <dropForeignKeyConstraint baseTableName="area_structures"
+                                      constraintName="area_structures_to_area_structures"/>
         </rollback>
     </changeSet>
 
@@ -465,7 +467,8 @@
                                  referencedTableName="admin_structure_types"
                                  referencedColumnNames="id"/>
         <rollback>
-            <dropForeignKeyConstraint baseTableName="admin_structures" constraintName="admin_structures_to_admin_structures_types"/>
+            <dropForeignKeyConstraint baseTableName="admin_structures"
+                                      constraintName="admin_structures_to_admin_structures_types"/>
         </rollback>
     </changeSet>
 
@@ -475,7 +478,41 @@
                                  referencedTableName="admin_structures"
                                  referencedColumnNames="id"/>
         <rollback>
-            <dropForeignKeyConstraint baseTableName="admin_structures" constraintName="admin_structures_to_admin_structures"/>
+            <dropForeignKeyConstraint baseTableName="admin_structures"
+                                      constraintName="admin_structures_to_admin_structures"/>
         </rollback>
     </changeSet>
+
+    <changeSet id="1679595644259" author="Ermakov Aleksey">
+        <createTable tableName="employees_admin_structures">
+            <column name="employee_id" type="bigint"/>
+            <column name="admin_structure_id" type="bigint"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="employees_admin_structures"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1679595644260" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="employees_admin_structures" baseColumnNames="employee_id"
+                                 constraintName="employees_admin_structures_to_employees"
+                                 referencedTableName="employees"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="employees_admin_structures"
+                                      constraintName="employees_admin_structures_to_employees"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1679595644261" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="employees_admin_structures" baseColumnNames="admin_structure_id"
+                                 constraintName="employees_admin_structures_to_admin_structures"
+                                 referencedTableName="admin_structures"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="employees_admin_structures"
+                                      constraintName="employees_admin_structures_to_admin_structures"/>
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>

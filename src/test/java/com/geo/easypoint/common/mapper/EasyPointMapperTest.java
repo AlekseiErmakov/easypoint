@@ -1,17 +1,12 @@
 package com.geo.easypoint.common.mapper;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.TestData;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.employee.entity.Employee;
-import com.geo.easypoint.files.CsvColumn;
-import com.geo.easypoint.point.dto.PointDto;
-import com.geo.easypoint.point.entity.Point;
 import com.geo.easypoint.users.entity.EasyPointUser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -33,7 +28,7 @@ class EasyPointMapperTest extends AbstractAppTest {
 
     @Test
     void toEmployeeTest() {
-        Employee employee = EasyPointMapper.toEmployee(TestData.createEmployeeRequest());
+        Employee employee = EasyPointMapper.toEmployee(TestData.createEmployeeRequest(), List.of(TestData.adminStructure()));
         Assertions.assertThat(employee)
                 .usingRecursiveComparison()
                 .ignoringFields(TestData.baseEntityFields())
@@ -168,7 +163,7 @@ class EasyPointMapperTest extends AbstractAppTest {
     @Test
     void testToAreaStructureTypeTest() {
         AreaStructure areaStructure = EasyPointMapper.toAreaStructure(
-                TestData.areaStructureCreateRequestDto(), TestData.areaStructure()
+                TestData.areaStructureCreateRequestDto(), TestData.areaStructure(), TestData.areaStructureType()
         );
         Assertions.assertThat(areaStructure)
                 .usingRecursiveComparison()

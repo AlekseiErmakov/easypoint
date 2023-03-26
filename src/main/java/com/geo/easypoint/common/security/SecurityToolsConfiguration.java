@@ -20,6 +20,14 @@ public class SecurityToolsConfiguration {
 
     private final EasyPointUserRepository repository;
 
+    public static void main(String[] args) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String alavioli3011 = bCryptPasswordEncoder.encode("alavioli3011");
+
+        System.out.println("!" + bCryptPasswordEncoder.encode("alavioli3011") + "!");
+        System.out.println(bCryptPasswordEncoder.matches("alavioli3011", alavioli3011));
+    }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
@@ -46,13 +54,5 @@ public class SecurityToolsConfiguration {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    public static void main(String[] args) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String alavioli3011 = bCryptPasswordEncoder.encode("alavioli3011");
-
-        System.out.println("!" + bCryptPasswordEncoder.encode("alavioli3011") + "!");
-        System.out.println(bCryptPasswordEncoder.matches("alavioli3011", alavioli3011));
     }
 }

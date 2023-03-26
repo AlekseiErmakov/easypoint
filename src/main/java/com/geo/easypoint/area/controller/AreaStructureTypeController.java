@@ -1,8 +1,8 @@
 package com.geo.easypoint.area.controller;
 
+import com.geo.easypoint.area.dto.AreaStructureTypeDto;
 import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.area.service.AreaStructureTypeService;
-import com.geo.easypoint.area.dto.AreaStructureTypeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,5 +1,7 @@
 package com.geo.easypoint.employee.dto.request;
 
-public record CreateEmployeeRequest(String firstname, String surname, String lastname) {
+import java.util.List;
+
+public record CreateEmployeeRequest(String firstname, String surname, String lastname, List<Long> adminStructures) {
 
 }

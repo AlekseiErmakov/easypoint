@@ -15,12 +15,12 @@ import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.area.entity.AreaStructureType;
 import com.geo.easypoint.common.DownloadResponse;
-import com.geo.easypoint.employee.entity.Employee;
-import com.geo.easypoint.employee.entity.WorkShiftType;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeDto;
 import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
+import com.geo.easypoint.employee.entity.Employee;
+import com.geo.easypoint.employee.entity.WorkShiftType;
 import com.geo.easypoint.point.dto.CsvPointDto;
 import com.geo.easypoint.point.dto.PointCsvDto;
 import com.geo.easypoint.point.dto.PointDto;
@@ -28,14 +28,13 @@ import com.geo.easypoint.point.dto.PointStateDto;
 import com.geo.easypoint.point.dto.PointTypeDto;
 import com.geo.easypoint.point.dto.request.PointCreateRequestDto;
 import com.geo.easypoint.point.dto.request.PointUpdateRequest;
-import com.geo.easypoint.tool.total.station.dto.TotalStationDto;
-import com.geo.easypoint.tool.total.station.dto.request.TotalStationCreateRequestDto;
-import com.geo.easypoint.users.dto.request.CreateUserRequest;
-import com.geo.easypoint.users.dto.response.AuthenticationResponse;
 import com.geo.easypoint.point.entity.Point;
 import com.geo.easypoint.point.entity.PointState;
 import com.geo.easypoint.point.entity.PointType;
+import com.geo.easypoint.tool.total.station.dto.TotalStationDto;
+import com.geo.easypoint.tool.total.station.dto.request.TotalStationCreateRequestDto;
 import com.geo.easypoint.tool.total.station.entity.TotalStation;
+import com.geo.easypoint.users.dto.response.AuthenticationResponse;
 import com.geo.easypoint.users.entity.EasyPointUser;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -48,7 +47,11 @@ import java.util.List;
 public interface ApplicationMapper {
     EmployeeDto toEmployeeDto(Employee employee);
 
-    Employee toEmployee(CreateEmployeeRequest createEmployeeRequest);
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "updated", ignore = true)
+    @Mapping(target = "adminStructures", source = "adminStructures")
+    Employee toEmployee(CreateEmployeeRequest createEmployeeRequest, List<AdminStructure> adminStructures);
 
     List<EmployeeDto> toEmployeeDto(Collection<Employee> employees);
 
@@ -58,15 +61,10 @@ public interface ApplicationMapper {
 
     WorkShiftType toWorkShiftType(WorkShiftTypeCreateRequest workShiftTypeCreateRequest);
 
-
-    EasyPointUser toEasyPointUser(CreateUserRequest request, String encodedPassword);
-
     @Mapping(target = "token", source = "jwtToken")
     AuthenticationResponse toAuthenticationResponse(EasyPointUser user, String jwtToken);
 
     PointDto toPointDto(Point point);
-
-    List<PointDto> toPointDto(Collection<Point> points);
 
     @Mapping(target = "creator", source = "employee")
     @Mapping(target = "pointType", source = "pointType")
@@ -93,18 +91,22 @@ public interface ApplicationMapper {
     TotalStation toTotalStation(TotalStationCreateRequestDto request);
 
     List<AreaStructureDto> toAreaStructureDto(Collection<AreaStructure> areaStructures);
+
     AreaStructureDto toAreaStructureDto(AreaStructure areaStructure);
 
     AreaStructureDto toAreaStructureTypeDto(AreaStructureType areaStructureType);
+
     List<AreaStructureTypeDto> toAreaStructureTypeDto(List<AreaStructureType> areaStructureTypes);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "areaStructureType", ignore = true)
     @Mapping(target = "parent", ignore = true)
     @Mapping(target = "children", ignore = true)
     @Mapping(target = "created", ignore = true)
     @Mapping(target = "updated", ignore = true)
-    AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto);
+    @Mapping(target = "name", source = "createRequestDto.name")
+    @Mapping(target = "description", source = "createRequestDto.description")
+    @Mapping(target = "areaStructureType", source = "areaStructureType")
+    AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto, AreaStructureType areaStructureType);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "created", ignore = true)
@@ -121,7 +123,8 @@ public interface ApplicationMapper {
     @Mapping(target = "name", source = "createRequestDto.name")
     @Mapping(target = "description", source = "createRequestDto.description")
     @Mapping(target = "parent", source = "parent")
-    AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent);
+    @Mapping(target = "areaStructureType", source = "areaStructureType")
+    AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent, AreaStructureType areaStructureType);
 
     @Mapping(target = "rootAreaId", source = "point.areaStructure.id")
     @Mapping(target = "areas", source = "areas")
@@ -136,9 +139,11 @@ public interface ApplicationMapper {
 
     @Mapping(target = "location", source = "point.areaStructure.name")
     CsvPointDto toCsvPointDto(Point point);
+
     List<CsvPointDto> toCsvPointDto(Collection<Point> point);
 
     List<Point> toPoint(List<CsvPointDto> csvPoints);
+
     Point toPoint(CsvPointDto csvPoint);
 
     @Mapping(target = "id", ignore = true)
@@ -160,14 +165,27 @@ public interface ApplicationMapper {
     void updatePoint(@MappingTarget Point point, PointUpdateRequest request, PointType pointType, AreaStructure area, Employee employee);
 
     AdminStructureTypeDto toAdminStructureTypeDto(AdminStructureTypeDto adminStructureTypeDto);
+
     List<AdminStructureTypeDto> toAdminStructureTypeDto(List<AdminStructureType> adminStructureTypes);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "updated", ignore = true)
     AdminStructureType toAdminStructureType(AdminStructureTypeCreateRequest request);
 
     List<AdminStructureDto> toAdminStructureDto(List<AdminStructure> adminStructures);
+
     AdminStructureDto toAdminStructureDto(AdminStructure adminStructure);
 
-    AdminStructure toAdminStructure(AdminStructureCreateRequest request);
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "updated", ignore = true)
+    @Mapping(target = "parent", ignore = true)
+    @Mapping(target = "children", ignore = true)
+    @Mapping(target = "name", source = "request.name")
+    @Mapping(target = "description", source = "request.description")
+    @Mapping(target = "adminStructureType", source = "adminStructureType")
+    AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructureType adminStructureType);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "created", ignore = true)
@@ -175,7 +193,8 @@ public interface ApplicationMapper {
     @Mapping(target = "name", source = "request.name")
     @Mapping(target = "description", source = "request.description")
     @Mapping(target = "parent", source = "parent")
-    AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructure parent);
+    @Mapping(target = "adminStructureType", source = "adminStructureType")
+    AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructure parent, AdminStructureType adminStructureType);
 
     List<AdminDto> toAdminDto(List<AdminStructure> structures);
 

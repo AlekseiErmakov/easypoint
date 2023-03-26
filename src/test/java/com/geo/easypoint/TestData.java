@@ -1,6 +1,11 @@
 package com.geo.easypoint;
 
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.geo.easypoint.administrative.dto.AdminStructureDto;
+import com.geo.easypoint.administrative.dto.AdminStructureTypeDto;
+import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
+import com.geo.easypoint.administrative.entity.AdminStructure;
+import com.geo.easypoint.administrative.entity.AdminStructureType;
 import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.dto.AreaStructureDto;
 import com.geo.easypoint.area.dto.AreaStructureTypeDto;
@@ -80,15 +85,50 @@ public final class TestData {
                 .surname(SURNAME)
                 .created(CREATED)
                 .updated(UPDATED)
+                .adminStructures(Set.of(adminStructure()))
+                .build();
+    }
+
+    public static AdminStructureCreateRequest adminStructureCreateRequest() {
+        return new AdminStructureCreateRequest(NAME, ID, DESCRIPTION, ID);
+    }
+
+    public static AdminStructureTypeDto adminStructureTypeDto() {
+        return new AdminStructureTypeDto(ID, NAME, DESCRIPTION);
+    }
+
+    public static AdminStructureType adminStructureType() {
+        return AdminStructureType.builder()
+                .id(ID)
+                .name(NAME)
+                .description(DESCRIPTION)
+                .created(CREATED)
+                .updated(UPDATED)
+                .build();
+    }
+
+    public static AdminStructureDto adminStructureDto() {
+        return new AdminStructureDto(ID, NAME, adminStructureTypeDto(), DESCRIPTION, List.of());
+    }
+
+    public static AdminStructure adminStructure() {
+        return AdminStructure.builder()
+                .id(ID)
+                .parent(null)
+                .name(NAME)
+                .adminStructureType(adminStructureType())
+                .description(DESCRIPTION)
+                .created(CREATED)
+                .updated(UPDATED)
                 .build();
     }
 
     public static EmployeeDto employeeDto() {
-        return new EmployeeDto(ID, FIRSTNAME, SURNAME, MIDDLE_NAME, CREATED, UPDATED);
+        return new EmployeeDto(ID, FIRSTNAME, SURNAME, MIDDLE_NAME, CREATED, UPDATED, List.of(adminStructureDto()));
     }
 
     public static CreateEmployeeRequest createEmployeeRequest() {
-        return new CreateEmployeeRequest(FIRSTNAME, SURNAME, MIDDLE_NAME);
+        return new CreateEmployeeRequest(FIRSTNAME, SURNAME, MIDDLE_NAME, List.of());
     }
 
     public static PointCreateRequestDto pointCreateRequestDto() {

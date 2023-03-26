@@ -1,8 +1,8 @@
 package com.geo.easypoint.employee.controller;
 
-import com.geo.easypoint.employee.service.EmployeeService;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeDto;
+import com.geo.easypoint.employee.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

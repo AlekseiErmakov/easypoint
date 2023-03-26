@@ -3,11 +3,7 @@ package com.geo.easypoint.administrative.controller;
 import com.geo.easypoint.administrative.dto.AdminDto;
 import com.geo.easypoint.administrative.dto.AdminStructureDto;
 import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
-import com.geo.easypoint.administrative.entity.AdminStructure;
 import com.geo.easypoint.administrative.service.AdminStructureService;
-import com.geo.easypoint.area.dto.AreaDto;
-import com.geo.easypoint.area.dto.AreaStructureDto;
-import com.geo.easypoint.area.dto.request.AreaStructureCreateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +19,7 @@ import java.util.List;
 public class AdminStructureController {
 
     private final AdminStructureService adminStructureService;
+
     @GetMapping("/structure")
     public List<AdminStructureDto> findAll() {
         return adminStructureService.findAll();

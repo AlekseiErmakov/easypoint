@@ -1,6 +1,5 @@
 package com.geo.easypoint.administrative.entity;
 
-import com.geo.easypoint.area.entity.AreaStructureType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -58,6 +57,7 @@ public class AdminStructure {
     @JoinColumn(name = "parentAdminStructureId")
     private AdminStructure parent;
 
+    @Builder.Default
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private Set<AdminStructure> children = new HashSet<>();
 

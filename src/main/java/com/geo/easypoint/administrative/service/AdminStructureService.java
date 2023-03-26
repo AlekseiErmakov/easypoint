@@ -3,13 +3,10 @@ package com.geo.easypoint.administrative.service;
 import com.geo.easypoint.administrative.dto.AdminDto;
 import com.geo.easypoint.administrative.dto.AdminStructureDto;
 import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
-import com.geo.easypoint.administrative.dto.request.AdminStructureTypeCreateRequest;
 import com.geo.easypoint.administrative.entity.AdminStructure;
+import com.geo.easypoint.administrative.entity.AdminStructureType;
 import com.geo.easypoint.administrative.repository.AdminStructureRepository;
-import com.geo.easypoint.area.dto.AreaDto;
-import com.geo.easypoint.area.dto.AreaStructureDto;
-import com.geo.easypoint.area.dto.request.AreaStructureCreateRequestDto;
-import com.geo.easypoint.area.entity.AreaStructure;
+import com.geo.easypoint.administrative.repository.AdminStructureTypeRepository;
 import com.geo.easypoint.common.exception.NotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +20,8 @@ import java.util.List;
 public class AdminStructureService {
 
     private final AdminStructureRepository adminStructureRepository;
+    private final AdminStructureTypeRepository adminStructureTypeRepository;
+
     @Transactional(readOnly = true)
     public List<AdminStructureDto> findAll() {
         return EasyPointMapper.toAdminStructureDto(adminStructureRepository.findAllByParentIsNull());
@@ -32,9 +31,12 @@ public class AdminStructureService {
     public void creteAreaStructure(AdminStructureCreateRequest request) {
         AdminStructure adminStructure;
         if (request.isParentPresent()) {
-            adminStructure = EasyPointMapper.toAdminStructure(request, NotFoundException.orElseThrow(request.parentId(), AdminStructure.class, adminStructureRepository::findById));
+            adminStructure = EasyPointMapper.toAdminStructure(request,
+                    NotFoundException.orElseThrow(request.parentId(), AdminStructure.class, adminStructureRepository::findById),
+                    NotFoundException.orElseThrow(request.adminStructureTypeId(), AdminStructureType.class, adminStructureTypeRepository::findById));
         } else {
-            adminStructure = EasyPointMapper.toAdminStructure(request);
+            adminStructure = EasyPointMapper.toAdminStructure(request,
+                    NotFoundException.orElseThrow(request.adminStructureTypeId(), AdminStructureType.class, adminStructureTypeRepository::findById));
         }
         adminStructureRepository.save(adminStructure);
     }

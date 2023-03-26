@@ -1,7 +1,7 @@
 package com.geo.easypoint.point.service;
 
-import com.geo.easypoint.point.dto.PointStateDto;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
+import com.geo.easypoint.point.dto.PointStateDto;
 import com.geo.easypoint.point.repository.PointStateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
