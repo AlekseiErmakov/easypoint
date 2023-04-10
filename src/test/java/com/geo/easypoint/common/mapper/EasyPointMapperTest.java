@@ -178,7 +178,7 @@ class EasyPointMapperTest extends AbstractAppTest {
     @Test
     void testToPointDtoTest() {
         Assertions.assertThat(EasyPointMapper.toPointDto(
-                        List.of(TestData.point()), (id) -> List.of(TestData.areaDto())
+                        List.of(TestData.point())
                 ))
                 .usingRecursiveComparison()
                 .isEqualTo(List.of(TestData.pointDto()));

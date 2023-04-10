@@ -1,6 +1,8 @@
 package com.geo.easypoint.point.entity;
 
+import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.entity.AreaStructure;
+import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.employee.entity.Employee;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,6 +27,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -74,4 +78,14 @@ public class Point {
     private LocalDateTime created;
     @UpdateTimestamp
     private LocalDateTime updated;
+
+    public List<AreaStructure> getAllAreas() {
+        List<AreaStructure> areaStructures = new ArrayList<>();
+        AreaStructure areaStructure = getAreaStructure();
+        while (areaStructure != null) {
+            areaStructures.add(areaStructure);
+            areaStructure = areaStructure.getParent();
+        }
+        return areaStructures;
+    }
 }

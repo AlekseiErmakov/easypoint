@@ -1,7 +1,8 @@
 package com.geo.easypoint.employee.service;
 
-import com.geo.easypoint.administrative.entity.AdminStructure;
-import com.geo.easypoint.administrative.repository.AdminStructureRepository;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
+import com.geo.easypoint.administrative.entity.AdministrativeUnit;
+import com.geo.easypoint.administrative.repository.AdministrativeUnitRepository;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeDto;
@@ -11,13 +12,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
-    private final AdminStructureRepository adminStructureRepository;
+    private final AdministrativeUnitRepository administrativeUnitRepository;
 
     @Transactional(readOnly = true)
     public List<EmployeeDto> findAll() {
@@ -26,8 +31,21 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeDto create(CreateEmployeeRequest createEmployeeRequest) {
-        List<AdminStructure> adminStructures = adminStructureRepository.findAllById(createEmployeeRequest.adminStructures());
-        Employee employee = employeeRepository.saveAndFlush(EasyPointMapper.toEmployee(createEmployeeRequest, adminStructures));
+        List<AdministrativeUnit> administrativeUnits = administrativeUnitRepository.findAllById(createEmployeeRequest.adminStructures());
+        Employee employee = employeeRepository.saveAndFlush(EasyPointMapper.toEmployee(createEmployeeRequest, administrativeUnits));
         return EasyPointMapper.toEmployeeDto(employee);
     }
+
+    private List<AdministrativeUnitDto> findAllForEmployee(Employee employee) {
+        Map<Long, AdministrativeUnitDto> adminDtos = new HashMap<>();
+        Set<AdministrativeUnit> administrativeUnits = employee.getAdministrativeUnits();
+        for (AdministrativeUnit administrativeUnit : administrativeUnits) {
+            while (administrativeUnit != null) {
+                adminDtos.put(administrativeUnit.getId(), EasyPointMapper.toAdministrativeUnitDto(administrativeUnit));
+                administrativeUnit = administrativeUnit.getParent();
+            }
+        }
+        return new ArrayList<>(adminDtos.values());
+    }
+
 }

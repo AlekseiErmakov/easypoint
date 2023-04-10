@@ -20,12 +20,12 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "admin_structure_types")
-public class AdminStructureType {
+@Table(name = "administrative_unit_types")
+public class AdministrativeUnitType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_structure_types_generator")
-    @SequenceGenerator(name = "admin_structure_types_generator", sequenceName = "admin_structure_types_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "administrative_unit_types_generator")
+    @SequenceGenerator(name = "administrative_unit_types_generator", sequenceName = "administrative_unit_types_seq", allocationSize = 1)
     private Long id;
     private String name;
     private String description;

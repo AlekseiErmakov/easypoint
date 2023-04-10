@@ -1,9 +1,9 @@
 package com.geo.easypoint.administrative.controller;
 
-import com.geo.easypoint.administrative.dto.AdminDto;
-import com.geo.easypoint.administrative.dto.AdminStructureDto;
-import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
-import com.geo.easypoint.administrative.service.AdminStructureService;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitTreeDto;
+import com.geo.easypoint.administrative.dto.request.AdministrativeUnitCreateRequest;
+import com.geo.easypoint.administrative.service.AdministrativeUnitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,23 +15,23 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/admin")
-public class AdminStructureController {
+@RequestMapping("/administrative-units")
+public class AdministrativeUnitController {
 
-    private final AdminStructureService adminStructureService;
+    private final AdministrativeUnitService adminStructureService;
 
     @GetMapping("/structure")
-    public List<AdminStructureDto> findAll() {
+    public List<AdministrativeUnitTreeDto> findStructure() {
         return adminStructureService.findAll();
     }
 
     @PostMapping
-    public void create(@RequestBody AdminStructureCreateRequest request) {
+    public void create(@RequestBody AdministrativeUnitCreateRequest request) {
         adminStructureService.creteAreaStructure(request);
     }
 
     @GetMapping
-    public List<AdminDto> findAllAdmins() {
+    public List<AdministrativeUnitDto> findAll() {
         return adminStructureService.findAllAdmins();
     }
 }

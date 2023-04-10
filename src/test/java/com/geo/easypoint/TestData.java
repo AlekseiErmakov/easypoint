@@ -1,11 +1,12 @@
 package com.geo.easypoint;
 
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.geo.easypoint.administrative.dto.AdminStructureDto;
-import com.geo.easypoint.administrative.dto.AdminStructureTypeDto;
-import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
-import com.geo.easypoint.administrative.entity.AdminStructure;
-import com.geo.easypoint.administrative.entity.AdminStructureType;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitTreeDto;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitTypeDto;
+import com.geo.easypoint.administrative.dto.request.AdministrativeUnitCreateRequest;
+import com.geo.easypoint.administrative.entity.AdministrativeUnit;
+import com.geo.easypoint.administrative.entity.AdministrativeUnitType;
 import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.dto.AreaStructureDto;
 import com.geo.easypoint.area.dto.AreaStructureTypeDto;
@@ -85,20 +86,20 @@ public final class TestData {
                 .surname(SURNAME)
                 .created(CREATED)
                 .updated(UPDATED)
-                .adminStructures(Set.of(adminStructure()))
+                .administrativeUnits(Set.of(adminStructure()))
                 .build();
     }
 
-    public static AdminStructureCreateRequest adminStructureCreateRequest() {
-        return new AdminStructureCreateRequest(NAME, ID, DESCRIPTION, ID);
+    public static AdministrativeUnitCreateRequest adminStructureCreateRequest() {
+        return new AdministrativeUnitCreateRequest(NAME, ID, DESCRIPTION, ID);
     }
 
-    public static AdminStructureTypeDto adminStructureTypeDto() {
-        return new AdminStructureTypeDto(ID, NAME, DESCRIPTION);
+    public static AdministrativeUnitTypeDto adminStructureTypeDto() {
+        return new AdministrativeUnitTypeDto(ID, NAME, DESCRIPTION);
     }
 
-    public static AdminStructureType adminStructureType() {
-        return AdminStructureType.builder()
+    public static AdministrativeUnitType adminStructureType() {
+        return AdministrativeUnitType.builder()
                 .id(ID)
                 .name(NAME)
                 .description(DESCRIPTION)
@@ -107,16 +108,20 @@ public final class TestData {
                 .build();
     }
 
-    public static AdminStructureDto adminStructureDto() {
-        return new AdminStructureDto(ID, NAME, adminStructureTypeDto(), DESCRIPTION, List.of());
+    public static AdministrativeUnitTreeDto adminStructureDto() {
+        return new AdministrativeUnitTreeDto(ID, NAME, adminStructureTypeDto(), DESCRIPTION, List.of());
     }
 
-    public static AdminStructure adminStructure() {
-        return AdminStructure.builder()
+    public static AdministrativeUnitDto adminDto() {
+        return new AdministrativeUnitDto(ID, NAME, DESCRIPTION);
+    }
+
+    public static AdministrativeUnit adminStructure() {
+        return AdministrativeUnit.builder()
                 .id(ID)
                 .parent(null)
                 .name(NAME)
-                .adminStructureType(adminStructureType())
+                .administrativeUnitType(adminStructureType())
                 .description(DESCRIPTION)
                 .created(CREATED)
                 .updated(UPDATED)
@@ -124,7 +129,7 @@ public final class TestData {
     }
 
     public static EmployeeDto employeeDto() {
-        return new EmployeeDto(ID, FIRSTNAME, SURNAME, MIDDLE_NAME, CREATED, UPDATED, List.of(adminStructureDto()));
+        return new EmployeeDto(ID, FIRSTNAME, SURNAME, MIDDLE_NAME, CREATED, UPDATED, List.of(adminDto()));
     }
 
     public static CreateEmployeeRequest createEmployeeRequest() {

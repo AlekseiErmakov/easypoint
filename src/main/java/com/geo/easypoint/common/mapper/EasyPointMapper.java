@@ -1,12 +1,12 @@
 package com.geo.easypoint.common.mapper;
 
-import com.geo.easypoint.administrative.dto.AdminDto;
-import com.geo.easypoint.administrative.dto.AdminStructureDto;
-import com.geo.easypoint.administrative.dto.AdminStructureTypeDto;
-import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
-import com.geo.easypoint.administrative.dto.request.AdminStructureTypeCreateRequest;
-import com.geo.easypoint.administrative.entity.AdminStructure;
-import com.geo.easypoint.administrative.entity.AdminStructureType;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitTreeDto;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitTypeDto;
+import com.geo.easypoint.administrative.dto.request.AdministrativeUnitCreateRequest;
+import com.geo.easypoint.administrative.dto.request.AdministrativeUnitTypeCreateRequest;
+import com.geo.easypoint.administrative.entity.AdministrativeUnit;
+import com.geo.easypoint.administrative.entity.AdministrativeUnitType;
 import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.dto.AreaStructureDto;
 import com.geo.easypoint.area.dto.AreaStructureTypeDto;
@@ -45,7 +45,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -60,8 +59,8 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toEmployeeDto(employees);
     }
 
-    public static Employee toEmployee(CreateEmployeeRequest createEmployeeRequest, List<AdminStructure> adminStructures) {
-        return APPLICATION_MAPPER.toEmployee(createEmployeeRequest, adminStructures);
+    public static Employee toEmployee(CreateEmployeeRequest createEmployeeRequest, List<AdministrativeUnit> administrativeUnits) {
+        return APPLICATION_MAPPER.toEmployee(createEmployeeRequest, administrativeUnits);
     }
 
     public static WorkShiftTypeDto toWorkShiftTypeDto(WorkShiftType workShiftType) {
@@ -94,7 +93,7 @@ public class EasyPointMapper {
     }
 
     public static PointDto toPointDto(Point point) {
-        return APPLICATION_MAPPER.toPointDto(point);
+        return APPLICATION_MAPPER.toPointWithAreasDto(point);
     }
 
     public static Point toPoint(PointCreateRequestDto request, Employee employee, PointType pointType, PointState pointState, AreaStructure area) {
@@ -150,9 +149,9 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toAreaStructure(createRequestDto, parent, areaStructureType);
     }
 
-    public static List<PointDto> toPointDto(List<Point> all, Function<Point, List<AreaDto>> function) {
-        return all.stream()
-                .map(point -> APPLICATION_MAPPER.toAreaDto(point, function.apply(point)))
+    public static List<PointDto> toPointDto(List<Point> points) {
+        return points.stream()
+                .map(APPLICATION_MAPPER::toPointWithAreasDto)
                 .collect(Collectors.toList());
     }
 
@@ -189,27 +188,35 @@ public class EasyPointMapper {
         APPLICATION_MAPPER.updatePoint(point, request, pointType, areaStructure, employee);
     }
 
-    public static List<AdminStructureTypeDto> toAdminStructureTypeDto(List<AdminStructureType> adminStructureTypes) {
-        return APPLICATION_MAPPER.toAdminStructureTypeDto(adminStructureTypes);
+    public static List<AdministrativeUnitTypeDto> toAdministrativeUnitTypeDto(List<AdministrativeUnitType> administrativeUnitTypes) {
+        return APPLICATION_MAPPER.toAdministrativeUnitTypeDto(administrativeUnitTypes);
     }
 
-    public static AdminStructureType toAdminStructureType(AdminStructureTypeCreateRequest request) {
-        return APPLICATION_MAPPER.toAdminStructureType(request);
+    public static AdministrativeUnitType toAdministrativeUnitType(AdministrativeUnitTypeCreateRequest request) {
+        return APPLICATION_MAPPER.toAdministrativeUnitType(request);
     }
 
-    public static List<AdminStructureDto> toAdminStructureDto(List<AdminStructure> adminStructures) {
-        return APPLICATION_MAPPER.toAdminStructureDto(adminStructures);
+    public static List<AdministrativeUnitTreeDto> toAdministrativeUnitTreeDto(List<AdministrativeUnit> administrativeUnits) {
+        return APPLICATION_MAPPER.toAdministrativeUnitTreeDto(administrativeUnits);
     }
 
-    public static AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructureType adminStructureType) {
-        return APPLICATION_MAPPER.toAdminStructure(request, adminStructureType);
+    public static AdministrativeUnit toAdministrativeUnit(AdministrativeUnitCreateRequest request, AdministrativeUnitType administrativeUnitType) {
+        return APPLICATION_MAPPER.toAdministrativeUnit(request, administrativeUnitType);
     }
 
-    public static <T> AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructure parent, AdminStructureType adminStructureType) {
-        return APPLICATION_MAPPER.toAdminStructure(request, parent, adminStructureType);
+    public static <T> AdministrativeUnit toAdministrativeUnit(AdministrativeUnitCreateRequest request, AdministrativeUnit parent, AdministrativeUnitType administrativeUnitType) {
+        return APPLICATION_MAPPER.toAdministrativeUnit(request, parent, administrativeUnitType);
     }
 
-    public static List<AdminDto> toAdminDto(List<AdminStructure> structures) {
-        return APPLICATION_MAPPER.toAdminDto(structures);
+    public static List<AdministrativeUnitDto> toAdministrativeUnitDto(List<AdministrativeUnit> structures) {
+        return APPLICATION_MAPPER.toAdministrativeUnitDto(structures);
+    }
+
+    public static AdministrativeUnitDto toAdministrativeUnitDto(AdministrativeUnit administrativeUnit) {
+        return APPLICATION_MAPPER.toAdministrativeUnitDto(administrativeUnit);
+    }
+
+    public static List<EmployeeDto> toEmployeeDto(List<Employee> employees) {
+        return APPLICATION_MAPPER.toEmployeeDto(employees);
     }
 }

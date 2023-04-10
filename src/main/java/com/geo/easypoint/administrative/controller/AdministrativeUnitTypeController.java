@@ -1,8 +1,8 @@
 package com.geo.easypoint.administrative.controller;
 
-import com.geo.easypoint.administrative.dto.AdminStructureTypeDto;
-import com.geo.easypoint.administrative.dto.request.AdminStructureTypeCreateRequest;
-import com.geo.easypoint.administrative.service.AdminStructureTypeService;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitTypeDto;
+import com.geo.easypoint.administrative.dto.request.AdministrativeUnitTypeCreateRequest;
+import com.geo.easypoint.administrative.service.AdministrativeUnitTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,17 +14,17 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/admin-structure-types")
-public class AdminStructureTypeController {
-    private final AdminStructureTypeService service;
+@RequestMapping("/administrative-unit-types")
+public class AdministrativeUnitTypeController {
+    private final AdministrativeUnitTypeService service;
 
     @GetMapping
-    public List<AdminStructureTypeDto> findAll() {
+    public List<AdministrativeUnitTypeDto> findAll() {
         return service.findAll();
     }
 
     @PostMapping
-    public void create(@RequestBody AdminStructureTypeCreateRequest request) {
+    public void create(@RequestBody AdministrativeUnitTypeCreateRequest request) {
         service.create(request);
     }
 }

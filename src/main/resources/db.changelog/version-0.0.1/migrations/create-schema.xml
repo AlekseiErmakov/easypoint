@@ -404,7 +404,7 @@
         </rollback>
     </changeSet>
     <changeSet id="1677864316940" author="Ermakov Aleksey">
-        <createTable tableName="admin_structure_types">
+        <createTable tableName="administrative_unit_types">
             <column name="id" type="bigint"/>
             <column name="name" type="varchar(255)"/>
             <column name="description" type="varchar(255)"/>
@@ -412,106 +412,106 @@
             <column name="updated" type="timestamp"/>
         </createTable>
         <rollback>
-            <dropTable tableName="admin_structure_types"/>
+            <dropTable tableName="administrative_unit_types"/>
         </rollback>
     </changeSet>
 
     <changeSet id="1677864316941" author="Ermakov Aleksey">
-        <addNotNullConstraint tableName="admin_structure_types" columnName="id"/>
+        <addNotNullConstraint tableName="administrative_unit_types" columnName="id"/>
     </changeSet>
 
     <changeSet id="1677864316942" author="Ermakov Aleksey">
-        <addPrimaryKey tableName="admin_structure_types" columnNames="id"/>
+        <addPrimaryKey tableName="administrative_unit_types" columnNames="id"/>
     </changeSet>
 
     <changeSet id="1677864316943" author="Ermakov Aleksey">
-        <createSequence sequenceName="admin_structure_types_seq" incrementBy="1"/>
+        <createSequence sequenceName="administrative_unit_types_seq" incrementBy="1"/>
         <rollback>
-            <dropSequence sequenceName="admin_structure_types_seq"/>
+            <dropSequence sequenceName="administrative_unit_types_seq"/>
         </rollback>
     </changeSet>
 
     <changeSet id="1677864316944" author="Ermakov Aleksey">
-        <createTable tableName="admin_structures">
+        <createTable tableName="administrative_units">
             <column name="id" type="bigint"/>
-            <column name="admin_structure_type_id" type="bigint"/>
+            <column name="administrative_unit_type_id" type="bigint"/>
             <column name="description" type="varchar(255)"/>
-            <column name="parent_admin_structure_id" type="bigint"/>
+            <column name="parent_administrative_unit_id" type="bigint"/>
             <column name="name" type="varchar(255)"/>
             <column name="created" type="timestamp"/>
             <column name="updated" type="timestamp"/>
         </createTable>
         <rollback>
-            <dropTable tableName="admin_structures"/>
+            <dropTable tableName="administrative_units"/>
         </rollback>
     </changeSet>
 
     <changeSet id="1677864316945" author="Ermakov Aleksey">
-        <addNotNullConstraint tableName="admin_structures" columnName="id"/>
+        <addNotNullConstraint tableName="administrative_units" columnName="id"/>
     </changeSet>
 
     <changeSet id="1677864316946" author="Ermakov Aleksey">
-        <addPrimaryKey tableName="admin_structures" columnNames="id"/>
+        <addPrimaryKey tableName="administrative_units" columnNames="id"/>
     </changeSet>
 
     <changeSet id="1677864316947" author="Ermakov Aleksey">
-        <createSequence sequenceName="admin_structures_seq" incrementBy="1"/>
+        <createSequence sequenceName="administrative_units_seq" incrementBy="1"/>
         <rollback>
-            <dropSequence sequenceName="admin_structures_seq"/>
+            <dropSequence sequenceName="administrative_units_seq"/>
         </rollback>
     </changeSet>
 
     <changeSet id="1677864316948" author="Ermakov Aleksey">
-        <addForeignKeyConstraint baseTableName="admin_structures" baseColumnNames="admin_structure_type_id"
-                                 constraintName="admin_structures_to_admin_structures_types"
-                                 referencedTableName="admin_structure_types"
+        <addForeignKeyConstraint baseTableName="administrative_units" baseColumnNames="administrative_unit_type_id"
+                                 constraintName="administrative_units_to_administrative_units_types"
+                                 referencedTableName="administrative_unit_types"
                                  referencedColumnNames="id"/>
         <rollback>
-            <dropForeignKeyConstraint baseTableName="admin_structures"
-                                      constraintName="admin_structures_to_admin_structures_types"/>
+            <dropForeignKeyConstraint baseTableName="administrative_units"
+                                      constraintName="administrative_units_to_administrative_units_types"/>
         </rollback>
     </changeSet>
 
     <changeSet id="1677864316949" author="Ermakov Aleksey">
-        <addForeignKeyConstraint baseTableName="admin_structures" baseColumnNames="parent_admin_structure_id"
-                                 constraintName="admin_structures_to_admin_structures"
-                                 referencedTableName="admin_structures"
+        <addForeignKeyConstraint baseTableName="administrative_units" baseColumnNames="parent_administrative_unit_id"
+                                 constraintName="administrative_units_to_administrative_units"
+                                 referencedTableName="administrative_units"
                                  referencedColumnNames="id"/>
         <rollback>
-            <dropForeignKeyConstraint baseTableName="admin_structures"
-                                      constraintName="admin_structures_to_admin_structures"/>
+            <dropForeignKeyConstraint baseTableName="administrative_units"
+                                      constraintName="administrative_units_to_administrative_units"/>
         </rollback>
     </changeSet>
 
     <changeSet id="1679595644259" author="Ermakov Aleksey">
-        <createTable tableName="employees_admin_structures">
+        <createTable tableName="employees_administrative_units">
             <column name="employee_id" type="bigint"/>
-            <column name="admin_structure_id" type="bigint"/>
+            <column name="administrative_unit_id" type="bigint"/>
         </createTable>
         <rollback>
-            <dropTable tableName="employees_admin_structures"/>
+            <dropTable tableName="employees_administrative_units"/>
         </rollback>
     </changeSet>
 
     <changeSet id="1679595644260" author="Ermakov Aleksey">
-        <addForeignKeyConstraint baseTableName="employees_admin_structures" baseColumnNames="employee_id"
-                                 constraintName="employees_admin_structures_to_employees"
+        <addForeignKeyConstraint baseTableName="employees_administrative_units" baseColumnNames="employee_id"
+                                 constraintName="employees_administrative_units_to_employees"
                                  referencedTableName="employees"
                                  referencedColumnNames="id"/>
         <rollback>
-            <dropForeignKeyConstraint baseTableName="employees_admin_structures"
-                                      constraintName="employees_admin_structures_to_employees"/>
+            <dropForeignKeyConstraint baseTableName="employees_administrative_units"
+                                      constraintName="employees_administrative_units_to_employees"/>
         </rollback>
     </changeSet>
 
     <changeSet id="1679595644261" author="Ermakov Aleksey">
-        <addForeignKeyConstraint baseTableName="employees_admin_structures" baseColumnNames="admin_structure_id"
-                                 constraintName="employees_admin_structures_to_admin_structures"
-                                 referencedTableName="admin_structures"
+        <addForeignKeyConstraint baseTableName="employees_administrative_units" baseColumnNames="administrative_unit_id"
+                                 constraintName="employees_administrative_units_to_administrative_units"
+                                 referencedTableName="administrative_units"
                                  referencedColumnNames="id"/>
         <rollback>
-            <dropForeignKeyConstraint baseTableName="employees_admin_structures"
-                                      constraintName="employees_admin_structures_to_admin_structures"/>
+            <dropForeignKeyConstraint baseTableName="employees_administrative_units"
+                                      constraintName="employees_administrative_units_to_administrative_units"/>
         </rollback>
     </changeSet>
 

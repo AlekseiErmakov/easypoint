@@ -38,7 +38,7 @@ public class PointService {
 
     @Transactional(readOnly = true)
     public List<PointDto> findAll() {
-        return EasyPointMapper.toPointDto(pointRepository.findAll(), this::findAll);
+        return EasyPointMapper.toPointDto(pointRepository.findAll());
     }
 
     @Transactional(readOnly = true)
@@ -103,13 +103,4 @@ public class PointService {
         return PointStates.CREATED != pointState;
     }
 
-    private List<AreaDto> findAll(Point point) {
-        List<AreaDto> areaDtos = new ArrayList<>();
-        AreaStructure areaStructure = point.getAreaStructure();
-        while (areaStructure != null) {
-            areaDtos.add(EasyPointMapper.toAreaDto(areaStructure));
-            areaStructure = areaStructure.getParent();
-        }
-        return areaDtos;
-    }
 }

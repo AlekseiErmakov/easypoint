@@ -1,6 +1,6 @@
 package com.geo.easypoint.employee.dto.response;
 
-import com.geo.easypoint.administrative.dto.AdminStructureDto;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,5 +12,5 @@ public record EmployeeDto(
         String lastname,
         LocalDateTime created,
         LocalDateTime updated,
-        List<AdminStructureDto> adminStructures) {
+        List<AdministrativeUnitDto> administrativeUnits) {
 }

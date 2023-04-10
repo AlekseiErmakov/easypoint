@@ -1,6 +1,6 @@
 package com.geo.easypoint.employee.entity;
 
-import com.geo.easypoint.administrative.entity.AdminStructure;
+import com.geo.easypoint.administrative.entity.AdministrativeUnit;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +18,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -38,14 +42,26 @@ public class Employee {
     private String lastname;
     @ManyToMany
     @JoinTable(
-            name = "employees_admin_structures",
+            name = "employees_administrative_units",
             joinColumns = {@JoinColumn(name = "employee_id")},
-            inverseJoinColumns = {@JoinColumn(name = "admin_structure_id")}
+            inverseJoinColumns = {@JoinColumn(name = "administrative_unit_id")}
     )
     @Builder.Default
-    private Set<AdminStructure> adminStructures = new HashSet<>();
+    private Set<AdministrativeUnit> administrativeUnits = new HashSet<>();
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp
     private LocalDateTime updated;
+
+    public List<AdministrativeUnit> getAllAdministrativeUnits() {
+        Map<Long, AdministrativeUnit> administrativeUnitMap = new HashMap<>();
+        for (AdministrativeUnit administrativeUnit : administrativeUnits) {
+            while (administrativeUnit != null) {
+                administrativeUnitMap.put(administrativeUnit.getId(), administrativeUnit);
+                administrativeUnit = administrativeUnit.getParent();
+            }
+        }
+        return new ArrayList<>(administrativeUnitMap.values());
+    }
+
 }

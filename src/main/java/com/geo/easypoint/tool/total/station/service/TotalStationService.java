@@ -20,8 +20,6 @@ public class TotalStationService {
     @Transactional
     public void createTotalStation(TotalStationCreateRequestDto createRequest) {
         TotalStation save = repository.saveAndFlush(EasyPointMapper.toTotalStation(createRequest));
-        System.out.println();
-
     }
 
     @Transactional(readOnly = true)

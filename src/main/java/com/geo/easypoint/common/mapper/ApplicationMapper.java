@@ -1,12 +1,12 @@
 package com.geo.easypoint.common.mapper;
 
-import com.geo.easypoint.administrative.dto.AdminDto;
-import com.geo.easypoint.administrative.dto.AdminStructureDto;
-import com.geo.easypoint.administrative.dto.AdminStructureTypeDto;
-import com.geo.easypoint.administrative.dto.request.AdminStructureCreateRequest;
-import com.geo.easypoint.administrative.dto.request.AdminStructureTypeCreateRequest;
-import com.geo.easypoint.administrative.entity.AdminStructure;
-import com.geo.easypoint.administrative.entity.AdminStructureType;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitTreeDto;
+import com.geo.easypoint.administrative.dto.AdministrativeUnitTypeDto;
+import com.geo.easypoint.administrative.dto.request.AdministrativeUnitCreateRequest;
+import com.geo.easypoint.administrative.dto.request.AdministrativeUnitTypeCreateRequest;
+import com.geo.easypoint.administrative.entity.AdministrativeUnit;
+import com.geo.easypoint.administrative.entity.AdministrativeUnitType;
 import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.dto.AreaStructureDto;
 import com.geo.easypoint.area.dto.AreaStructureTypeDto;
@@ -45,13 +45,15 @@ import java.util.List;
 
 @Mapper
 public interface ApplicationMapper {
+
+    @Mapping(target = "administrativeUnits", source = "allAdministrativeUnits")
     EmployeeDto toEmployeeDto(Employee employee);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "created", ignore = true)
     @Mapping(target = "updated", ignore = true)
-    @Mapping(target = "adminStructures", source = "adminStructures")
-    Employee toEmployee(CreateEmployeeRequest createEmployeeRequest, List<AdminStructure> adminStructures);
+    @Mapping(target = "administrativeUnits", source = "administrativeUnits")
+    Employee toEmployee(CreateEmployeeRequest createEmployeeRequest, List<AdministrativeUnit> administrativeUnits);
 
     List<EmployeeDto> toEmployeeDto(Collection<Employee> employees);
 
@@ -64,7 +66,6 @@ public interface ApplicationMapper {
     @Mapping(target = "token", source = "jwtToken")
     AuthenticationResponse toAuthenticationResponse(EasyPointUser user, String jwtToken);
 
-    PointDto toPointDto(Point point);
 
     @Mapping(target = "creator", source = "employee")
     @Mapping(target = "pointType", source = "pointType")
@@ -127,8 +128,8 @@ public interface ApplicationMapper {
     AreaStructure toAreaStructure(AreaStructureCreateRequestDto createRequestDto, AreaStructure parent, AreaStructureType areaStructureType);
 
     @Mapping(target = "rootAreaId", source = "point.areaStructure.id")
-    @Mapping(target = "areas", source = "areas")
-    PointDto toAreaDto(Point point, List<AreaDto> areas);
+    @Mapping(target = "areas", source = "allAreas")
+    PointDto toPointWithAreasDto(Point point);
 
     @Mapping(target = "location", source = "point.areaStructure.name")
     PointCsvDto toPointCsv(Point point);
@@ -164,18 +165,18 @@ public interface ApplicationMapper {
     @Mapping(target = "pointType")
     void updatePoint(@MappingTarget Point point, PointUpdateRequest request, PointType pointType, AreaStructure area, Employee employee);
 
-    AdminStructureTypeDto toAdminStructureTypeDto(AdminStructureTypeDto adminStructureTypeDto);
+    AdministrativeUnitTypeDto toAdministrativeUnitTypeDto(AdministrativeUnitTypeDto administrativeUnitTypeDto);
 
-    List<AdminStructureTypeDto> toAdminStructureTypeDto(List<AdminStructureType> adminStructureTypes);
+    List<AdministrativeUnitTypeDto> toAdministrativeUnitTypeDto(List<AdministrativeUnitType> administrativeUnitTypes);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "created", ignore = true)
     @Mapping(target = "updated", ignore = true)
-    AdminStructureType toAdminStructureType(AdminStructureTypeCreateRequest request);
+    AdministrativeUnitType toAdministrativeUnitType(AdministrativeUnitTypeCreateRequest request);
 
-    List<AdminStructureDto> toAdminStructureDto(List<AdminStructure> adminStructures);
+    List<AdministrativeUnitTreeDto> toAdministrativeUnitTreeDto(List<AdministrativeUnit> administrativeUnits);
 
-    AdminStructureDto toAdminStructureDto(AdminStructure adminStructure);
+    AdministrativeUnitTreeDto toAdministrativeUnitTreeDto(AdministrativeUnit administrativeUnit);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "created", ignore = true)
@@ -184,8 +185,8 @@ public interface ApplicationMapper {
     @Mapping(target = "children", ignore = true)
     @Mapping(target = "name", source = "request.name")
     @Mapping(target = "description", source = "request.description")
-    @Mapping(target = "adminStructureType", source = "adminStructureType")
-    AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructureType adminStructureType);
+    @Mapping(target = "administrativeUnitType", source = "administrativeUnitType")
+    AdministrativeUnit toAdministrativeUnit(AdministrativeUnitCreateRequest request, AdministrativeUnitType administrativeUnitType);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "created", ignore = true)
@@ -193,10 +194,10 @@ public interface ApplicationMapper {
     @Mapping(target = "name", source = "request.name")
     @Mapping(target = "description", source = "request.description")
     @Mapping(target = "parent", source = "parent")
-    @Mapping(target = "adminStructureType", source = "adminStructureType")
-    AdminStructure toAdminStructure(AdminStructureCreateRequest request, AdminStructure parent, AdminStructureType adminStructureType);
+    @Mapping(target = "administrativeUnitType", source = "administrativeUnitType")
+    AdministrativeUnit toAdministrativeUnit(AdministrativeUnitCreateRequest request, AdministrativeUnit parent, AdministrativeUnitType administrativeUnitType);
 
-    List<AdminDto> toAdminDto(List<AdminStructure> structures);
+    List<AdministrativeUnitDto> toAdministrativeUnitDto(List<AdministrativeUnit> structures);
 
-    AreaDto toAdminDto(AdminStructure adminStructure);
+    AdministrativeUnitDto toAdministrativeUnitDto(AdministrativeUnit administrativeUnit);
 }

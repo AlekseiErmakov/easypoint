@@ -34,32 +34,32 @@ import java.util.Set;
 @NamedEntityGraph(
         name = "admin-structure-graph",
         attributeNodes = {
-                @NamedAttributeNode("adminStructureType"),
+                @NamedAttributeNode("administrativeUnitType"),
                 @NamedAttributeNode("children"),
                 @NamedAttributeNode("parent")
         }
 )
-@Table(name = "admin_structures")
-public class AdminStructure {
+@Table(name = "administrative_units")
+public class AdministrativeUnit {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_structures_generator")
-    @SequenceGenerator(name = "admin_structures_generator", sequenceName = "admin_structures_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "administrative_units_generator")
+    @SequenceGenerator(name = "administrative_units_generator", sequenceName = "administrative_units_seq", allocationSize = 1)
     private Long id;
 
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adminStructureTypeId")
-    private AdminStructureType adminStructureType;
+    @JoinColumn(name = "administrativeUnitTypeId")
+    private AdministrativeUnitType administrativeUnitType;
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parentAdminStructureId")
-    private AdminStructure parent;
+    @JoinColumn(name = "parentAdministrativeUnitId")
+    private AdministrativeUnit parent;
 
     @Builder.Default
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-    private Set<AdminStructure> children = new HashSet<>();
+    private Set<AdministrativeUnit> children = new HashSet<>();
 
     @CreationTimestamp
     private LocalDateTime created;

@@ -20,6 +20,10 @@ public class EasyPointControllerAdvice {
     public ExceptionResponseDto handleBadRequestException(BadRequestException exception) {
         return new ExceptionResponseDto(exception.getMessage());
     }
-
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(Exception.class)
+    public ExceptionResponseDto handleUnexpectedException(Exception exception) {
+        return new ExceptionResponseDto(exception.getMessage());
+    }
 
 }
