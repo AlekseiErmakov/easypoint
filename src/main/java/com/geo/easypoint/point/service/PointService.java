@@ -21,6 +21,7 @@ import com.geo.easypoint.point.repository.PointStateRepository;
 import com.geo.easypoint.point.repository.PointTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -54,7 +55,7 @@ public class PointService {
     }
 
     @Transactional
-    public PointDto createPoint(PointCreateRequestDto request) {
+    public void createPoint(PointCreateRequestDto request) {
         Point point = pointRepository.saveAndFlush(
                 EasyPointMapper.toPoint(
                         request,
@@ -64,7 +65,6 @@ public class PointService {
                         NotFoundException.orElseThrow(request.pointAreaId(), AreaStructure.class, areaStructureRepository::findById)
                 )
         );
-        return EasyPointMapper.toPointDto(point);
     }
 
     @Transactional
