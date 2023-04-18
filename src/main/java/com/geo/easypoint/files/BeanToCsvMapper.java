@@ -2,6 +2,7 @@ package com.geo.easypoint.files;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import lombok.AccessLevel;
@@ -22,7 +23,10 @@ public final class BeanToCsvMapper {
     private static final CsvMapper CSV_MAPPER = new CsvMapper();
 
     static {
+        SimpleModule validationModule = new SimpleModule();
+        validationModule.setDeserializerModifier(new BeanDeserializerModifierWithValidation());
         CSV_MAPPER.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
+        CSV_MAPPER.registerModule(validationModule);
     }
 
     public static <T> byte[] toCsvFile(Collection<CsvColumn> columns, Collection<T> rows) {

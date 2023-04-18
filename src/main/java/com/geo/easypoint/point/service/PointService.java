@@ -1,6 +1,5 @@
 package com.geo.easypoint.point.service;
 
-import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.area.repository.AreaStructureRepository;
 import com.geo.easypoint.common.exception.BadRequestException;
@@ -21,11 +20,9 @@ import com.geo.easypoint.point.repository.PointStateRepository;
 import com.geo.easypoint.point.repository.PointTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -56,7 +53,7 @@ public class PointService {
 
     @Transactional
     public void createPoint(PointCreateRequestDto request) {
-        Point point = pointRepository.saveAndFlush(
+        pointRepository.saveAndFlush(
                 EasyPointMapper.toPoint(
                         request,
                         UserUtils.getCurrentEmployee(),

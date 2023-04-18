@@ -22,7 +22,6 @@ import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.employee.entity.WorkShiftType;
 import com.geo.easypoint.point.dto.CsvPointDto;
-import com.geo.easypoint.point.dto.PointCsvDto;
 import com.geo.easypoint.point.dto.PointDto;
 import com.geo.easypoint.point.dto.PointStateDto;
 import com.geo.easypoint.point.dto.PointTypeDto;
@@ -131,10 +130,6 @@ public interface ApplicationMapper {
     @Mapping(target = "areas", source = "allAreas")
     PointDto toPointWithAreasDto(Point point);
 
-    @Mapping(target = "location", source = "point.areaStructure.name")
-    PointCsvDto toPointCsv(Point point);
-
-    List<PointCsvDto> toPointCsv(Collection<Point> points);
 
     DownloadResponse toDownloadResponse(byte[] file, String fileName);
 
