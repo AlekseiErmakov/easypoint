@@ -5,7 +5,7 @@ import com.geo.easypoint.administrative.entity.AdministrativeUnit;
 import com.geo.easypoint.administrative.repository.AdministrativeUnitRepository;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
-import com.geo.easypoint.employee.dto.response.EmployeeDto;
+import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,12 +25,12 @@ public class EmployeeService {
     private final AdministrativeUnitRepository administrativeUnitRepository;
 
     @Transactional(readOnly = true)
-    public List<EmployeeDto> findAll() {
+    public List<EmployeeTableDto> findAll() {
         return EasyPointMapper.toEmployeeDto(employeeRepository.findAll());
     }
 
     @Transactional
-    public EmployeeDto create(CreateEmployeeRequest createEmployeeRequest) {
+    public EmployeeTableDto create(CreateEmployeeRequest createEmployeeRequest) {
         List<AdministrativeUnit> administrativeUnits = administrativeUnitRepository.findAllById(createEmployeeRequest.adminStructures());
         Employee employee = employeeRepository.saveAndFlush(EasyPointMapper.toEmployee(createEmployeeRequest, administrativeUnits));
         return EasyPointMapper.toEmployeeDto(employee);

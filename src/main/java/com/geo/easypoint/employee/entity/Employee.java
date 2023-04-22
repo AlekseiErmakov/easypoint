@@ -1,13 +1,17 @@
 package com.geo.easypoint.employee.entity;
 
 import com.geo.easypoint.administrative.entity.AdministrativeUnit;
+import com.geo.easypoint.adress.entity.Address;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -48,6 +52,15 @@ public class Employee {
     )
     @Builder.Default
     private Set<AdministrativeUnit> administrativeUnits = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "addressId")
+    @Builder.Default
+    private Address address = new Address();
+    @Builder.Default
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "passportInfoId")
+    private PassportInfo passportInfo = new PassportInfo();
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp

@@ -15,8 +15,12 @@ import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.area.entity.AreaStructureType;
 import com.geo.easypoint.common.DownloadResponse;
+import com.geo.easypoint.employee.dto.CompetencyDto;
+import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
+import com.geo.easypoint.employee.dto.request.CompetencyPartialUpdateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
-import com.geo.easypoint.employee.dto.response.EmployeeDto;
+import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
+import com.geo.easypoint.employee.entity.Competency;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.employee.entity.WorkShiftType;
 import com.geo.easypoint.files.CsvColumn;
@@ -36,6 +40,7 @@ import com.geo.easypoint.tool.total.station.dto.request.TotalStationCreateReques
 import com.geo.easypoint.tool.total.station.entity.TotalStation;
 import com.geo.easypoint.users.dto.response.AuthenticationResponse;
 import com.geo.easypoint.users.entity.EasyPointUser;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -128,8 +133,8 @@ public final class TestData {
                 .build();
     }
 
-    public static EmployeeDto employeeDto() {
-        return new EmployeeDto(ID, FIRSTNAME, SURNAME, MIDDLE_NAME, CREATED, UPDATED, List.of(adminDto()));
+    public static EmployeeTableDto employeeDto() {
+        return new EmployeeTableDto(ID, FIRSTNAME, SURNAME, MIDDLE_NAME, CREATED, UPDATED, List.of(adminDto()));
     }
 
     public static CreateEmployeeRequest createEmployeeRequest() {
@@ -257,6 +262,26 @@ public final class TestData {
                 .username(USERNAME)
                 .password(PASSWORD)
                 .build();
+    }
+
+    public static Competency competency() {
+        return Competency.builder()
+                .id(ID)
+                .description(DESCRIPTION)
+                .name(NAME)
+                .build();
+    }
+
+    public static CompetencyDto competencyDto() {
+        return new CompetencyDto(ID, NAME, DESCRIPTION);
+    }
+
+    public static CompetencyCreateRequest competencyCreateRequest() {
+        return new CompetencyCreateRequest(NAME, DESCRIPTION);
+    }
+
+    public static CompetencyPartialUpdateRequest competencyPartialUpdateRequest() {
+        return new CompetencyPartialUpdateRequest(JsonNullable.of(NAME), JsonNullable.of(DESCRIPTION));
     }
 
     public static AuthenticationResponse authenticationResponse() {

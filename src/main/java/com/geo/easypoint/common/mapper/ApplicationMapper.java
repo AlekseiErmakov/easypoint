@@ -15,10 +15,13 @@ import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.area.entity.AreaStructureType;
 import com.geo.easypoint.common.DownloadResponse;
+import com.geo.easypoint.employee.dto.CompetencyDto;
+import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
-import com.geo.easypoint.employee.dto.response.EmployeeDto;
+import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
 import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
+import com.geo.easypoint.employee.entity.Competency;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.employee.entity.WorkShiftType;
 import com.geo.easypoint.point.dto.CsvPointDto;
@@ -46,7 +49,7 @@ import java.util.List;
 public interface ApplicationMapper {
 
     @Mapping(target = "administrativeUnits", source = "allAdministrativeUnits")
-    EmployeeDto toEmployeeDto(Employee employee);
+    EmployeeTableDto toEmployeeDto(Employee employee);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "created", ignore = true)
@@ -54,7 +57,7 @@ public interface ApplicationMapper {
     @Mapping(target = "administrativeUnits", source = "administrativeUnits")
     Employee toEmployee(CreateEmployeeRequest createEmployeeRequest, List<AdministrativeUnit> administrativeUnits);
 
-    List<EmployeeDto> toEmployeeDto(Collection<Employee> employees);
+    List<EmployeeTableDto> toEmployeeDto(Collection<Employee> employees);
 
     WorkShiftTypeDto toWorkShiftTypeDto(WorkShiftType workShiftType);
 
@@ -195,4 +198,11 @@ public interface ApplicationMapper {
     List<AdministrativeUnitDto> toAdministrativeUnitDto(List<AdministrativeUnit> structures);
 
     AdministrativeUnitDto toAdministrativeUnitDto(AdministrativeUnit administrativeUnit);
+
+    CompetencyDto toCompetencyDto(Competency competency);
+
+    List<CompetencyDto> toCompetencyDto(Collection<Competency> competencies);
+
+    Competency toCompetency(CompetencyCreateRequest request);
+
 }

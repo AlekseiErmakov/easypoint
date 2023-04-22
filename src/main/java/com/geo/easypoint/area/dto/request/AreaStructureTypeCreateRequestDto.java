@@ -1,4 +1,7 @@
 package com.geo.easypoint.area.dto.request;
 
-public record AreaStructureTypeCreateRequestDto(String name, String description) {
+import jakarta.validation.constraints.NotBlank;
+
+public record AreaStructureTypeCreateRequestDto(@NotBlank String name,
+                                                String description) {
 }

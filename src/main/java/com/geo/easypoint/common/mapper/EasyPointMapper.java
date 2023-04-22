@@ -15,10 +15,13 @@ import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.area.entity.AreaStructureType;
 import com.geo.easypoint.common.DownloadResponse;
+import com.geo.easypoint.employee.dto.CompetencyDto;
+import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
-import com.geo.easypoint.employee.dto.response.EmployeeDto;
+import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
 import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
+import com.geo.easypoint.employee.entity.Competency;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.employee.entity.WorkShiftType;
 import com.geo.easypoint.files.BeanToCsvMapper;
@@ -51,11 +54,11 @@ import java.util.stream.Collectors;
 public class EasyPointMapper {
     private static final ApplicationMapper APPLICATION_MAPPER = Mappers.getMapper(ApplicationMapper.class);
 
-    public static EmployeeDto toEmployeeDto(Employee employee) {
+    public static EmployeeTableDto toEmployeeDto(Employee employee) {
         return APPLICATION_MAPPER.toEmployeeDto(employee);
     }
 
-    public static List<EmployeeDto> toEmployeeDto(Collection<Employee> employees) {
+    public static List<EmployeeTableDto> toEmployeeDto(Collection<Employee> employees) {
         return APPLICATION_MAPPER.toEmployeeDto(employees);
     }
 
@@ -216,7 +219,15 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toAdministrativeUnitDto(administrativeUnit);
     }
 
-    public static List<EmployeeDto> toEmployeeDto(List<Employee> employees) {
+    public static List<EmployeeTableDto> toEmployeeDto(List<Employee> employees) {
         return APPLICATION_MAPPER.toEmployeeDto(employees);
+    }
+
+    public static List<CompetencyDto> toCompetencyDto(Collection<Competency> competencies) {
+        return APPLICATION_MAPPER.toCompetencyDto(competencies);
+    }
+
+    public static Competency toCompetency(CompetencyCreateRequest request) {
+        return APPLICATION_MAPPER.toCompetency(request);
     }
 }

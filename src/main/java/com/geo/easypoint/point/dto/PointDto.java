@@ -1,7 +1,7 @@
 package com.geo.easypoint.point.dto;
 
 import com.geo.easypoint.area.dto.AreaDto;
-import com.geo.easypoint.employee.dto.response.EmployeeDto;
+import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ public record PointDto(Long id,
                        LocalDate created,
                        Long rootAreaId,
                        LocalDate updated,
-                       EmployeeDto creator,
+                       EmployeeTableDto creator,
                        PointTypeDto pointType,
                        PointStateDto pointState,
                        List<AreaDto> areas) {

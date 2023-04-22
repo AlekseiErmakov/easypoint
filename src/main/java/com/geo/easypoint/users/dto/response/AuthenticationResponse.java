@@ -1,6 +1,6 @@
 package com.geo.easypoint.users.dto.response;
 
-import com.geo.easypoint.employee.dto.response.EmployeeDto;
+import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
 
-public record AuthenticationResponse(String username, String token, EmployeeDto employee) {
+public record AuthenticationResponse(String username, String token, EmployeeTableDto employee) {
 }

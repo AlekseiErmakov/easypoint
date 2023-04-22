@@ -3,6 +3,7 @@ package com.geo.easypoint.common.mapper;
 import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.TestData;
 import com.geo.easypoint.area.entity.AreaStructure;
+import com.geo.easypoint.employee.entity.Competency;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.users.entity.EasyPointUser;
 import org.assertj.core.api.Assertions;
@@ -211,5 +212,25 @@ class EasyPointMapperTest extends AbstractAppTest {
         Assertions.assertThat(EasyPointMapper.toEasyPointCsvFile(List.of(TestData.csvColumn()), List.of(), TestData.NAME))
                 .usingRecursiveComparison()
                 .isEqualTo(TestData.csvPointFile());
+    }
+
+    @Test
+    void toCompetencyDtoTest() {
+        Assertions.assertThat(EasyPointMapper.toCompetencyDto(List.of(TestData.competency())))
+                .usingRecursiveComparison()
+                .isEqualTo(List.of(TestData.competencyDto()));
+    }
+
+    @Test
+    void toCompetencyTest() {
+        Competency competency = EasyPointMapper.toCompetency(TestData.competencyCreateRequest());
+
+        Assertions.assertThat(competency)
+                .usingRecursiveComparison()
+                .ignoringFields("id")
+                .isEqualTo(TestData.competency());
+
+        Assertions.assertThat(competency.getId())
+                .isNull();
     }
 }

@@ -1,6 +1,4 @@
 package com.geo.easypoint.employee.dto.response;
 
-public class EmployeeDto {
-
-
+public class AddressDto {
 }

@@ -1,6 +1,8 @@
 package com.geo.easypoint;
 
+import com.geo.easypoint.employee.controller.CompetencyController;
 import com.geo.easypoint.employee.controller.EmployeeController;
+import com.geo.easypoint.employee.repository.CompetencyRepository;
 import com.geo.easypoint.employee.repository.EmployeeRepository;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,4 +16,8 @@ public class AbstractAppTest {
     protected EmployeeRepository employeeRepository;
     @Autowired
     protected EmployeeController employeeController;
+    @Autowired
+    protected CompetencyController competencyController;
+    @Autowired
+    protected CompetencyRepository competencyRepository;
 }

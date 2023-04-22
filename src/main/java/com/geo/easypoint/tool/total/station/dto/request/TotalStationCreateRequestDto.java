@@ -1,6 +1,8 @@
 package com.geo.easypoint.tool.total.station.dto.request;
 
-public record TotalStationCreateRequestDto(String firm,
-                                           String model,
-                                           String serialNumber) {
+import jakarta.validation.constraints.NotBlank;
+
+public record TotalStationCreateRequestDto(@NotBlank String firm,
+                                           @NotBlank String model,
+                                           @NotBlank String serialNumber) {
 }
