@@ -18,11 +18,14 @@ import com.geo.easypoint.common.DownloadResponse;
 import com.geo.easypoint.employee.dto.CompetencyDto;
 import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
+import com.geo.easypoint.employee.dto.request.JobTitleCreateRequest;
 import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
+import com.geo.easypoint.employee.dto.response.JobTitleDto;
 import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
 import com.geo.easypoint.employee.entity.Competency;
 import com.geo.easypoint.employee.entity.Employee;
+import com.geo.easypoint.employee.entity.JobTitle;
 import com.geo.easypoint.employee.entity.WorkShiftType;
 import com.geo.easypoint.files.BeanToCsvMapper;
 import com.geo.easypoint.files.CsvColumn;
@@ -230,4 +233,13 @@ public class EasyPointMapper {
     public static Competency toCompetency(CompetencyCreateRequest request) {
         return APPLICATION_MAPPER.toCompetency(request);
     }
+
+    public static List<JobTitleDto> toJobTitleDto(Collection<JobTitle> jobTitles) {
+        return APPLICATION_MAPPER.toJobTitleDto(jobTitles);
+    }
+
+    public static JobTitle toJobTitle(JobTitleCreateRequest request) {
+        return APPLICATION_MAPPER.toJobTitle(request);
+    }
+
 }

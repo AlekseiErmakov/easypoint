@@ -5,6 +5,7 @@ import com.geo.easypoint.TestData;
 import com.geo.easypoint.area.entity.AreaStructure;
 import com.geo.easypoint.employee.entity.Competency;
 import com.geo.easypoint.employee.entity.Employee;
+import com.geo.easypoint.employee.entity.JobTitle;
 import com.geo.easypoint.users.entity.EasyPointUser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -231,6 +232,26 @@ class EasyPointMapperTest extends AbstractAppTest {
                 .isEqualTo(TestData.competency());
 
         Assertions.assertThat(competency.getId())
+                .isNull();
+    }
+
+    @Test
+    void toJobTitleDtoTest() {
+        Assertions.assertThat(EasyPointMapper.toJobTitleDto(List.of(TestData.jobTitle())))
+                .usingRecursiveComparison()
+                .isEqualTo(List.of(TestData.jobtitleDto()));
+    }
+
+    @Test
+    void toJobTitleTest() {
+        JobTitle jobTitle = EasyPointMapper.toJobTitle(TestData.jobTitleCreateRequest());
+
+        Assertions.assertThat(jobTitle)
+                .usingRecursiveComparison()
+                .ignoringFields("id")
+                .isEqualTo(TestData.jobTitle());
+
+        Assertions.assertThat(jobTitle.getId())
                 .isNull();
     }
 }

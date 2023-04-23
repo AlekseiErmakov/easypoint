@@ -53,14 +53,23 @@ public class Employee {
     @Builder.Default
     private Set<AdministrativeUnit> administrativeUnits = new HashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true, optional = false)
     @JoinColumn(name = "addressId")
     @Builder.Default
     private Address address = new Address();
     @Builder.Default
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true, optional = false)
     @JoinColumn(name = "passportInfoId")
     private PassportInfo passportInfo = new PassportInfo();
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "competencyId")
+    private Competency competency;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "jobTitleId")
+    private JobTitle jobTitle;
+
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp

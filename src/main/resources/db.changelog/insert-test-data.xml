@@ -15,6 +15,8 @@
     <property name="administrative_unit_type_next_val" value="nextval('administrative_unit_types_seq')" dbms="h2"/>
     <property name="area_structure_next_val" value="nextval('area_structures_seq')" dbms="h2"/>
     <property name="administrative_unit_next_val" value="nextval('administrative_units_seq')" dbms="h2"/>
+    <property name="competency_next_val" value="nextval('competencies_sequence')" dbms="h2"/>
+    <property name="job_title_next_val" value="nextval('job_titles_sequence')" dbms="h2"/>
     <changeSet id="2" author="Aleksey">
         <insert tableName="employees">
             <column name="id" valueComputed="${employee_seq_next_val}"/>
@@ -311,6 +313,16 @@
         <insert tableName="employees_administrative_units">
             <column name="employee_id">151</column>
             <column name="administrative_unit_id">5</column>
+        </insert>
+        <insert tableName="job_titles">
+            <column name="id" valueComputed="${job_title_next_val}"/>
+            <column name="name">Miner</column>
+            <column name="Description">Super miner</column>
+        </insert>
+        <insert tableName="competencies">
+            <column name="id" valueComputed="${competency_next_val}"/>
+            <column name="name">Land surveyor</column>
+            <column name="Description">Super land surveyor</column>
         </insert>
         <rollback/>
     </changeSet>

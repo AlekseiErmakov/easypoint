@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("competencies")
+@RequestMapping("/competencies")
 public class CompetencyController {
 
     private final CompetencyService service;

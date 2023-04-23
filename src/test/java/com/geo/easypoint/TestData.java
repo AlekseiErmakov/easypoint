@@ -19,9 +19,13 @@ import com.geo.easypoint.employee.dto.CompetencyDto;
 import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CompetencyPartialUpdateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
+import com.geo.easypoint.employee.dto.request.JobTitleCreateRequest;
+import com.geo.easypoint.employee.dto.request.JobTitlePartialUpdateRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
+import com.geo.easypoint.employee.dto.response.JobTitleDto;
 import com.geo.easypoint.employee.entity.Competency;
 import com.geo.easypoint.employee.entity.Employee;
+import com.geo.easypoint.employee.entity.JobTitle;
 import com.geo.easypoint.employee.entity.WorkShiftType;
 import com.geo.easypoint.files.CsvColumn;
 import com.geo.easypoint.files.EasyPointFile;
@@ -282,6 +286,27 @@ public final class TestData {
 
     public static CompetencyPartialUpdateRequest competencyPartialUpdateRequest() {
         return new CompetencyPartialUpdateRequest(JsonNullable.of(NAME), JsonNullable.of(DESCRIPTION));
+    }
+
+
+    public static JobTitle jobTitle() {
+        return JobTitle.builder()
+                .id(ID)
+                .description(DESCRIPTION)
+                .name(NAME)
+                .build();
+    }
+
+    public static JobTitleDto jobtitleDto() {
+        return new JobTitleDto(ID, NAME, DESCRIPTION);
+    }
+
+    public static JobTitleCreateRequest jobTitleCreateRequest() {
+        return new JobTitleCreateRequest(NAME, DESCRIPTION);
+    }
+
+    public static JobTitlePartialUpdateRequest jobTitlePartialUpdateRequest() {
+        return new JobTitlePartialUpdateRequest(JsonNullable.of(NAME), JsonNullable.of(DESCRIPTION));
     }
 
     public static AuthenticationResponse authenticationResponse() {

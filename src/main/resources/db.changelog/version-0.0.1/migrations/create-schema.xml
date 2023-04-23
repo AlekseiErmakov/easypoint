@@ -13,6 +13,8 @@
             <column name="surname" type="varchar(255)"/>
             <column name="lastname" type="varchar(255)"/>
             <column name="passport_info_id" type="bigint"/>
+            <column name="competency_id" type="bigint"/>
+            <column name="job_title_id" type="bigint"/>
             <column name="address_id" type="bigint"/>
             <column name="created" type="timestamp"/>
             <column name="updated" type="timestamp"/>
@@ -612,4 +614,53 @@
                                       constraintName="employees_to_passport_infos"/>
         </rollback>
     </changeSet>
+
+    <changeSet id="1682173288056" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="employees" baseColumnNames="competency_id"
+                                 constraintName="employees_to_competencies"
+                                 referencedTableName="competencies"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="employees"
+                                      constraintName="employees_to_competencies"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1682173288057" author="Ermakov Aleksey">
+        <createTable tableName="job_titles">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="job_titles"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1682173288058" author="Ermakov Aleksey">
+        <createSequence sequenceName="job_titles_sequence" startValue="1" incrementBy="50"/>
+
+        <rollback>
+            <dropSequence sequenceName="job_titles_sequence"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1682173288059" author="Ermakov Aleksey">
+        <addForeignKeyConstraint baseTableName="employees" baseColumnNames="job_title_id"
+                                 constraintName="employees_to_job_titles"
+                                 referencedTableName="job_titles"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="employees"
+                                      constraintName="employees_to_job_titles"/>
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>
