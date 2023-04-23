@@ -5,8 +5,10 @@ import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CompetencyPartialUpdateRequest;
 import com.geo.easypoint.employee.service.CompetencyService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +35,11 @@ public class CompetencyController {
     public void updateCompetency(@RequestBody CompetencyPartialUpdateRequest request,
                                  @Positive @PathVariable(name = "id") Long id) {
         service.updateCompetency(request, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCompetency(@PathVariable("id") @Positive Long id) {
+        service.deleteCompetency(id);
     }
 
     @GetMapping

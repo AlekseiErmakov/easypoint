@@ -1,6 +1,7 @@
 package com.geo.easypoint.employee.service;
 
 import com.geo.easypoint.common.PartialUpdater;
+import com.geo.easypoint.common.exception.EasyPointLogicException;
 import com.geo.easypoint.common.exception.NotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.employee.dto.CompetencyDto;
@@ -8,6 +9,7 @@ import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CompetencyPartialUpdateRequest;
 import com.geo.easypoint.employee.entity.Competency;
 import com.geo.easypoint.employee.repository.CompetencyRepository;
+import com.geo.easypoint.employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ import java.util.List;
 public class CompetencyService {
 
     private final CompetencyRepository competencyRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Transactional
     public void createCompetency(CompetencyCreateRequest request) {
@@ -32,6 +35,18 @@ public class CompetencyService {
                 .update(request.name(), competency::setName)
                 .update(request.description(), competency::setDescription);
         competencyRepository.save(competency);
+    }
+
+    @Transactional
+    public void deleteCompetency(Long id) {
+        Competency competency = NotFoundException.orElseThrow(id, Competency.class, competencyRepository::findById);
+        if (employeeRepository.existsByCompetency_Id(id)) {
+            throw new EasyPointLogicException(
+                    String.format("Competency %s can't be deleted, there are employees with this competency still",
+                            competency.getName())
+            );
+        }
+        competencyRepository.delete(competency);
     }
 
     @Transactional(readOnly = true)
