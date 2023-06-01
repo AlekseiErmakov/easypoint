@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 @Slf4j
 @RestControllerAdvice
 public class EasyPointControllerAdvice {
@@ -24,6 +25,7 @@ public class EasyPointControllerAdvice {
         log.error(exception.getMessage(), exception);
         return new ExceptionResponseDto(exception.getMessage());
     }
+
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(Exception.class)
     public ExceptionResponseDto handleUnexpectedException(Exception exception) {

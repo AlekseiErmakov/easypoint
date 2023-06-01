@@ -2,7 +2,6 @@ package com.geo.easypoint.employee.entity;
 
 import com.geo.easypoint.administrative.entity.AdministrativeUnit;
 import com.geo.easypoint.adress.entity.Address;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,9 +17,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Entity
+@Setter
 @Getter
 @Builder
 @NoArgsConstructor
@@ -44,6 +46,10 @@ public class Employee {
     private String firstname;
     private String surname;
     private String lastname;
+    private String phoneNumber;
+    private String email;
+    private LocalDate hiredDated;
+    private LocalDate firedDate;
     @ManyToMany
     @JoinTable(
             name = "employees_administrative_units",

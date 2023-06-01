@@ -1,4 +1,14 @@
 package com.geo.easypoint.employee.dto.response;
 
-public class PassportInfoDto {
+import com.geo.easypoint.employee.entity.Sex;
+
+import java.time.LocalDate;
+
+public record PassportInfoDto(String number,
+                              LocalDate birthDate,
+                              Sex sex,
+                              LocalDate issueDate,
+                              LocalDate expiredDate,
+                              String authority
+) {
 }

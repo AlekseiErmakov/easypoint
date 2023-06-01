@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**", "/console/**")
+                .requestMatchers("/auth/**", "/console/**", "/actuator/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -45,4 +45,5 @@ public class SecurityConfiguration {
 
         return http.build();
     }
+
 }

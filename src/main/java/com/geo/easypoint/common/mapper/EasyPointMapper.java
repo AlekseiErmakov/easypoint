@@ -20,6 +20,7 @@ import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.request.JobTitleCreateRequest;
 import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
+import com.geo.easypoint.employee.dto.response.EmployeeDto;
 import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
 import com.geo.easypoint.employee.dto.response.JobTitleDto;
 import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
@@ -242,4 +243,7 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toJobTitle(request);
     }
 
+    public static EmployeeDto toEmployeeInfoDto(Employee employee) {
+        return APPLICATION_MAPPER.toEmployeeInfoDto(employee);
+    }
 }

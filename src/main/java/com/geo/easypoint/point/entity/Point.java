@@ -1,8 +1,6 @@
 package com.geo.easypoint.point.entity;
 
-import com.geo.easypoint.area.dto.AreaDto;
 import com.geo.easypoint.area.entity.AreaStructure;
-import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.employee.entity.Employee;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

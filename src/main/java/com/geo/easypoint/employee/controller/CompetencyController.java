@@ -5,7 +5,6 @@ import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CompetencyPartialUpdateRequest;
 import com.geo.easypoint.employee.service.CompetencyService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;

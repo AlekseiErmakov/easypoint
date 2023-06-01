@@ -6,7 +6,6 @@ import com.geo.easypoint.common.exception.EasyPointLogicException;
 import com.geo.easypoint.common.exception.NotFoundException;
 import com.geo.easypoint.employee.dto.request.CompetencyPartialUpdateRequest;
 import com.geo.easypoint.employee.entity.Competency;
-import com.geo.easypoint.employee.entity.JobTitle;
 import com.geo.easypoint.employee.repository.CompetencyRepository;
 import com.geo.easypoint.employee.repository.EmployeeRepository;
 import org.assertj.core.api.Assertions;
@@ -92,7 +91,7 @@ class CompetencyServiceTest {
         Mockito.when(employeeRepository.existsByCompetency_Id(TestData.ID))
                 .thenReturn(true);
 
-        Assertions.assertThatThrownBy(() ->competencyService.deleteCompetency(competency.getId()))
+        Assertions.assertThatThrownBy(() -> competencyService.deleteCompetency(competency.getId()))
                 .isInstanceOf(EasyPointLogicException.class);
 
         EasyPointAssertions.assertThat(competencyRepository)

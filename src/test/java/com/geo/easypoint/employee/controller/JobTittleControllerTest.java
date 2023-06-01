@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class JobTittleControllerTest extends AbstractAppTest {
     @BeforeEach
     public void init() {
-        jobTitleRepository.deleteAll();
+        jobTitleRepository.deleteAllInBatch();
     }
 
     @Test

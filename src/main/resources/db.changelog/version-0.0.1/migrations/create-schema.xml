@@ -15,6 +15,10 @@
             <column name="passport_info_id" type="bigint"/>
             <column name="competency_id" type="bigint"/>
             <column name="job_title_id" type="bigint"/>
+            <column name="fired_date" type="date"/>
+            <column name="hired_dated" type="date"/>
+            <column name="phone_number" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
             <column name="address_id" type="bigint"/>
             <column name="created" type="timestamp"/>
             <column name="updated" type="timestamp"/>
@@ -25,7 +29,7 @@
     </changeSet>
 
     <changeSet id="1675424372322" author="Ermakov Aleksey">
-        <createSequence sequenceName="employee_sequence" incrementBy="50"/>
+        <createSequence sequenceName="employee_sequence" incrementBy="50" startValue="1"/>
     </changeSet>
     <changeSet id="1675424372387" author="Ermakov Aleksey">
         <addNotNullConstraint tableName="employees" columnName="id" catalogName="employee_id_unique"/>
@@ -94,7 +98,7 @@
     </changeSet>
 
     <changeSet id="1676220327466" author="Ermakov Aleksey">
-        <createSequence sequenceName="work_shift_type_sequence" incrementBy="50"/>
+        <createSequence sequenceName="work_shift_type_sequence" incrementBy="50"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="work_shift_type_sequence"/>
         </rollback>
@@ -125,7 +129,7 @@
     </changeSet>
 
     <changeSet id="1676883401196" author="Ermakov Aleksey">
-        <createSequence sequenceName="easy_point_user_sequence" incrementBy="50"/>
+        <createSequence sequenceName="easy_point_user_sequence" incrementBy="50"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="easy_point_user_sequence"/>
         </rollback>
@@ -165,7 +169,7 @@
     </changeSet>
 
     <changeSet id="1677143778796" author="Ermakov Aleksey">
-        <createSequence sequenceName="tokens_seq" incrementBy="50"/>
+        <createSequence sequenceName="tokens_seq" incrementBy="50"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="tokens_seq"/>
         </rollback>
@@ -199,7 +203,7 @@
     </changeSet>
 
     <changeSet id="1677340762289" author="Ermakov Aleksey">
-        <createSequence sequenceName="point_seq" incrementBy="50"/>
+        <createSequence sequenceName="point_seq" incrementBy="50"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="point_seq"/>
         </rollback>
@@ -236,7 +240,7 @@
     </changeSet>
 
     <changeSet id="1677340762235" author="Ermakov Aleksey">
-        <createSequence sequenceName="point_type_seq" incrementBy="1"/>
+        <createSequence sequenceName="point_type_seq" incrementBy="1"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="point_type_seq"/>
         </rollback>
@@ -273,7 +277,7 @@
     </changeSet>
 
     <changeSet id="1677601735325" author="Ermakov Aleksey">
-        <createSequence sequenceName="point_state_seq" incrementBy="1"/>
+        <createSequence sequenceName="point_state_seq" incrementBy="1"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="point_state_seq"/>
         </rollback>
@@ -312,7 +316,7 @@
     </changeSet>
 
     <changeSet id="1677839821993" author="Ermakov Aleksey">
-        <createSequence sequenceName="total_stations_seq" incrementBy="50"/>
+        <createSequence sequenceName="total_stations_seq" incrementBy="50"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="total_stations_seq"/>
         </rollback>
@@ -342,7 +346,7 @@
     </changeSet>
 
     <changeSet id="1677864290415" author="Ermakov Aleksey">
-        <createSequence sequenceName="area_structures_seq" incrementBy="1"/>
+        <createSequence sequenceName="area_structures_seq" incrementBy="1"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="area_structures_seq"/>
         </rollback>
@@ -370,7 +374,7 @@
     </changeSet>
 
     <changeSet id="1677864316936" author="Ermakov Aleksey">
-        <createSequence sequenceName="area_structure_types_seq" incrementBy="1"/>
+        <createSequence sequenceName="area_structure_types_seq" incrementBy="1"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="area_structure_types_seq"/>
         </rollback>
@@ -429,7 +433,7 @@
     </changeSet>
 
     <changeSet id="1677864316943" author="Ermakov Aleksey">
-        <createSequence sequenceName="administrative_unit_types_seq" incrementBy="1"/>
+        <createSequence sequenceName="administrative_unit_types_seq" incrementBy="1"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="administrative_unit_types_seq"/>
         </rollback>
@@ -459,7 +463,7 @@
     </changeSet>
 
     <changeSet id="1677864316947" author="Ermakov Aleksey">
-        <createSequence sequenceName="administrative_units_seq" incrementBy="1"/>
+        <createSequence sequenceName="administrative_units_seq" incrementBy="1"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="administrative_units_seq"/>
         </rollback>
@@ -536,7 +540,7 @@
     </changeSet>
 
     <changeSet id="1682159678040" author="Ermakov Aleksey">
-        <createSequence sequenceName="addresses_sequence" incrementBy="50"/>
+        <createSequence sequenceName="addresses_sequence" incrementBy="50" startValue="1" />
         <rollback>
             <dropSequence sequenceName="addresses_sequence"/>
         </rollback>
@@ -598,7 +602,7 @@
     </changeSet>
 
     <changeSet id="1682172935097" author="Ermakov Aleksey">
-        <createSequence sequenceName="passport_infos_sequence" incrementBy="50"/>
+        <createSequence sequenceName="passport_infos_sequence" incrementBy="50"  startValue="1"/>
         <rollback>
             <dropSequence sequenceName="passport_infos_sequence"/>
         </rollback>
@@ -645,7 +649,7 @@
     </changeSet>
 
     <changeSet id="1682173288058" author="Ermakov Aleksey">
-        <createSequence sequenceName="job_titles_sequence" startValue="1" incrementBy="50"/>
+        <createSequence sequenceName="job_titles_sequence" startValue="1" incrementBy="50" />
 
         <rollback>
             <dropSequence sequenceName="job_titles_sequence"/>

@@ -89,7 +89,7 @@ class JobTitleServiceTest {
         Mockito.when(employeeRepository.existsByJobTitle_Id(TestData.ID))
                 .thenReturn(true);
 
-        Assertions.assertThatThrownBy(() ->jobTitleService.deleteJobTitle(jobTitle.getId()))
+        Assertions.assertThatThrownBy(() -> jobTitleService.deleteJobTitle(jobTitle.getId()))
                 .isInstanceOf(EasyPointLogicException.class);
 
         EasyPointAssertions.assertThat(jobTitleRepository)

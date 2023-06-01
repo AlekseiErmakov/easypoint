@@ -3,11 +3,10 @@ package com.geo.easypoint;
 import org.assertj.core.api.Assertions;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-import org.mockito.verification.VerificationMode;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public class JpaRepositoryAssertions<E extends JpaRepository<T, ID>, T, ID> {
+public class JpaRepositoryAssertions<E extends JpaRepository<T, I>, T, I> {
 
     private final E repository;
 

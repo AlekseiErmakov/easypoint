@@ -3,18 +3,17 @@ package com.geo.easypoint.employee.controller;
 import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.TestData;
 import com.geo.easypoint.employee.dto.CompetencyDto;
-import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.entity.Competency;
-import com.geo.easypoint.employee.entity.JobTitle;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 class CompetencyControllerTest extends AbstractAppTest {
 
     @BeforeEach
     public void init() {
-        competencyRepository.deleteAll();
+        competencyRepository.deleteAllInBatch();
     }
 
     @Test

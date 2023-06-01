@@ -1,0 +1,38 @@
+version: '1'
+
+services:
+    easy-point:
+      image: 'easypoint:latest'
+      build:
+        context: .
+      container_name: 'easy-point'
+      ports:
+        - '8080:8080'
+      depends_on:
+        - 'db'
+      environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/easypoint
+        - SPRING_DATASOURCE_USERNAME=lexlaeda
+        - SPRING_DATASOURCE_PASSWORD=alavioli
+
+    pg-admin:
+      container_name: 'pg-admin'
+      image: 'dpage/pgadmin4:latest'
+      depends_on:
+        - 'db'
+      ports:
+        - '82:80'
+      environment:
+        - PGADMIN_DEFAULT_EMAIL=lexlaeda30@gmail.com
+        - PGADMIN_DEFAULT_PASSWORD=alavioli
+    db:
+      image: 'postgres:13.1-alpine'
+      container_name: 'db'
+      environment:
+        - POSTGRES_USER=lexlaeda
+        - POSTGRES_PASSWORD=alavioli
+        - POSTGRES_DB=easypoint
+      ports:
+        - "5432:5432"
+      volumes:
+        - /Users/lexlaeda/Volumes/docker/postgres:/var/lib/postgresql/data

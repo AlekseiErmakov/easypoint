@@ -20,6 +20,7 @@ import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.request.JobTitleCreateRequest;
 import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
+import com.geo.easypoint.employee.dto.response.EmployeeDto;
 import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
 import com.geo.easypoint.employee.dto.response.JobTitleDto;
 import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
@@ -213,4 +214,6 @@ public interface ApplicationMapper {
     List<JobTitleDto> toJobTitleDto(Collection<JobTitle> jobTitles);
 
     JobTitle toJobTitle(JobTitleCreateRequest request);
+
+    EmployeeDto toEmployeeInfoDto(Employee employee);
 }
