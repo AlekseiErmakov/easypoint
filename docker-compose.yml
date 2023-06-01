@@ -13,7 +13,7 @@ services:
       environment:
         - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/easypoint
         - SPRING_DATASOURCE_USERNAME=lexlaeda
-        - SPRING_DATASOURCE_PASSWORD=alavioli
+        - SPRING_DATASOURCE_PASSWORD=
 
     pg-admin:
       container_name: 'pg-admin'
@@ -24,13 +24,13 @@ services:
         - '82:80'
       environment:
         - PGADMIN_DEFAULT_EMAIL=lexlaeda30@gmail.com
-        - PGADMIN_DEFAULT_PASSWORD=alavioli
+        - PGADMIN_DEFAULT_PASSWORD=
     db:
       image: 'postgres:13.1-alpine'
       container_name: 'db'
       environment:
         - POSTGRES_USER=lexlaeda
-        - POSTGRES_PASSWORD=alavioli
+        - POSTGRES_PASSWORD=
         - POSTGRES_DB=easypoint
       ports:
         - "5432:5432"
