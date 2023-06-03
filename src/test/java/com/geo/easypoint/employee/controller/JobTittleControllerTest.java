@@ -2,7 +2,7 @@ package com.geo.easypoint.employee.controller;
 
 import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.TestData;
-import com.geo.easypoint.employee.dto.response.JobTitleDto;
+import com.geo.easypoint.jobtitle.web.JobTitleDto;
 import com.geo.easypoint.employee.entity.JobTitle;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

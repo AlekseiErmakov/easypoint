@@ -3,7 +3,7 @@ package com.geo.easypoint.employee.controller;
 import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.TestData;
 import com.geo.easypoint.employee.dto.CompetencyDto;
-import com.geo.easypoint.employee.entity.Competency;
+import com.geo.easypoint.competency.domain.Competency;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package com.geo.easypoint.employee.entity;
 
-import com.geo.easypoint.administrative.entity.AdministrativeUnit;
-import com.geo.easypoint.adress.entity.Address;
+import com.geo.easypoint.administrative.unit.domain.AdministrativeUnit;
+import com.geo.easypoint.competency.domain.Competency;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;

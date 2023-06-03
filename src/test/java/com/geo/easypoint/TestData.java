@@ -1,49 +1,49 @@
 package com.geo.easypoint;
 
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
-import com.geo.easypoint.administrative.dto.AdministrativeUnitTreeDto;
-import com.geo.easypoint.administrative.dto.AdministrativeUnitTypeDto;
-import com.geo.easypoint.administrative.dto.request.AdministrativeUnitCreateRequest;
-import com.geo.easypoint.administrative.entity.AdministrativeUnit;
-import com.geo.easypoint.administrative.entity.AdministrativeUnitType;
-import com.geo.easypoint.area.dto.AreaDto;
-import com.geo.easypoint.area.dto.AreaStructureDto;
-import com.geo.easypoint.area.dto.AreaStructureTypeDto;
-import com.geo.easypoint.area.dto.request.AreaStructureCreateRequestDto;
-import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
-import com.geo.easypoint.area.entity.AreaStructure;
-import com.geo.easypoint.area.entity.AreaStructureType;
-import com.geo.easypoint.common.DownloadResponse;
+import com.geo.easypoint.administrative.unit.web.AdministrativeUnitCreateDto;
+import com.geo.easypoint.administrative.unit.web.AdministrativeUnitDto;
+import com.geo.easypoint.administrative.unit.web.AdministrativeUnitTreeDto;
+import com.geo.easypoint.administrative.unittype.web.AdministrativeUnitTypeDto;
+import com.geo.easypoint.administrative.unit.domain.AdministrativeUnit;
+import com.geo.easypoint.administrative.unittype.domain.AdministrativeUnitType;
+import com.geo.easypoint.area.structure.web.AreaDto;
+import com.geo.easypoint.area.structure.web.AreaStructureDto;
+import com.geo.easypoint.area.structuretype.web.AreaStructureTypeDto;
+import com.geo.easypoint.area.structure.web.AreaStructureCreateRequestDto;
+import com.geo.easypoint.area.structuretype.web.AreaStructureTypeCreateRequestDto;
+import com.geo.easypoint.area.structure.domain.AreaStructure;
+import com.geo.easypoint.area.structuretype.domain.AreaStructureType;
+import com.geo.easypoint.common.files.DownloadResponse;
 import com.geo.easypoint.employee.dto.CompetencyDto;
-import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
-import com.geo.easypoint.employee.dto.request.CompetencyPartialUpdateRequest;
+import com.geo.easypoint.competency.web.CompetencyCreateRequest;
+import com.geo.easypoint.competency.web.CompetencyPartialUpdateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
-import com.geo.easypoint.employee.dto.request.JobTitleCreateRequest;
-import com.geo.easypoint.employee.dto.request.JobTitlePartialUpdateRequest;
+import com.geo.easypoint.jobtitle.web.JobTitleCreateRequest;
+import com.geo.easypoint.jobtitle.web.JobTitlePartialUpdateRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
-import com.geo.easypoint.employee.dto.response.JobTitleDto;
-import com.geo.easypoint.employee.entity.Competency;
+import com.geo.easypoint.jobtitle.web.JobTitleDto;
+import com.geo.easypoint.competency.domain.Competency;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.employee.entity.JobTitle;
-import com.geo.easypoint.employee.entity.WorkShiftType;
-import com.geo.easypoint.files.CsvColumn;
-import com.geo.easypoint.files.EasyPointFile;
-import com.geo.easypoint.point.dto.CsvPointDto;
-import com.geo.easypoint.point.dto.PointDto;
-import com.geo.easypoint.point.dto.PointStateDto;
-import com.geo.easypoint.point.dto.PointStates;
-import com.geo.easypoint.point.dto.PointTypeDto;
-import com.geo.easypoint.point.dto.PointTypes;
-import com.geo.easypoint.point.dto.request.PointCreateRequestDto;
-import com.geo.easypoint.point.entity.Point;
-import com.geo.easypoint.point.entity.PointState;
-import com.geo.easypoint.point.entity.PointType;
-import com.geo.easypoint.tool.total.station.dto.TotalStationDto;
-import com.geo.easypoint.tool.total.station.dto.request.TotalStationCreateRequestDto;
-import com.geo.easypoint.tool.total.station.entity.TotalStation;
-import com.geo.easypoint.users.dto.response.AuthenticationResponse;
-import com.geo.easypoint.users.entity.EasyPointUser;
+import com.geo.easypoint.workshifttype.domain.WorkShiftType;
+import com.geo.easypoint.common.files.CsvColumn;
+import com.geo.easypoint.common.files.EasyPointFile;
+import com.geo.easypoint.point.web.CsvPointDto;
+import com.geo.easypoint.point.web.PointDto;
+import com.geo.easypoint.pointstate.web.PointStateDto;
+import com.geo.easypoint.pointstate.web.PointStates;
+import com.geo.easypoint.pointtype.web.PointTypeDto;
+import com.geo.easypoint.pointstate.domain.PointTypes;
+import com.geo.easypoint.point.web.PointCreateRequestDto;
+import com.geo.easypoint.point.domain.Point;
+import com.geo.easypoint.pointstate.domain.PointState;
+import com.geo.easypoint.pointstate.domain.PointType;
+import com.geo.easypoint.tool.totalstation.web.TotalStationDto;
+import com.geo.easypoint.tool.totalstation.web.TotalStationCreateRequestDto;
+import com.geo.easypoint.tool.totalstation.domain.TotalStation;
+import com.geo.easypoint.authentication.web.AuthenticationResponse;
+import com.geo.easypoint.authentication.domain.user.EasyPointUser;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.math.BigDecimal;
@@ -99,8 +99,8 @@ public final class TestData {
                 .build();
     }
 
-    public static AdministrativeUnitCreateRequest adminStructureCreateRequest() {
-        return new AdministrativeUnitCreateRequest(NAME, ID, DESCRIPTION, ID);
+    public static AdministrativeUnitCreateDto adminStructureCreateRequest() {
+        return new AdministrativeUnitCreateDto(NAME, ID, DESCRIPTION, ID);
     }
 
     public static AdministrativeUnitTypeDto adminStructureTypeDto() {

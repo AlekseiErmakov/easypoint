@@ -1,7 +1,8 @@
 package com.geo.easypoint.employee.dto.response;
 
-import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
+import com.geo.easypoint.administrative.unit.web.AdministrativeUnitDto;
 import com.geo.easypoint.employee.dto.CompetencyDto;
+import com.geo.easypoint.jobtitle.web.JobTitleDto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,50 +1,50 @@
 package com.geo.easypoint.common.mapper;
 
-import com.geo.easypoint.administrative.dto.AdministrativeUnitDto;
-import com.geo.easypoint.administrative.dto.AdministrativeUnitTreeDto;
-import com.geo.easypoint.administrative.dto.AdministrativeUnitTypeDto;
-import com.geo.easypoint.administrative.dto.request.AdministrativeUnitCreateRequest;
-import com.geo.easypoint.administrative.dto.request.AdministrativeUnitTypeCreateRequest;
-import com.geo.easypoint.administrative.entity.AdministrativeUnit;
-import com.geo.easypoint.administrative.entity.AdministrativeUnitType;
-import com.geo.easypoint.area.dto.AreaDto;
-import com.geo.easypoint.area.dto.AreaStructureDto;
-import com.geo.easypoint.area.dto.AreaStructureTypeDto;
-import com.geo.easypoint.area.dto.request.AreaStructureCreateRequestDto;
-import com.geo.easypoint.area.dto.request.AreaStructureTypeCreateRequestDto;
-import com.geo.easypoint.area.entity.AreaStructure;
-import com.geo.easypoint.area.entity.AreaStructureType;
-import com.geo.easypoint.common.DownloadResponse;
+import com.geo.easypoint.administrative.unit.web.AdministrativeUnitDto;
+import com.geo.easypoint.administrative.unit.web.AdministrativeUnitTreeDto;
+import com.geo.easypoint.administrative.unittype.web.AdministrativeUnitTypeDto;
+import com.geo.easypoint.administrative.unit.web.AdministrativeUnitCreateDto;
+import com.geo.easypoint.administrative.unittype.web.AdministrativeUnitTypeCreateRequest;
+import com.geo.easypoint.administrative.unit.domain.AdministrativeUnit;
+import com.geo.easypoint.administrative.unittype.domain.AdministrativeUnitType;
+import com.geo.easypoint.area.structure.web.AreaDto;
+import com.geo.easypoint.area.structure.web.AreaStructureDto;
+import com.geo.easypoint.area.structuretype.web.AreaStructureTypeDto;
+import com.geo.easypoint.area.structure.web.AreaStructureCreateRequestDto;
+import com.geo.easypoint.area.structuretype.web.AreaStructureTypeCreateRequestDto;
+import com.geo.easypoint.area.structure.domain.AreaStructure;
+import com.geo.easypoint.area.structuretype.domain.AreaStructureType;
+import com.geo.easypoint.common.files.DownloadResponse;
 import com.geo.easypoint.employee.dto.CompetencyDto;
-import com.geo.easypoint.employee.dto.request.CompetencyCreateRequest;
+import com.geo.easypoint.competency.web.CompetencyCreateRequest;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
-import com.geo.easypoint.employee.dto.request.JobTitleCreateRequest;
-import com.geo.easypoint.employee.dto.request.WorkShiftTypeCreateRequest;
+import com.geo.easypoint.jobtitle.web.JobTitleCreateRequest;
+import com.geo.easypoint.workshifttype.web.WorkShiftTypeCreateRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeDto;
 import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
-import com.geo.easypoint.employee.dto.response.JobTitleDto;
-import com.geo.easypoint.employee.dto.response.WorkShiftTypeDto;
-import com.geo.easypoint.employee.entity.Competency;
+import com.geo.easypoint.jobtitle.web.JobTitleDto;
+import com.geo.easypoint.workshifttype.web.WorkShiftTypeDto;
+import com.geo.easypoint.competency.domain.Competency;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.employee.entity.JobTitle;
-import com.geo.easypoint.employee.entity.WorkShiftType;
-import com.geo.easypoint.files.BeanToCsvMapper;
-import com.geo.easypoint.files.CsvColumn;
-import com.geo.easypoint.files.EasyPointFile;
-import com.geo.easypoint.point.dto.CsvPointDto;
-import com.geo.easypoint.point.dto.PointDto;
-import com.geo.easypoint.point.dto.PointStateDto;
-import com.geo.easypoint.point.dto.PointTypeDto;
-import com.geo.easypoint.point.dto.request.PointCreateRequestDto;
-import com.geo.easypoint.point.dto.request.PointUpdateRequest;
-import com.geo.easypoint.point.entity.Point;
-import com.geo.easypoint.point.entity.PointState;
-import com.geo.easypoint.point.entity.PointType;
-import com.geo.easypoint.tool.total.station.dto.TotalStationDto;
-import com.geo.easypoint.tool.total.station.dto.request.TotalStationCreateRequestDto;
-import com.geo.easypoint.tool.total.station.entity.TotalStation;
-import com.geo.easypoint.users.dto.response.AuthenticationResponse;
-import com.geo.easypoint.users.entity.EasyPointUser;
+import com.geo.easypoint.workshifttype.domain.WorkShiftType;
+import com.geo.easypoint.common.files.BeanToCsvMapper;
+import com.geo.easypoint.common.files.CsvColumn;
+import com.geo.easypoint.common.files.EasyPointFile;
+import com.geo.easypoint.point.web.CsvPointDto;
+import com.geo.easypoint.point.web.PointDto;
+import com.geo.easypoint.pointstate.web.PointStateDto;
+import com.geo.easypoint.pointtype.web.PointTypeDto;
+import com.geo.easypoint.point.web.PointCreateRequestDto;
+import com.geo.easypoint.point.web.PointUpdateRequest;
+import com.geo.easypoint.point.domain.Point;
+import com.geo.easypoint.pointstate.domain.PointState;
+import com.geo.easypoint.pointstate.domain.PointType;
+import com.geo.easypoint.tool.totalstation.web.TotalStationDto;
+import com.geo.easypoint.tool.totalstation.web.TotalStationCreateRequestDto;
+import com.geo.easypoint.tool.totalstation.domain.TotalStation;
+import com.geo.easypoint.authentication.web.AuthenticationResponse;
+import com.geo.easypoint.authentication.domain.user.EasyPointUser;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.mapstruct.factory.Mappers;
@@ -207,11 +207,11 @@ public class EasyPointMapper {
         return APPLICATION_MAPPER.toAdministrativeUnitTreeDto(administrativeUnits);
     }
 
-    public static AdministrativeUnit toAdministrativeUnit(AdministrativeUnitCreateRequest request, AdministrativeUnitType administrativeUnitType) {
+    public static AdministrativeUnit toAdministrativeUnit(AdministrativeUnitCreateDto request, AdministrativeUnitType administrativeUnitType) {
         return APPLICATION_MAPPER.toAdministrativeUnit(request, administrativeUnitType);
     }
 
-    public static <T> AdministrativeUnit toAdministrativeUnit(AdministrativeUnitCreateRequest request, AdministrativeUnit parent, AdministrativeUnitType administrativeUnitType) {
+    public static <T> AdministrativeUnit toAdministrativeUnit(AdministrativeUnitCreateDto request, AdministrativeUnit parent, AdministrativeUnitType administrativeUnitType) {
         return APPLICATION_MAPPER.toAdministrativeUnit(request, parent, administrativeUnitType);
     }
 

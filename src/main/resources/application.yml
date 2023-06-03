@@ -1,13 +1,9 @@
 spring:
   datasource:
-#    url: ${SPRING_DATASOURCE_URL}
-#    hikari:
-#      username: ${SPRING_DATASOURCE_USERNAME}
-#      password: ${SPRING_DATASOURCE_PASSWORD}
-    url: jdbc:postgresql://localhost:5432/easypoint
+    url: ${SPRING_DATASOURCE_URL}
     hikari:
-      username: lexlaeda
-      password: alavioli
+      username: ${SPRING_DATASOURCE_USERNAME}
+      password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:db.changelog/db.changelog-master.yaml

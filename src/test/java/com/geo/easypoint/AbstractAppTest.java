@@ -1,11 +1,11 @@
 package com.geo.easypoint;
 
-import com.geo.easypoint.employee.controller.CompetencyController;
+import com.geo.easypoint.competency.web.CompetencyController;
 import com.geo.easypoint.employee.controller.EmployeeController;
-import com.geo.easypoint.employee.controller.JobTittleController;
-import com.geo.easypoint.employee.repository.CompetencyRepository;
+import com.geo.easypoint.jobtitle.web.JobTittleController;
+import com.geo.easypoint.competency.domain.CompetencyRepository;
 import com.geo.easypoint.employee.repository.EmployeeRepository;
-import com.geo.easypoint.employee.repository.JobTitleRepository;
+import com.geo.easypoint.jobtitle.domain.JobTitleRepository;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
