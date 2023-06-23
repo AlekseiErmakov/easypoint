@@ -1,20 +1,19 @@
 package com.geo.easypoint.jobtitle.service;
 
-import com.geo.easypoint.common.mapper.PartialUpdater;
 import com.geo.easypoint.common.exception.EasyPointLogicException;
 import com.geo.easypoint.common.exception.NotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
-import com.geo.easypoint.jobtitle.web.JobTitleCreateRequest;
-import com.geo.easypoint.jobtitle.web.JobTitlePartialUpdateRequest;
-import com.geo.easypoint.jobtitle.web.JobTitleDto;
+import com.geo.easypoint.common.mapper.PartialUpdater;
 import com.geo.easypoint.employee.entity.JobTitle;
 import com.geo.easypoint.employee.repository.EmployeeRepository;
 import com.geo.easypoint.jobtitle.domain.JobTitleRepository;
+import com.geo.easypoint.jobtitle.web.JobTitleCreateRequest;
+import com.geo.easypoint.jobtitle.web.JobTitleDto;
+import com.geo.easypoint.jobtitle.web.JobTitlePartialUpdateRequest;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

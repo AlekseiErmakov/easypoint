@@ -1,8 +1,7 @@
 package com.geo.easypoint.common.mapper;
 
-import org.openapitools.jackson.nullable.JsonNullable;
-
 import java.util.function.Consumer;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PartialUpdater {
 

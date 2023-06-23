@@ -1,9 +1,8 @@
 package com.geo.easypoint.employee.dto.request;
 
-import org.openapitools.jackson.nullable.JsonNullable;
-
 import java.time.LocalDate;
 import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public record EmployeeUpdateRequest(
         JsonNullable<AddressUpdateRequest> address,

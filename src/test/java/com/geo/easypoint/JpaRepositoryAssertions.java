@@ -23,6 +23,10 @@ public class JpaRepositoryAssertions<E extends JpaRepository<T, I>, T, I> {
                 .isEqualTo(value);
     }
 
+    public void neverSaveAny() {
+        Mockito.verify(repository).save(Mockito.any());
+    }
+
     public void delete(T value) {
         ArgumentCaptor<T> argumentCaptor = ArgumentCaptor.forClass((Class<T>) value.getClass());
         Mockito.verify(repository).delete(argumentCaptor.capture());

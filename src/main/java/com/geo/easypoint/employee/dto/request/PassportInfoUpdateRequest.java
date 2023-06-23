@@ -1,9 +1,8 @@
 package com.geo.easypoint.employee.dto.request;
 
 import com.geo.easypoint.employee.entity.Sex;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 import java.time.LocalDate;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public record PassportInfoUpdateRequest(JsonNullable<String> number,
                                         JsonNullable<LocalDate> birthDate,

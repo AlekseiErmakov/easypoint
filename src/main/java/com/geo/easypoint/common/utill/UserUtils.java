@@ -1,7 +1,7 @@
 package com.geo.easypoint.common.utill;
 
-import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.authentication.domain.user.EasyPointUser;
+import com.geo.easypoint.employee.entity.Employee;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;

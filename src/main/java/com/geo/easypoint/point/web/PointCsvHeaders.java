@@ -1,13 +1,11 @@
 package com.geo.easypoint.point.web;
 
-import com.geo.easypoint.common.files.CsvColumn;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
-
 import static com.fasterxml.jackson.dataformat.csv.CsvSchema.ColumnType.NUMBER;
 import static com.fasterxml.jackson.dataformat.csv.CsvSchema.ColumnType.STRING_OR_LITERAL;
+import com.geo.easypoint.common.files.CsvColumn;
+import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class PointCsvHeaders {

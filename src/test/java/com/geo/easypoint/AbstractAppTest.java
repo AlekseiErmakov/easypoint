@@ -6,6 +6,8 @@ import com.geo.easypoint.jobtitle.web.JobTittleController;
 import com.geo.easypoint.competency.domain.CompetencyRepository;
 import com.geo.easypoint.employee.repository.EmployeeRepository;
 import com.geo.easypoint.jobtitle.domain.JobTitleRepository;
+import com.geo.easypoint.tool.plummet.domain.PlummetRepository;
+import com.geo.easypoint.tool.plummet.web.PlummetController;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,4 +28,8 @@ public class AbstractAppTest {
     protected JobTittleController jobTittleController;
     @Autowired
     protected JobTitleRepository jobTitleRepository;
+    @Autowired
+    protected PlummetRepository plummetRepository;
+    @Autowired
+    protected PlummetController plummetController;
 }

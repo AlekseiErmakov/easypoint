@@ -1,7 +1,6 @@
 package com.geo.easypoint.employee.dto.response;
 
 import com.geo.easypoint.administrative.unit.web.AdministrativeUnitDto;
-
 import java.time.LocalDateTime;
 import java.util.List;
 

@@ -2,29 +2,32 @@ package com.geo.easypoint.employee.service;
 
 import com.geo.easypoint.administrative.unit.domain.AdministrativeUnit;
 import com.geo.easypoint.administrative.unit.domain.AdministrativeUnitRepository;
-import com.geo.easypoint.employee.entity.Address;
-import com.geo.easypoint.common.mapper.PartialUpdater;
 import com.geo.easypoint.common.exception.EasyPointLogicException;
 import com.geo.easypoint.common.exception.NotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
+import com.geo.easypoint.common.mapper.PartialUpdater;
+import com.geo.easypoint.competency.domain.Competency;
+import com.geo.easypoint.competency.domain.CompetencyRepository;
 import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
 import com.geo.easypoint.employee.dto.request.EmployeeUpdateRequest;
 import com.geo.easypoint.employee.dto.response.EmployeeDto;
 import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
-import com.geo.easypoint.competency.domain.Competency;
+import com.geo.easypoint.employee.entity.Address;
 import com.geo.easypoint.employee.entity.Employee;
 import com.geo.easypoint.employee.entity.JobTitle;
 import com.geo.easypoint.employee.entity.PassportInfo;
-import com.geo.easypoint.competency.domain.CompetencyRepository;
 import com.geo.easypoint.employee.repository.EmployeeRepository;
 import com.geo.easypoint.jobtitle.domain.JobTitleRepository;
+import java.util.HashSet;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.List;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {

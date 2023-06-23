@@ -1,7 +1,6 @@
 package com.geo.easypoint.pointstate.domain;
 
 
-import com.geo.easypoint.pointstate.domain.PointTypes;
 import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -1,10 +1,9 @@
 package com.geo.easypoint.point.domain;
 
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PointRepository extends JpaRepository<Point, Long> {
 

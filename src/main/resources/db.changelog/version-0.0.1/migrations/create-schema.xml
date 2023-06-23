@@ -5,6 +5,7 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <property name="now" value="CURRENT_TIMESTAMP" dbms="postgresql"/>
 
     <changeSet id="1675424327723" author="Ermakov Aleksey">
         <createTable tableName="employees">
@@ -666,5 +667,105 @@
                                       constraintName="employees_to_job_titles"/>
         </rollback>
     </changeSet>
+    <changeSet id="1687281899305" author="Ermakov Aleksey">
+            <createTable tableName="plummets">
+                <column name="id" type="BIGINT" autoIncrement="true">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+                <column name="name" type="text"/>
+            </createTable>
+        <rollback>
+            <dropTable tableName="plummets"/>
+        </rollback>
+    </changeSet>
 
+    <changeSet id="1687282140411" author="Ermakov Aleksey">
+            <createSequence sequenceName="plummets_seq" incrementBy="50"/>
+        <rollback>
+            <dropSequence sequenceName="plummets_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1687282415001" author="Ermakov Aleksey">
+            <createTable tableName="tool_states">
+                <column name="id" type="BIGINT" autoIncrement="true">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+                <column name="name" type="text"/>
+                <column name="description" type="text"/>
+                <column name="created" type="timestamp"/>
+                <column name="updated" type="timestamp"/>
+            </createTable>
+        <rollback>
+            <dropTable tableName="tool_states"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1687282988784" author="Ermakov Aleksey">
+            <createSequence sequenceName="tool_states_seq" incrementBy="50"/>
+        <rollback>
+            <dropSequence sequenceName="tool_states_seq"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="1687330019573" author="Ermakov Aleksey">
+        <insert tableName="employees">
+            <column name="id" value="0"/>
+            <column name="firstname" value="Aleksey"/>
+            <column name="surname" value="Ivanov"/>
+            <column name="lastname" value="Ivanovich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueSequenceNext="employee_sequence" />
+            <column name="firstname" value="Aleksey"/>
+            <column name="surname" value="Ivanov"/>
+            <column name="lastname" value="Ivanovich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueSequenceNext="employee_sequence"/>
+            <column name="firstname" value="Aleksandr"/>
+            <column name="surname" value="Aleksandrov"/>
+            <column name="lastname" value="Fedorovich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueSequenceNext="employee_sequence"/>
+            <column name="firstname" value="Sidorov"/>
+            <column name="surname" value="Sergey"/>
+            <column name="lastname" value="Sergeich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueSequenceNext="employee_sequence"/>
+            <column name="firstname" value="Bakshuk"/>
+            <column name="surname" value="Vladimir"/>
+            <column name="lastname" value="Igorevich"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="work_shift_types">
+            <column name="id" valueSequenceNext="work_shift_type_sequence"/>
+            <column name="name" value="Morning shift"/>
+            <column name="shortname" value="M"/>
+            <column name="start_hour" value="8"/>
+            <column name="start_minute" value="0"/>
+            <column name="end_hour" value="15"/>
+            <column name="end_minute" value="0"/>
+            <column name="created" valueComputed="${now}"/>
+            <column name="updated" valueComputed="${now}"/>
+        </insert>
+        <insert tableName="easy_point_users">
+            <column name="id" valueSequenceNext="easy_point_user_sequence"/>
+            <column name="username" value="alex"/>
+            <column name="password" value="$2a$10$qldoNknOUMzBLwxU9uqD5ew9urH0m0/cSVF2tN0h8hQtwmsXIkQWy"/>
+            <column name="employee_id" value="0"/>
+        </insert>
+
+        <rollback/>
+    </changeSet>
 </databaseChangeLog>

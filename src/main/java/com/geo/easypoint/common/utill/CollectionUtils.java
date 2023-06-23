@@ -1,12 +1,11 @@
 package com.geo.easypoint.common.utill;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CollectionUtils {

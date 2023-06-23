@@ -1,20 +1,19 @@
 package com.geo.easypoint.area.structure.service;
 
-import com.geo.easypoint.area.structure.web.AreaDto;
-import com.geo.easypoint.area.structure.web.AreaStructureDto;
-import com.geo.easypoint.area.structure.web.AreaStructureCreateRequestDto;
-import com.geo.easypoint.area.structure.web.AreaStructureLinkRequest;
 import com.geo.easypoint.area.structure.domain.AreaStructure;
 import com.geo.easypoint.area.structure.domain.AreaStructureRepository;
+import com.geo.easypoint.area.structure.web.AreaDto;
+import com.geo.easypoint.area.structure.web.AreaStructureCreateRequestDto;
+import com.geo.easypoint.area.structure.web.AreaStructureDto;
+import com.geo.easypoint.area.structure.web.AreaStructureLinkRequest;
 import com.geo.easypoint.area.structuretype.domain.AreaStructureTypeRepository;
 import com.geo.easypoint.common.exception.NotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Slf4j
 @Service

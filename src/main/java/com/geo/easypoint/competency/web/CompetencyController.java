@@ -1,9 +1,10 @@
 package com.geo.easypoint.competency.web;
 
-import com.geo.easypoint.employee.dto.CompetencyDto;
 import com.geo.easypoint.competency.service.CompetencyService;
+import com.geo.easypoint.employee.dto.CompetencyDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
