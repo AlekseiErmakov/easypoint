@@ -42,6 +42,9 @@ import com.geo.easypoint.pointtype.web.PointTypeDto;
 import com.geo.easypoint.tool.plummet.domain.Plummet;
 import com.geo.easypoint.tool.plummet.web.PlummetCreateDto;
 import com.geo.easypoint.tool.plummet.web.PlummetDto;
+import com.geo.easypoint.tool.state.domain.ToolState;
+import com.geo.easypoint.tool.state.web.ToolStateCreateDto;
+import com.geo.easypoint.tool.state.web.ToolStateDto;
 import com.geo.easypoint.tool.totalstation.domain.TotalStation;
 import com.geo.easypoint.tool.totalstation.web.TotalStationCreateRequestDto;
 import com.geo.easypoint.tool.totalstation.web.TotalStationDto;
@@ -124,6 +127,11 @@ public class EasyPointMapper {
     public static List<TotalStationDto> toTotalStationDto(Collection<TotalStation> totalStations) {
         return APPLICATION_MAPPER.toTotalStationDto(totalStations);
     }
+
+    public static TotalStationDto toTotalStationDto(TotalStation totalStation) {
+        return APPLICATION_MAPPER.toTotalStationDto(totalStation);
+    }
+
 
     public static TotalStation toTotalStation(TotalStationCreateRequestDto createRequestDto) {
         return APPLICATION_MAPPER.toTotalStation(createRequestDto);
@@ -255,5 +263,16 @@ public class EasyPointMapper {
 
     public static List<PlummetDto> toPlummetDto(List<Plummet> plummets) {
         return APPLICATION_MAPPER.toPlummetDto(plummets);
+    }
+
+    public static List<ToolStateDto> toToolStateDto(List<ToolState> states) {
+        return APPLICATION_MAPPER.toToolStateDto(states);
+    }
+
+    public static ToolStateDto toToolStateDto(ToolState state) {
+        return APPLICATION_MAPPER.toToolStateDto(state);
+    }
+    public static ToolState toToolState(ToolStateCreateDto toolStateDto) {
+        return APPLICATION_MAPPER.toToolState(toolStateDto);
     }
 }

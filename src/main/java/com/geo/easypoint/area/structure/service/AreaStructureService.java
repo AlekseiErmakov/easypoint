@@ -7,7 +7,7 @@ import com.geo.easypoint.area.structure.web.AreaStructureCreateRequestDto;
 import com.geo.easypoint.area.structure.web.AreaStructureDto;
 import com.geo.easypoint.area.structure.web.AreaStructureLinkRequest;
 import com.geo.easypoint.area.structuretype.domain.AreaStructureTypeRepository;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -34,20 +34,20 @@ public class AreaStructureService {
         AreaStructure areaStructure;
         if (request.isParentPresent()) {
             areaStructure = EasyPointMapper.toAreaStructure(request,
-                    NotFoundException.orElseThrow(request.parentId(), AreaStructure.class, areaStructureRepository::findById),
-                    NotFoundException.orElseThrow(request.areaStructureTypeId(), AreaStructure.class, areaStructureTypeRepository::findById)
+                    EasyPointNotFoundException.orElseThrow(request.parentId(), AreaStructure.class, areaStructureRepository::findById),
+                    EasyPointNotFoundException.orElseThrow(request.areaStructureTypeId(), AreaStructure.class, areaStructureTypeRepository::findById)
             );
         } else {
             areaStructure = EasyPointMapper.toAreaStructure(request,
-                    NotFoundException.orElseThrow(request.areaStructureTypeId(), AreaStructure.class, areaStructureTypeRepository::findById));
+                    EasyPointNotFoundException.orElseThrow(request.areaStructureTypeId(), AreaStructure.class, areaStructureTypeRepository::findById));
         }
         areaStructureRepository.save(areaStructure);
     }
 
     @Transactional
     public void linkStructure(AreaStructureLinkRequest request) {
-        AreaStructure child = NotFoundException.orElseThrow(request.childId(), AreaStructure.class, areaStructureRepository::findById);
-        AreaStructure parent = NotFoundException.orElseThrow(request.parentId(), AreaStructure.class, areaStructureRepository::findById);
+        AreaStructure child = EasyPointNotFoundException.orElseThrow(request.childId(), AreaStructure.class, areaStructureRepository::findById);
+        AreaStructure parent = EasyPointNotFoundException.orElseThrow(request.parentId(), AreaStructure.class, areaStructureRepository::findById);
         parent.getChildren().add(child);
         child.setParent(parent);
         areaStructureRepository.save(child);

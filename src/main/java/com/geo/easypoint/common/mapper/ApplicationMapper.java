@@ -39,6 +39,9 @@ import com.geo.easypoint.pointtype.web.PointTypeDto;
 import com.geo.easypoint.tool.plummet.domain.Plummet;
 import com.geo.easypoint.tool.plummet.web.PlummetCreateDto;
 import com.geo.easypoint.tool.plummet.web.PlummetDto;
+import com.geo.easypoint.tool.state.domain.ToolState;
+import com.geo.easypoint.tool.state.web.ToolStateCreateDto;
+import com.geo.easypoint.tool.state.web.ToolStateDto;
 import com.geo.easypoint.tool.totalstation.domain.TotalStation;
 import com.geo.easypoint.tool.totalstation.web.TotalStationCreateRequestDto;
 import com.geo.easypoint.tool.totalstation.web.TotalStationDto;
@@ -224,4 +227,9 @@ public interface ApplicationMapper {
     List<PlummetDto> toPlummetDto(List<Plummet> plummets);
 
     PlummetDto toPlummetDto(Plummet plummet);
+
+    List<ToolStateDto> toToolStateDto(List<ToolState> states);
+    ToolStateDto toToolStateDto(ToolState state);
+
+    ToolState toToolState(ToolStateCreateDto toolStateDto);
 }

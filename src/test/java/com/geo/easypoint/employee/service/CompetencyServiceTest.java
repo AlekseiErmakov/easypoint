@@ -3,7 +3,7 @@ package com.geo.easypoint.employee.service;
 import com.geo.easypoint.EasyPointAssertions;
 import com.geo.easypoint.TestData;
 import com.geo.easypoint.common.exception.EasyPointLogicException;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.competency.service.CompetencyService;
 import com.geo.easypoint.competency.web.CompetencyPartialUpdateRequest;
 import com.geo.easypoint.competency.domain.Competency;
@@ -64,7 +64,7 @@ class CompetencyServiceTest {
 
         Assertions.assertThatThrownBy(
                 () -> competencyService.updateCompetency(TestData.competencyPartialUpdateRequest(), TestData.ID)
-        ).isInstanceOf(NotFoundException.class);
+        ).isInstanceOf(EasyPointNotFoundException.class);
     }
 
 

@@ -3,7 +3,7 @@ package com.geo.easypoint.employee.service;
 import com.geo.easypoint.EasyPointAssertions;
 import com.geo.easypoint.TestData;
 import com.geo.easypoint.common.exception.EasyPointLogicException;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.jobtitle.service.JobTitleService;
 import com.geo.easypoint.jobtitle.web.JobTitlePartialUpdateRequest;
 import com.geo.easypoint.employee.entity.JobTitle;
@@ -63,7 +63,7 @@ class JobTitleServiceTest {
 
         Assertions.assertThatThrownBy(
                 () -> jobTitleService.updateJobTitle(TestData.jobTitlePartialUpdateRequest(), TestData.ID)
-        ).isInstanceOf(NotFoundException.class);
+        ).isInstanceOf(EasyPointNotFoundException.class);
     }
 
     @Test

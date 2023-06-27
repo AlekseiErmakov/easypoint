@@ -3,7 +3,7 @@ package com.geo.easypoint.employee.service;
 import com.geo.easypoint.administrative.unit.domain.AdministrativeUnit;
 import com.geo.easypoint.administrative.unit.domain.AdministrativeUnitRepository;
 import com.geo.easypoint.common.exception.EasyPointLogicException;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.common.mapper.PartialUpdater;
 import com.geo.easypoint.competency.domain.Competency;
@@ -21,9 +21,7 @@ import com.geo.easypoint.jobtitle.domain.JobTitleRepository;
 import java.util.HashSet;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +41,7 @@ public class EmployeeService {
 
     @Transactional(readOnly = true)
     public EmployeeDto findById(Long id) {
-        return EasyPointMapper.toEmployeeInfoDto(NotFoundException.orElseThrow(id, Employee.class, employeeRepository::findById));
+        return EasyPointMapper.toEmployeeInfoDto(EasyPointNotFoundException.orElseThrow(id, Employee.class, employeeRepository::findById));
     }
 
     @Transactional
@@ -56,7 +54,7 @@ public class EmployeeService {
 
     @Transactional
     public void updateEmployee(EmployeeUpdateRequest request, Long id) {
-        Employee employee = NotFoundException.orElseThrow(id, Employee.class, employeeRepository::findById);
+        Employee employee = EasyPointNotFoundException.orElseThrow(id, Employee.class, employeeRepository::findById);
         PartialUpdater.updater()
                 .update(request.address(), addressUpdateRequest -> {
                     Address address = employee.getAddress();
@@ -89,11 +87,11 @@ public class EmployeeService {
                     employee.setAdministrativeUnits(new HashSet<>(administrativeUnits));
                 })
                 .update(request.competencyId(), competencyId -> {
-                    Competency competency = NotFoundException.orElseThrow(competencyId, Competency.class, competencyRepository::findById);
+                    Competency competency = EasyPointNotFoundException.orElseThrow(competencyId, Competency.class, competencyRepository::findById);
                     employee.setCompetency(competency);
                 })
                 .update(request.jobTitleId(), jobTitleId -> {
-                    JobTitle jobTitle = NotFoundException.orElseThrow(jobTitleId, JobTitle.class, jobTitleRepository::findById);
+                    JobTitle jobTitle = EasyPointNotFoundException.orElseThrow(jobTitleId, JobTitle.class, jobTitleRepository::findById);
                     employee.setJobTitle(jobTitle);
                 });
     }

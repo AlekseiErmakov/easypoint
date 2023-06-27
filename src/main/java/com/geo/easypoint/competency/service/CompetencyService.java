@@ -1,7 +1,7 @@
 package com.geo.easypoint.competency.service;
 
 import com.geo.easypoint.common.exception.EasyPointLogicException;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.common.mapper.PartialUpdater;
 import com.geo.easypoint.competency.domain.Competency;
@@ -29,7 +29,7 @@ public class CompetencyService {
 
     @Transactional
     public void updateCompetency(CompetencyPartialUpdateRequest request, Long id) {
-        Competency competency = NotFoundException.orElseThrow(id, Competency.class, competencyRepository::findById);
+        Competency competency = EasyPointNotFoundException.orElseThrow(id, Competency.class, competencyRepository::findById);
         PartialUpdater.updater()
                 .update(request.name(), competency::setName)
                 .update(request.description(), competency::setDescription);
@@ -38,7 +38,7 @@ public class CompetencyService {
 
     @Transactional
     public void deleteCompetency(Long id) {
-        Competency competency = NotFoundException.orElseThrow(id, Competency.class, competencyRepository::findById);
+        Competency competency = EasyPointNotFoundException.orElseThrow(id, Competency.class, competencyRepository::findById);
         if (employeeRepository.existsByCompetency_Id(id)) {
             throw new EasyPointLogicException(
                     String.format("Competency %s can't be deleted, there are employees with this competency still",

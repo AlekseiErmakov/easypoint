@@ -1,6 +1,6 @@
-package com.geo.easypoint.tool.totalstation.web;
+package com.geo.easypoint.tool.state.web;
 
-import com.geo.easypoint.tool.totalstation.service.TotalStationService;
+import com.geo.easypoint.tool.state.service.ToolStateService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,29 +14,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/tools/total-stations")
-public class TotalStationController {
+@RequestMapping("/tool-states")
+public class ToolStateController {
+    private final ToolStateService toolStateService;
 
-    private final TotalStationService totalStationService;
+
+    @GetMapping
+    public List<ToolStateDto> findAll() {
+        return toolStateService.findAll();
+    }
 
     @PostMapping
-    public TotalStationDto create(@RequestBody TotalStationCreateRequestDto request) {
-        return totalStationService.createTotalStation(request);
+    public ToolStateDto create(@RequestBody ToolStateCreateDto request) {
+        return toolStateService.create(request);
     }
 
     @PatchMapping("/{id}")
-    public TotalStationDto update(@RequestBody TotalStationUpdateDto request, @PathVariable("id") Long id) {
-        return totalStationService.updateTotalStation(request, id);
+    public ToolStateDto update(@RequestBody ToolStateUpdateDto request, @PathVariable("id") Long id) {
+        return toolStateService.update(request, id);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
-        totalStationService.delete(id);
+        toolStateService.delete(id);
     }
-
-    @GetMapping
-    public List<TotalStationDto> findAll() {
-        return totalStationService.findAll();
-    }
-
 }

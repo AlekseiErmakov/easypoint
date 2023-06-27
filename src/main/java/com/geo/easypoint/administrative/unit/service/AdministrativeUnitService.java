@@ -7,7 +7,7 @@ import com.geo.easypoint.administrative.unit.web.AdministrativeUnitDto;
 import com.geo.easypoint.administrative.unit.web.AdministrativeUnitTreeDto;
 import com.geo.easypoint.administrative.unittype.domain.AdministrativeUnitType;
 import com.geo.easypoint.administrative.unittype.domain.AdministrativeUnitTypeRepository;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -31,11 +31,11 @@ public class AdministrativeUnitService {
         AdministrativeUnit administrativeUnit;
         if (request.isParentPresent()) {
             administrativeUnit = EasyPointMapper.toAdministrativeUnit(request,
-                    NotFoundException.orElseThrow(request.parentId(), AdministrativeUnit.class, administrativeUnitRepository::findById),
-                    NotFoundException.orElseThrow(request.adminStructureTypeId(), AdministrativeUnitType.class, administrativeUnitTypeRepository::findById));
+                    EasyPointNotFoundException.orElseThrow(request.parentId(), AdministrativeUnit.class, administrativeUnitRepository::findById),
+                    EasyPointNotFoundException.orElseThrow(request.adminStructureTypeId(), AdministrativeUnitType.class, administrativeUnitTypeRepository::findById));
         } else {
             administrativeUnit = EasyPointMapper.toAdministrativeUnit(request,
-                    NotFoundException.orElseThrow(request.adminStructureTypeId(), AdministrativeUnitType.class, administrativeUnitTypeRepository::findById));
+                    EasyPointNotFoundException.orElseThrow(request.adminStructureTypeId(), AdministrativeUnitType.class, administrativeUnitTypeRepository::findById));
         }
         administrativeUnitRepository.save(administrativeUnit);
     }

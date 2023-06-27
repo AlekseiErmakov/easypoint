@@ -43,16 +43,18 @@ import com.geo.easypoint.pointtype.web.PointTypeDto;
 import com.geo.easypoint.tool.plummet.domain.Plummet;
 import com.geo.easypoint.tool.plummet.web.PlummetCreateDto;
 import com.geo.easypoint.tool.plummet.web.PlummetDto;
+import com.geo.easypoint.tool.state.domain.ToolState;
+import com.geo.easypoint.tool.state.web.ToolStateCreateDto;
+import com.geo.easypoint.tool.state.web.ToolStateDto;
 import com.geo.easypoint.tool.totalstation.domain.TotalStation;
 import com.geo.easypoint.tool.totalstation.web.TotalStationCreateRequestDto;
 import com.geo.easypoint.tool.totalstation.web.TotalStationDto;
 import com.geo.easypoint.workshifttype.domain.WorkShiftType;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public final class TestData {
 
@@ -351,6 +353,29 @@ public final class TestData {
         return PlummetDto.builder()
                 .id(ID)
                 .name(NAME)
+                .build();
+    }
+
+    public static ToolState toolState() {
+        return ToolState.builder()
+                .name(NAME)
+                .description(DESCRIPTION)
+                .created(CREATED)
+                .updated(UPDATED)
+                .build();
+    }
+
+    public static ToolStateDto toolStateDto() {
+        return ToolStateDto.builder()
+                .name(NAME)
+                .description(DESCRIPTION)
+                .build();
+    }
+
+    public static ToolStateCreateDto toolStateCreateDto() {
+        return ToolStateCreateDto.builder()
+                .name(NAME)
+                .description(DESCRIPTION)
                 .build();
     }
 }

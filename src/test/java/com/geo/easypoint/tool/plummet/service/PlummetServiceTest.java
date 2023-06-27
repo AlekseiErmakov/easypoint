@@ -4,7 +4,7 @@ import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.EasyPointAssertions;
 import com.geo.easypoint.TestData;
 import com.geo.easypoint.common.exception.EasyPointLogicException;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.tool.plummet.domain.Plummet;
 import com.geo.easypoint.tool.plummet.domain.PlummetRepository;
 import com.geo.easypoint.tool.plummet.web.PlummetUpdateDto;
@@ -96,7 +96,7 @@ class PlummetServiceTest extends AbstractAppTest {
 
         Assertions.assertThatThrownBy(() -> plummetService.update(TestData.ID, new PlummetUpdateDto(newName)))
                 .hasMessageContaining(TestData.ID.toString())
-                .isInstanceOf(NotFoundException.class);
+                .isInstanceOf(EasyPointNotFoundException.class);
 
         EasyPointAssertions.assertThat(plummetRepository)
                 .neverSaveAny();
@@ -120,7 +120,7 @@ class PlummetServiceTest extends AbstractAppTest {
 
         Assertions.assertThatThrownBy(() -> plummetService.deleteById(TestData.ID))
                 .hasMessageContaining(TestData.ID.toString())
-                .isInstanceOf(NotFoundException.class);
+                .isInstanceOf(EasyPointNotFoundException.class);
     }
 
     @Test

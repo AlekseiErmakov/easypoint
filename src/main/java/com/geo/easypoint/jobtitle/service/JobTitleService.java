@@ -1,7 +1,7 @@
 package com.geo.easypoint.jobtitle.service;
 
 import com.geo.easypoint.common.exception.EasyPointLogicException;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.common.mapper.PartialUpdater;
 import com.geo.easypoint.employee.entity.JobTitle;
@@ -55,6 +55,6 @@ public class JobTitleService {
 
 
     private JobTitle findJobTitle(Long id) {
-        return NotFoundException.orElseThrow(id, JobTitle.class, jobTitleRepository::findById);
+        return EasyPointNotFoundException.orElseThrow(id, JobTitle.class, jobTitleRepository::findById);
     }
 }

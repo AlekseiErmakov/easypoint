@@ -13,8 +13,8 @@ public class EasyPointControllerAdvice {
 
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NotFoundException.class)
-    public ExceptionResponseDto handleNotFoundException(NotFoundException exception) {
+    @ExceptionHandler(EasyPointNotFoundException.class)
+    public ExceptionResponseDto handleNotFoundException(EasyPointNotFoundException exception) {
         log.error(exception.getMessage(), exception);
         return new ExceptionResponseDto(exception.getMessage());
     }

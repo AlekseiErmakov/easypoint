@@ -1,7 +1,7 @@
 package com.geo.easypoint.tool.plummet.service;
 
 import com.geo.easypoint.common.exception.EasyPointLogicException;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.tool.plummet.domain.Plummet;
 import com.geo.easypoint.tool.plummet.domain.PlummetRepository;
@@ -33,14 +33,14 @@ public class PlummetService {
             throw new EasyPointLogicException(String.format("Plummet with name %n already exists"));
         }
         plummetRepository.save(
-                NotFoundException.orElseThrow(id, Plummet.class, plummetRepository::findById)
+                EasyPointNotFoundException.orElseThrow(id, Plummet.class, plummetRepository::findById)
                         .setName(plummetUpdateDto.name())
         );
     }
 
     @Transactional
     public void deleteById(Long id) {
-        plummetRepository.delete(NotFoundException.orElseThrow(id, Plummet.class, plummetRepository::findById));
+        plummetRepository.delete(EasyPointNotFoundException.orElseThrow(id, Plummet.class, plummetRepository::findById));
     }
 
     @Transactional(readOnly = true)

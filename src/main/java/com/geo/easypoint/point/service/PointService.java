@@ -3,7 +3,7 @@ package com.geo.easypoint.point.service;
 import com.geo.easypoint.area.structure.domain.AreaStructure;
 import com.geo.easypoint.area.structure.domain.AreaStructureRepository;
 import com.geo.easypoint.common.exception.BadRequestException;
-import com.geo.easypoint.common.exception.NotFoundException;
+import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.common.files.EasyPointFile;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
 import com.geo.easypoint.common.utill.UserUtils;
@@ -58,7 +58,7 @@ public class PointService {
                         UserUtils.getCurrentEmployee(),
                         findPointType(request.pointTypeId()),
                         pointStateRepository.findByCode(PointStates.CREATED),
-                        NotFoundException.orElseThrow(request.pointAreaId(), AreaStructure.class, areaStructureRepository::findById)
+                        EasyPointNotFoundException.orElseThrow(request.pointAreaId(), AreaStructure.class, areaStructureRepository::findById)
                 )
         );
     }
@@ -66,7 +66,7 @@ public class PointService {
     @Transactional
     public void updatePoint(PointUpdateRequest request, Long pointId) {
         Point point = findPoint(pointId);
-        EasyPointMapper.updatePoint(point, request, findPointType(request.pointTypeId()), NotFoundException.orElseThrow(request.pointAreaId(), AreaStructure.class, areaStructureRepository::findById),
+        EasyPointMapper.updatePoint(point, request, findPointType(request.pointTypeId()), EasyPointNotFoundException.orElseThrow(request.pointAreaId(), AreaStructure.class, areaStructureRepository::findById),
                 UserUtils.getCurrentEmployee());
         pointRepository.save(point);
 
@@ -86,12 +86,12 @@ public class PointService {
 
     private Point findPoint(Long id) {
         return pointRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(id, Point.class));
+                .orElseThrow(() -> new EasyPointNotFoundException(id, Point.class));
     }
 
     private PointType findPointType(Long id) {
         return pointTypeRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(id, PointType.class));
+                .orElseThrow(() -> new EasyPointNotFoundException(id, PointType.class));
     }
 
 
