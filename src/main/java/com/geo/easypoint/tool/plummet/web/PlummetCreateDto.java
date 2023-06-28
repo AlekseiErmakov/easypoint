@@ -1,8 +1,10 @@
 package com.geo.easypoint.tool.plummet.web;
 
-import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
+import com.geo.easypoint.common.dictionary.web.DictionaryCreateDto;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
-@Builder
-public record PlummetCreateDto(@NotBlank String name) {
+@Jacksonized
+@SuperBuilder
+public class PlummetCreateDto extends DictionaryCreateDto {
 }

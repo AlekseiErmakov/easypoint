@@ -1,11 +1,11 @@
 package com.geo.easypoint;
 
-import com.geo.easypoint.competency.web.CompetencyController;
-import com.geo.easypoint.employee.controller.EmployeeController;
-import com.geo.easypoint.jobtitle.web.JobTittleController;
-import com.geo.easypoint.competency.domain.CompetencyRepository;
-import com.geo.easypoint.employee.repository.EmployeeRepository;
-import com.geo.easypoint.jobtitle.domain.JobTitleRepository;
+import com.geo.easypoint.employees.competency.web.CompetencyController;
+import com.geo.easypoint.employees.employee.controller.EmployeeController;
+import com.geo.easypoint.employees.jobtitle.web.JobTittleController;
+import com.geo.easypoint.employees.competency.domain.CompetencyRepository;
+import com.geo.easypoint.employees.employee.repository.EmployeeRepository;
+import com.geo.easypoint.employees.jobtitle.domain.JobTitleRepository;
 import com.geo.easypoint.tool.plummet.domain.PlummetRepository;
 import com.geo.easypoint.tool.plummet.web.PlummetController;
 import org.junit.jupiter.api.extension.ExtendWith;

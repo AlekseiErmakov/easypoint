@@ -1,6 +1,6 @@
 package com.geo.easypoint.authentication.domain.user;
 
-import com.geo.easypoint.employee.entity.Employee;
+import com.geo.easypoint.employees.employee.entity.Employee;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;

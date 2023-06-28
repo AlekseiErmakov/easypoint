@@ -569,6 +569,8 @@
             <column name="description" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
         </createTable>
 
         <rollback>
@@ -642,6 +644,8 @@
             <column name="description" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
         </createTable>
 
         <rollback>
@@ -673,6 +677,9 @@
                     <constraints primaryKey="true" nullable="false"/>
                 </column>
                 <column name="name" type="varchar(255)"/>
+                <column name="description" type="varchar(255)"/>
+                <column name="created" type="timestamp"/>
+                <column name="updated" type="timestamp"/>
             </createTable>
         <rollback>
             <dropTable tableName="plummets"/>

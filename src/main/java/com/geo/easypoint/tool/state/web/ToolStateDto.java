@@ -1,9 +1,8 @@
 package com.geo.easypoint.tool.state.web;
 
-import lombok.Builder;
+import com.geo.easypoint.common.dictionary.web.DictionaryDto;
+import lombok.experimental.SuperBuilder;
 
-@Builder
-public record ToolStateDto(Long id,
-                           String name,
-                           String description) {
+@SuperBuilder
+public class ToolStateDto extends DictionaryDto {
 }

@@ -1,45 +1,45 @@
 package com.geo.easypoint;
 
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.geo.easypoint.administrative.unit.domain.AdministrativeUnit;
-import com.geo.easypoint.administrative.unit.web.AdministrativeUnitCreateDto;
-import com.geo.easypoint.administrative.unit.web.AdministrativeUnitDto;
-import com.geo.easypoint.administrative.unit.web.AdministrativeUnitTreeDto;
-import com.geo.easypoint.administrative.unittype.domain.AdministrativeUnitType;
-import com.geo.easypoint.administrative.unittype.web.AdministrativeUnitTypeDto;
-import com.geo.easypoint.area.structure.domain.AreaStructure;
-import com.geo.easypoint.area.structure.web.AreaDto;
-import com.geo.easypoint.area.structure.web.AreaStructureCreateRequestDto;
-import com.geo.easypoint.area.structure.web.AreaStructureDto;
-import com.geo.easypoint.area.structuretype.domain.AreaStructureType;
-import com.geo.easypoint.area.structuretype.web.AreaStructureTypeCreateRequestDto;
-import com.geo.easypoint.area.structuretype.web.AreaStructureTypeDto;
+import com.geo.easypoint.organizationstructure.administrative.unit.domain.AdministrativeUnit;
+import com.geo.easypoint.organizationstructure.administrative.unit.web.AdministrativeUnitCreateDto;
+import com.geo.easypoint.organizationstructure.administrative.unit.web.AdministrativeUnitDto;
+import com.geo.easypoint.organizationstructure.administrative.unit.web.AdministrativeUnitTreeDto;
+import com.geo.easypoint.organizationstructure.administrative.unittype.domain.AdministrativeUnitType;
+import com.geo.easypoint.organizationstructure.administrative.unittype.web.AdministrativeUnitTypeDto;
+import com.geo.easypoint.organizationstructure.area.structure.domain.AreaStructure;
+import com.geo.easypoint.organizationstructure.area.structure.web.AreaDto;
+import com.geo.easypoint.organizationstructure.area.structure.web.AreaStructureCreateRequestDto;
+import com.geo.easypoint.organizationstructure.area.structure.web.AreaStructureDto;
+import com.geo.easypoint.organizationstructure.area.structuretype.domain.AreaStructureType;
+import com.geo.easypoint.organizationstructure.area.structuretype.web.AreaStructureTypeCreateDto;
+import com.geo.easypoint.organizationstructure.area.structuretype.web.AreaStructureTypeDto;
 import com.geo.easypoint.authentication.domain.user.EasyPointUser;
 import com.geo.easypoint.authentication.web.AuthenticationResponse;
 import com.geo.easypoint.common.files.CsvColumn;
 import com.geo.easypoint.common.files.DownloadResponse;
 import com.geo.easypoint.common.files.EasyPointFile;
-import com.geo.easypoint.competency.domain.Competency;
-import com.geo.easypoint.competency.web.CompetencyCreateRequest;
-import com.geo.easypoint.competency.web.CompetencyPartialUpdateRequest;
-import com.geo.easypoint.employee.dto.CompetencyDto;
-import com.geo.easypoint.employee.dto.request.CreateEmployeeRequest;
-import com.geo.easypoint.employee.dto.response.EmployeeTableDto;
-import com.geo.easypoint.employee.entity.Employee;
-import com.geo.easypoint.employee.entity.JobTitle;
-import com.geo.easypoint.jobtitle.web.JobTitleCreateRequest;
-import com.geo.easypoint.jobtitle.web.JobTitleDto;
-import com.geo.easypoint.jobtitle.web.JobTitlePartialUpdateRequest;
-import com.geo.easypoint.point.domain.Point;
-import com.geo.easypoint.point.web.CsvPointDto;
-import com.geo.easypoint.point.web.PointCreateRequestDto;
-import com.geo.easypoint.point.web.PointDto;
-import com.geo.easypoint.pointstate.domain.PointState;
-import com.geo.easypoint.pointstate.domain.PointType;
-import com.geo.easypoint.pointstate.domain.PointTypes;
-import com.geo.easypoint.pointstate.web.PointStateDto;
-import com.geo.easypoint.pointstate.web.PointStates;
-import com.geo.easypoint.pointtype.web.PointTypeDto;
+import com.geo.easypoint.employees.competency.domain.Competency;
+import com.geo.easypoint.employees.competency.web.CompetencyCreateDto;
+import com.geo.easypoint.employees.competency.web.CompetencyDto;
+import com.geo.easypoint.employees.competency.web.CompetencyUpdateDto;
+import com.geo.easypoint.employees.employee.dto.request.CreateEmployeeRequest;
+import com.geo.easypoint.employees.employee.dto.response.EmployeeTableDto;
+import com.geo.easypoint.employees.employee.entity.Employee;
+import com.geo.easypoint.employees.jobtitle.domain.JobTitle;
+import com.geo.easypoint.employees.jobtitle.web.JobTitleCreateDto;
+import com.geo.easypoint.employees.jobtitle.web.JobTitleDto;
+import com.geo.easypoint.employees.jobtitle.web.JobTitleUpdateDto;
+import com.geo.easypoint.justification.point.domain.Point;
+import com.geo.easypoint.justification.point.web.CsvPointDto;
+import com.geo.easypoint.justification.point.web.PointCreateRequestDto;
+import com.geo.easypoint.justification.point.web.PointDto;
+import com.geo.easypoint.justification.pointstate.domain.PointState;
+import com.geo.easypoint.justification.pointstate.web.PointStateDto;
+import com.geo.easypoint.justification.pointstate.web.PointStates;
+import com.geo.easypoint.justification.pointtype.domain.PointType;
+import com.geo.easypoint.justification.pointtype.domain.PointTypes;
+import com.geo.easypoint.justification.pointtype.web.PointTypeDto;
 import com.geo.easypoint.tool.plummet.domain.Plummet;
 import com.geo.easypoint.tool.plummet.web.PlummetCreateDto;
 import com.geo.easypoint.tool.plummet.web.PlummetDto;
@@ -49,7 +49,7 @@ import com.geo.easypoint.tool.state.web.ToolStateDto;
 import com.geo.easypoint.tool.totalstation.domain.TotalStation;
 import com.geo.easypoint.tool.totalstation.web.TotalStationCreateRequestDto;
 import com.geo.easypoint.tool.totalstation.web.TotalStationDto;
-import com.geo.easypoint.workshifttype.domain.WorkShiftType;
+import com.geo.easypoint.employees.workshifttype.domain.WorkShiftType;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -109,7 +109,11 @@ public final class TestData {
     }
 
     public static AdministrativeUnitTypeDto adminStructureTypeDto() {
-        return new AdministrativeUnitTypeDto(ID, NAME, DESCRIPTION);
+        return AdministrativeUnitTypeDto.builder()
+                .id(ID)
+                .name(NAME)
+                .description(DESCRIPTION)
+                .build();
     }
 
     public static AdministrativeUnitType adminStructureType() {
@@ -190,11 +194,18 @@ public final class TestData {
     }
 
     public static AreaStructureTypeDto areaStructureTypeDto() {
-        return new AreaStructureTypeDto(ID, NAME, DESCRIPTION);
+        return AreaStructureTypeDto.builder()
+                .id(ID)
+                .name(NAME)
+                .description(DESCRIPTION)
+                .build();
     }
 
-    public static AreaStructureTypeCreateRequestDto areaStructureTypeCreateRequestDto() {
-        return new AreaStructureTypeCreateRequestDto(NAME, DESCRIPTION);
+    public static AreaStructureTypeCreateDto areaStructureTypeCreateRequestDto() {
+        return AreaStructureTypeCreateDto.builder()
+                .name(NAME)
+                .description(DESCRIPTION)
+                .build();
     }
 
     public static AreaStructure areaStructure() {
@@ -282,15 +293,25 @@ public final class TestData {
     }
 
     public static CompetencyDto competencyDto() {
-        return new CompetencyDto(ID, NAME, DESCRIPTION);
+        return CompetencyDto.builder()
+                .id(ID)
+                .name(NAME)
+                .description(DESCRIPTION)
+                .build();
     }
 
-    public static CompetencyCreateRequest competencyCreateRequest() {
-        return new CompetencyCreateRequest(NAME, DESCRIPTION);
+    public static CompetencyCreateDto competencyCreateRequest() {
+        return CompetencyCreateDto.builder()
+                .name(NAME)
+                .description(DESCRIPTION)
+                .build();
     }
 
-    public static CompetencyPartialUpdateRequest competencyPartialUpdateRequest() {
-        return new CompetencyPartialUpdateRequest(JsonNullable.of(NAME), JsonNullable.of(DESCRIPTION));
+    public static CompetencyUpdateDto competencyPartialUpdateRequest() {
+        return CompetencyUpdateDto.builder()
+                .name(JsonNullable.of(NAME))
+                .description(JsonNullable.of(DESCRIPTION))
+                .build();
     }
 
 
@@ -303,15 +324,25 @@ public final class TestData {
     }
 
     public static JobTitleDto jobtitleDto() {
-        return new JobTitleDto(ID, NAME, DESCRIPTION);
+        return JobTitleDto.builder()
+                .id(ID)
+                .description(DESCRIPTION)
+                .name(NAME)
+                .build();
     }
 
-    public static JobTitleCreateRequest jobTitleCreateRequest() {
-        return new JobTitleCreateRequest(NAME, DESCRIPTION);
+    public static JobTitleCreateDto jobTitleCreateRequest() {
+        return JobTitleCreateDto.builder()
+                .name(NAME)
+                .description(DESCRIPTION)
+                .build();
     }
 
-    public static JobTitlePartialUpdateRequest jobTitlePartialUpdateRequest() {
-        return new JobTitlePartialUpdateRequest(JsonNullable.of(NAME), JsonNullable.of(DESCRIPTION));
+    public static JobTitleUpdateDto jobTitlePartialUpdateRequest() {
+        return JobTitleUpdateDto.builder()
+                .name(JsonNullable.of(NAME))
+                .description(JsonNullable.of(DESCRIPTION))
+                .build();
     }
 
     public static AuthenticationResponse authenticationResponse() {
@@ -346,7 +377,9 @@ public final class TestData {
     }
 
     public static PlummetCreateDto plummetCreateDto() {
-        return new PlummetCreateDto(NAME);
+        return PlummetCreateDto.builder()
+                .name(NAME)
+                .build();
     }
 
     public static PlummetDto plummetDto() {
@@ -369,6 +402,8 @@ public final class TestData {
         return ToolStateDto.builder()
                 .name(NAME)
                 .description(DESCRIPTION)
+                .created(CREATED)
+                .updated(UPDATED)
                 .build();
     }
 

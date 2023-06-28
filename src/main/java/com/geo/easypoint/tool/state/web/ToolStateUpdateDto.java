@@ -1,8 +1,10 @@
 package com.geo.easypoint.tool.state.web;
 
-import lombok.Builder;
-import org.openapitools.jackson.nullable.JsonNullable;
+import com.geo.easypoint.common.dictionary.web.DictionaryUpdateDto;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
-@Builder
-public record ToolStateUpdateDto(JsonNullable<String> name, JsonNullable<String> description) {
+@Jacksonized
+@SuperBuilder
+public class ToolStateUpdateDto extends DictionaryUpdateDto {
 }

@@ -32,20 +32,23 @@ public class ToolStateServiceIntegrationTest extends ServiceTest {
     @DisplayName("Save new tool state test")
     public void saveTest() {
 
-        ToolStateCreateDto toolStateCreateDto = new ToolStateCreateDto("new name", "new description");
+        ToolStateCreateDto toolStateCreateDto = ToolStateCreateDto.builder()
+                .name("new name")
+                .description("new description")
+                .build();
         ToolStateDto result = toolStateService.create(toolStateCreateDto);
 
         Assertions.assertThat(result)
                 .usingRecursiveComparison()
-                .ignoringFields("id")
+                .ignoringFields("id", "created", "updated")
                 .isEqualTo(
                         ToolStateDto.builder()
-                                .name(toolStateCreateDto.name())
-                                .description(toolStateCreateDto.description())
+                                .name(toolStateCreateDto.getName())
+                                .description(toolStateCreateDto.getDescription())
                                 .build()
                 );
 
-        Assertions.assertThat(result.id())
+        Assertions.assertThat(result.getId())
                 .isNotNull();
     }
 
@@ -55,7 +58,7 @@ public class ToolStateServiceIntegrationTest extends ServiceTest {
 
         Assertions.assertThat(toolStateService.findAll())
                 .usingRecursiveComparison()
-                .ignoringFields("id")
+                .ignoringFields("id", "created", "updated")
                 .isEqualTo(List.of(TestData.toolStateDto()));
 
     }
@@ -77,15 +80,16 @@ public class ToolStateServiceIntegrationTest extends ServiceTest {
     public void updateNameTest() {
 
         Long id = toolStateRepository.findAll().iterator().next().getId();
-        ToolStateUpdateDto toolStateUpdateDto = new ToolStateUpdateDto(
-                JsonNullable.of("new name"), JsonNullable.undefined()
-        );
+        ToolStateUpdateDto toolStateUpdateDto = ToolStateUpdateDto.builder()
+                .name(JsonNullable.of("new name"))
+                .description(JsonNullable.undefined())
+                .build();
 
         ToolStateDto result = toolStateService.update(toolStateUpdateDto, id);
 
-        Assertions.assertThat(result.name())
-                .isEqualTo(toolStateUpdateDto.name().get());
-        Assertions.assertThat(result.description())
+        Assertions.assertThat(result.getName())
+                .isEqualTo(toolStateUpdateDto.getName().get());
+        Assertions.assertThat(result.getDescription())
                 .isEqualTo(TestData.toolState().getDescription());
     }
 

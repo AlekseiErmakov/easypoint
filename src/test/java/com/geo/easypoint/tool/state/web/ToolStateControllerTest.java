@@ -36,8 +36,8 @@ class ToolStateControllerTest extends BaseWebMvcTest {
         webMvc.perform(MockMvcRequestBuilders.get(BASE_URL))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(
-                        Matchers.allOf(Matchers.containsString(toolStateDto.name()),
-                                Matchers.containsString(toolStateDto.description())
+                        Matchers.allOf(Matchers.containsString(toolStateDto.getName()),
+                                Matchers.containsString(toolStateDto.getDescription())
                         )));
     }
 
@@ -46,7 +46,7 @@ class ToolStateControllerTest extends BaseWebMvcTest {
     void createTest() throws Exception {
         ToolStateCreateDto toolStateCreateDto = TestData.toolStateCreateDto();
 
-        Mockito.when(toolStateService.create(toolStateCreateDto))
+        Mockito.when(toolStateService.create(Mockito.any()))
                 .thenReturn(TestData.toolStateDto());
 
         webMvc.perform(MockMvcRequestBuilders.post(BASE_URL)
@@ -54,8 +54,8 @@ class ToolStateControllerTest extends BaseWebMvcTest {
                         .contentType(CONTENT_TYPE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(
-                        Matchers.allOf(Matchers.containsString(toolStateCreateDto.name()),
-                                Matchers.containsString(toolStateCreateDto.description())
+                        Matchers.allOf(Matchers.containsString(toolStateCreateDto.getName()),
+                                Matchers.containsString(toolStateCreateDto.getDescription())
                         )));
     }
 
@@ -63,10 +63,13 @@ class ToolStateControllerTest extends BaseWebMvcTest {
     @DisplayName("Update tool state web mvc test")
     void update() throws Exception {
         objectMapper.registerModule(new JsonNullableModule());
-        ToolStateUpdateDto toolStateUpdateDto = new ToolStateUpdateDto(JsonNullable.of(TestData.NAME), JsonNullable.undefined());
+        ToolStateUpdateDto toolStateUpdateDto = ToolStateUpdateDto.builder()
+                .name(JsonNullable.of(TestData.NAME))
+                .description(JsonNullable.undefined())
+                .build();
         ToolStateDto toolStateDto = TestData.toolStateDto();
 
-        Mockito.when(toolStateService.update(toolStateUpdateDto, TestData.ID))
+        Mockito.when(toolStateService.update(Mockito.any(), Mockito.eq(TestData.ID)))
                 .thenReturn(toolStateDto);
 
         webMvc.perform(MockMvcRequestBuilders.patch(BASE_URL + "/" + TestData.ID)
@@ -74,8 +77,8 @@ class ToolStateControllerTest extends BaseWebMvcTest {
                         .contentType(CONTENT_TYPE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(
-                        Matchers.allOf(Matchers.containsString(toolStateDto.name()),
-                                Matchers.containsString(toolStateDto.description())
+                        Matchers.allOf(Matchers.containsString(toolStateDto.getName()),
+                                Matchers.containsString(toolStateDto.getDescription())
                         )));
     }
 

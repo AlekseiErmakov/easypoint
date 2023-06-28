@@ -2,8 +2,8 @@ package com.geo.easypoint.employee.controller;
 
 import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.TestData;
-import com.geo.easypoint.employee.dto.CompetencyDto;
-import com.geo.easypoint.competency.domain.Competency;
+import com.geo.easypoint.employees.competency.web.CompetencyDto;
+import com.geo.easypoint.employees.competency.domain.Competency;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,12 +18,12 @@ class CompetencyControllerTest extends AbstractAppTest {
 
     @Test
     void createCompetency() {
-        competencyController.createCompetency(TestData.competencyCreateRequest());
+        competencyController.create(TestData.competencyCreateRequest());
         Competency competency = competencyRepository.findAll().iterator().next();
 
         Assertions.assertThat(competency)
                 .usingRecursiveComparison()
-                .ignoringFields("id")
+                .ignoringFields("id", "created", "updated")
                 .isEqualTo(TestData.competency());
 
         Assertions.assertThat(competency.getId())
@@ -36,13 +36,13 @@ class CompetencyControllerTest extends AbstractAppTest {
                 .name("")
                 .description("")
                 .build());
-        competencyController.updateCompetency(TestData.competencyPartialUpdateRequest(), saved.getId());
+        competencyController.update(TestData.competencyPartialUpdateRequest(), saved.getId());
 
         Competency updated = competencyRepository.findAll().iterator().next();
 
         Assertions.assertThat(updated)
                 .usingRecursiveComparison()
-                .ignoringFields("id")
+                .ignoringFields("id", "created", "updated")
                 .isEqualTo(TestData.competency());
 
         Assertions.assertThat(updated.getId())
@@ -53,7 +53,7 @@ class CompetencyControllerTest extends AbstractAppTest {
     void deleteCompetency() {
         Competency competency = competencyRepository.save(TestData.competency());
 
-        competencyController.deleteCompetency(competency.getId());
+        competencyController.delete(competency.getId());
 
         Assertions.assertThat(competencyRepository.findAll())
                 .isEmpty();

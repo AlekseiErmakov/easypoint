@@ -10,7 +10,7 @@ import com.geo.easypoint.authentication.web.CreateUserRequest;
 import com.geo.easypoint.authentication.web.LoginRequest;
 import com.geo.easypoint.authentication.web.LoginResponse;
 import com.geo.easypoint.common.mapper.EasyPointMapper;
-import com.geo.easypoint.employee.repository.EmployeeRepository;
+import com.geo.easypoint.employees.employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

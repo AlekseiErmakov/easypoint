@@ -1,6 +1,5 @@
 package com.geo.easypoint.tool.totalstation.web;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import org.openapitools.jackson.nullable.JsonNullable;
 

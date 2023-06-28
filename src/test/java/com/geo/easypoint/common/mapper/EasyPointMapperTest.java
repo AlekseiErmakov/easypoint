@@ -2,10 +2,10 @@ package com.geo.easypoint.common.mapper;
 
 import com.geo.easypoint.AbstractAppTest;
 import com.geo.easypoint.TestData;
-import com.geo.easypoint.area.structure.domain.AreaStructure;
-import com.geo.easypoint.competency.domain.Competency;
-import com.geo.easypoint.employee.entity.Employee;
-import com.geo.easypoint.employee.entity.JobTitle;
+import com.geo.easypoint.organizationstructure.area.structure.domain.AreaStructure;
+import com.geo.easypoint.employees.competency.domain.Competency;
+import com.geo.easypoint.employees.employee.entity.Employee;
+import com.geo.easypoint.employees.jobtitle.domain.JobTitle;
 import com.geo.easypoint.authentication.domain.user.EasyPointUser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

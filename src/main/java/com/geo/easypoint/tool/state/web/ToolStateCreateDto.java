@@ -1,7 +1,10 @@
 package com.geo.easypoint.tool.state.web;
 
-import lombok.Builder;
+import com.geo.easypoint.common.dictionary.web.DictionaryCreateDto;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
-@Builder
-public record ToolStateCreateDto(String name, String description) {
+@Jacksonized
+@SuperBuilder
+public class ToolStateCreateDto extends DictionaryCreateDto {
 }

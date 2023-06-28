@@ -1,7 +1,10 @@
 package com.geo.easypoint.tool.plummet.web;
 
-import lombok.Builder;
+import com.geo.easypoint.common.dictionary.web.DictionaryDto;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
-@Builder
-public record PlummetDto(Long id, String name) {
+@Jacksonized
+@SuperBuilder
+public class PlummetDto extends DictionaryDto {
 }
