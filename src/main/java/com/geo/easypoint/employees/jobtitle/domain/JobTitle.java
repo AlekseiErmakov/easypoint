@@ -1,6 +1,6 @@
 package com.geo.easypoint.employees.jobtitle.domain;
 
-import com.geo.easypoint.common.dictionary.domain.BaseDictionary;
+import com.geo.easypoint.common.dictionary.domain.Dictionary;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @Table(name = "job_titles")
-public class JobTitle extends BaseDictionary {
+public class JobTitle extends Dictionary {
 
 }

@@ -1,12 +1,15 @@
 package com.geo.easypoint.employees.workshifttype.web;
 
-public record WorkShiftTypeDto(
-        Long id,
-        String name,
-        String shortname,
-        Integer startHour,
-        Integer startMinute,
-        Integer endHour,
-        Integer endMinute
-) {
+import com.geo.easypoint.common.dictionary.web.DictionaryDto;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
+
+@Jacksonized
+@SuperBuilder
+public class WorkShiftTypeDto extends DictionaryDto {
+    private final String shortname;
+    private final Integer startHour;
+    private final Integer startMinute;
+    private final Integer endHour;
+    private final Integer endMinute;
 }

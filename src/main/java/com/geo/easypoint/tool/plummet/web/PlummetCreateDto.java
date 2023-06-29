@@ -4,7 +4,9 @@ import com.geo.easypoint.common.dictionary.web.DictionaryCreateDto;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
-@Jacksonized
-@SuperBuilder
+
 public class PlummetCreateDto extends DictionaryCreateDto {
+    public PlummetCreateDto(String name, String description) {
+        super(name, description);
+    }
 }

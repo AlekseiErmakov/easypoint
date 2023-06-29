@@ -202,10 +202,7 @@ public final class TestData {
     }
 
     public static AreaStructureTypeCreateDto areaStructureTypeCreateRequestDto() {
-        return AreaStructureTypeCreateDto.builder()
-                .name(NAME)
-                .description(DESCRIPTION)
-                .build();
+        return new AreaStructureTypeCreateDto(NAME, DESCRIPTION);
     }
 
     public static AreaStructure areaStructure() {
@@ -301,10 +298,7 @@ public final class TestData {
     }
 
     public static CompetencyCreateDto competencyCreateRequest() {
-        return CompetencyCreateDto.builder()
-                .name(NAME)
-                .description(DESCRIPTION)
-                .build();
+        return new CompetencyCreateDto(NAME, DESCRIPTION);
     }
 
     public static CompetencyUpdateDto competencyPartialUpdateRequest() {
@@ -332,10 +326,7 @@ public final class TestData {
     }
 
     public static JobTitleCreateDto jobTitleCreateRequest() {
-        return JobTitleCreateDto.builder()
-                .name(NAME)
-                .description(DESCRIPTION)
-                .build();
+        return new JobTitleCreateDto(NAME, DESCRIPTION);
     }
 
     public static JobTitleUpdateDto jobTitlePartialUpdateRequest() {
@@ -377,9 +368,7 @@ public final class TestData {
     }
 
     public static PlummetCreateDto plummetCreateDto() {
-        return PlummetCreateDto.builder()
-                .name(NAME)
-                .build();
+        return new PlummetCreateDto(NAME, DESCRIPTION);
     }
 
     public static PlummetDto plummetDto() {
@@ -408,9 +397,6 @@ public final class TestData {
     }
 
     public static ToolStateCreateDto toolStateCreateDto() {
-        return ToolStateCreateDto.builder()
-                .name(NAME)
-                .description(DESCRIPTION)
-                .build();
+        return new ToolStateCreateDto(NAME, DESCRIPTION);
     }
 }

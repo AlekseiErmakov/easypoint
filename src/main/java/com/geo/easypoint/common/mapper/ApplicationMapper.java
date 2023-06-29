@@ -46,7 +46,7 @@ import com.geo.easypoint.tool.totalstation.domain.TotalStation;
 import com.geo.easypoint.tool.totalstation.web.TotalStationCreateRequestDto;
 import com.geo.easypoint.tool.totalstation.web.TotalStationDto;
 import com.geo.easypoint.employees.workshifttype.domain.WorkShiftType;
-import com.geo.easypoint.employees.workshifttype.web.WorkShiftTypeCreateRequest;
+import com.geo.easypoint.employees.workshifttype.web.WorkShiftTypeCreateDto;
 import com.geo.easypoint.employees.workshifttype.web.WorkShiftTypeDto;
 import java.util.Collection;
 import java.util.List;
@@ -72,7 +72,7 @@ public interface ApplicationMapper {
 
     List<WorkShiftTypeDto> toWorkShiftTypeDto(Collection<WorkShiftType> workShiftTypes);
 
-    WorkShiftType toWorkShiftType(WorkShiftTypeCreateRequest workShiftTypeCreateRequest);
+    WorkShiftType toWorkShiftType(WorkShiftTypeCreateDto workShiftTypeCreateDto);
 
     @Mapping(target = "token", source = "jwtToken")
     AuthenticationResponse toAuthenticationResponse(EasyPointUser user, String jwtToken);

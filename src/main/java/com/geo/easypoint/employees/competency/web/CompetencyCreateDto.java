@@ -4,7 +4,9 @@ import com.geo.easypoint.common.dictionary.web.DictionaryCreateDto;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
-@Jacksonized
-@SuperBuilder
+
 public class CompetencyCreateDto extends DictionaryCreateDto {
+    public CompetencyCreateDto(String name, String description) {
+        super(name, description);
+    }
 }

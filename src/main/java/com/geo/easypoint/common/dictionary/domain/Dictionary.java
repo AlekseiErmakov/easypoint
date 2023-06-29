@@ -22,7 +22,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public abstract class BaseDictionary {
+public abstract class Dictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dictionary_sequence_generator")
     @SequenceGenerator(name = "dictionary_sequence_generator", sequenceName = "job_titles_sequence")

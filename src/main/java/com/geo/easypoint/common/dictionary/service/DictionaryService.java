@@ -1,7 +1,7 @@
 package com.geo.easypoint.common.dictionary.service;
 
-import com.geo.easypoint.common.dictionary.domain.BaseDictionary;
-import com.geo.easypoint.common.dictionary.domain.BaseDictionaryRepository;
+import com.geo.easypoint.common.dictionary.domain.Dictionary;
+import com.geo.easypoint.common.dictionary.domain.DictionaryRepository;
 import com.geo.easypoint.common.dictionary.web.DictionaryCreateDto;
 import com.geo.easypoint.common.dictionary.web.DictionaryDto;
 import com.geo.easypoint.common.dictionary.web.DictionaryUpdateDto;
@@ -14,8 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
-public abstract class BaseDictionaryService<E extends BaseDictionary, D extends DictionaryDto, C extends DictionaryCreateDto, U extends DictionaryUpdateDto> {
-    private final BaseDictionaryRepository<E> dictionaryRepository;
+public abstract class DictionaryService<E extends Dictionary, D extends DictionaryDto, C extends DictionaryCreateDto, U extends DictionaryUpdateDto> {
+    private final DictionaryRepository<E> dictionaryRepository;
     private final DictionaryMapper<E, D, C> mapper;
 
     @Transactional(readOnly = true)
@@ -40,7 +40,7 @@ public abstract class BaseDictionaryService<E extends BaseDictionary, D extends 
         E dictionary = findById(id);
         PartialUpdater.updater()
                 .update(updateRequest.getName(), name -> {
-                    validateName(name);
+                    validateName(name, id);
                     dictionary.setName(name);
                 })
                 .update(updateRequest.getDescription(), dictionary::setDescription);
@@ -53,8 +53,8 @@ public abstract class BaseDictionaryService<E extends BaseDictionary, D extends 
         dictionaryRepository.delete(findById(id));
     }
 
-    private void validateName(String name) {
-        if (dictionaryRepository.existsByName(name)) {
+    private void validateName(String name, Long id) {
+        if (dictionaryRepository.existsByNameAndIdNot(name, id)) {
             throw new EasyPointLogicException("Tool state with name " + name + " already exists");
         }
     }

@@ -1,35 +1,22 @@
 package com.geo.easypoint.employees.workshifttype.domain;
 
+import com.geo.easypoint.common.dictionary.domain.Dictionary;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-@Entity
 @Getter
-@Builder
+@Setter
+@Entity
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "work_shift_types")
-public class WorkShiftType {
-    @CreationTimestamp
-    public LocalDateTime created;
-    @UpdateTimestamp
-    public LocalDateTime updated;
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "work_shift_type_sequence_generator")
-    @SequenceGenerator(name = "work_shift_type_sequence_generator", sequenceName = "work_shift_type_sequence")
-    private Long id;
-    private String name;
+public class WorkShiftType extends Dictionary {
     private String shortname;
     private Integer startHour;
     private Integer startMinute;

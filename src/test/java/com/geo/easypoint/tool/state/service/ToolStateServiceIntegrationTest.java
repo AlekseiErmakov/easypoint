@@ -32,10 +32,9 @@ public class ToolStateServiceIntegrationTest extends ServiceTest {
     @DisplayName("Save new tool state test")
     public void saveTest() {
 
-        ToolStateCreateDto toolStateCreateDto = ToolStateCreateDto.builder()
-                .name("new name")
-                .description("new description")
-                .build();
+        ToolStateCreateDto toolStateCreateDto = new ToolStateCreateDto(
+                "new name",
+                "new description");
         ToolStateDto result = toolStateService.create(toolStateCreateDto);
 
         Assertions.assertThat(result)

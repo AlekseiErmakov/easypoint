@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @WebMvcTest(value = {ToolStateController.class})
 @AutoConfigureMockMvc(addFilters = false)
-class BaseDictionaryControllerTest extends BaseWebMvcTest {
+class DictionaryControllerTest extends BaseWebMvcTest {
     private static final String BASE_URL = "/tool-states";
 
     @MockBean

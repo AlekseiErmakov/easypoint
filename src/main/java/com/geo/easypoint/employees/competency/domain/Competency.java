@@ -1,6 +1,6 @@
 package com.geo.easypoint.employees.competency.domain;
 
-import com.geo.easypoint.common.dictionary.domain.BaseDictionary;
+import com.geo.easypoint.common.dictionary.domain.Dictionary;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,5 +14,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @Table(name = "competencies")
-public class Competency extends BaseDictionary {
+public class Competency extends Dictionary {
 }

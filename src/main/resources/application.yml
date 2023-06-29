@@ -27,9 +27,6 @@ spring:
           provider_class: org.hibernate.cache.EhCacheProvider
           region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
           missing_cache_strategy: create
-logging:
-  level:
-    web: debug
 server:
   tomcat:
     accesslog:

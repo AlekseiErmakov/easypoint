@@ -5,11 +5,11 @@ import com.geo.easypoint.organizationstructure.administrative.unittype.domain.Ad
 import com.geo.easypoint.organizationstructure.administrative.unittype.web.AdministrativeUnitTypeCreateDto;
 import com.geo.easypoint.organizationstructure.administrative.unittype.web.AdministrativeUnitTypeDto;
 import com.geo.easypoint.organizationstructure.administrative.unittype.web.AdministrativeUnitTypeUpdateDto;
-import com.geo.easypoint.common.dictionary.service.BaseDictionaryService;
+import com.geo.easypoint.common.dictionary.service.DictionaryService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AdministrativeUnitTypeService extends BaseDictionaryService<AdministrativeUnitType, AdministrativeUnitTypeDto, AdministrativeUnitTypeCreateDto, AdministrativeUnitTypeUpdateDto> {
+public class AdministrativeUnitTypeService extends DictionaryService<AdministrativeUnitType, AdministrativeUnitTypeDto, AdministrativeUnitTypeCreateDto, AdministrativeUnitTypeUpdateDto> {
 
     public AdministrativeUnitTypeService(AdministrativeUnitTypeRepository repository, AdministrativeUnitTypeMapper mapper) {
         super(repository, mapper);

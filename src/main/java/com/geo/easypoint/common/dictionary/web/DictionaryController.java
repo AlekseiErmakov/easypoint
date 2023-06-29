@@ -1,7 +1,7 @@
 package com.geo.easypoint.common.dictionary.web;
 
-import com.geo.easypoint.common.dictionary.domain.BaseDictionary;
-import com.geo.easypoint.common.dictionary.service.BaseDictionaryService;
+import com.geo.easypoint.common.dictionary.domain.Dictionary;
+import com.geo.easypoint.common.dictionary.service.DictionaryService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import java.util.List;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RequiredArgsConstructor
-public class BaseDictionaryController<E extends BaseDictionary, D extends DictionaryDto, C extends DictionaryCreateDto, U extends DictionaryUpdateDto> {
-    private final BaseDictionaryService<E, D, C, U> service;
+public abstract class DictionaryController<E extends Dictionary, D extends DictionaryDto, C extends DictionaryCreateDto, U extends DictionaryUpdateDto> {
+    private final DictionaryService<E, D, C, U> service;
 
     @PostMapping
     public D create(@RequestBody @Valid C request) {

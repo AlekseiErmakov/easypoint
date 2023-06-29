@@ -1,7 +1,7 @@
 package com.geo.easypoint.dictionary.service;
 
 import com.geo.easypoint.TestData;
-import com.geo.easypoint.common.dictionary.service.BaseDictionaryService;
+import com.geo.easypoint.common.dictionary.service.DictionaryService;
 import com.geo.easypoint.common.exception.EasyPointLogicException;
 import com.geo.easypoint.common.exception.EasyPointNotFoundException;
 import com.geo.easypoint.tool.state.domain.ToolState;
@@ -22,12 +22,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 @ExtendWith(MockitoExtension.class)
-class BaseDictionaryServiceTest {
+class DictionaryServiceTest {
 
     private ToolStateRepository repository = Mockito.mock(ToolStateRepository.class);
     private ToolStateMapper mapper = Mockito.mock(ToolStateMapper.class);
 
-    private BaseDictionaryService<ToolState, ToolStateDto, ToolStateCreateDto, ToolStateUpdateDto> service = new ToolStateService(repository, mapper);
+    private DictionaryService<ToolState, ToolStateDto, ToolStateCreateDto, ToolStateUpdateDto> service = new ToolStateService(repository, mapper);
 
     @Test
     @DisplayName("Fetching all tool states")

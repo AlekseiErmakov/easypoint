@@ -5,12 +5,12 @@ import com.geo.easypoint.employees.competency.domain.CompetencyRepository;
 import com.geo.easypoint.employees.competency.web.CompetencyCreateDto;
 import com.geo.easypoint.employees.competency.web.CompetencyDto;
 import com.geo.easypoint.employees.competency.web.CompetencyUpdateDto;
-import com.geo.easypoint.common.dictionary.service.BaseDictionaryService;
+import com.geo.easypoint.common.dictionary.service.DictionaryService;
 import com.geo.easypoint.employees.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompetencyService extends BaseDictionaryService<Competency, CompetencyDto, CompetencyCreateDto, CompetencyUpdateDto> {
+public class CompetencyService extends DictionaryService<Competency, CompetencyDto, CompetencyCreateDto, CompetencyUpdateDto> {
 
     private final CompetencyRepository competencyRepository;
     private final EmployeeRepository employeeRepository;

@@ -1,6 +1,6 @@
 package com.geo.easypoint.tool.state.domain;
 
-import com.geo.easypoint.common.dictionary.domain.BaseDictionary;
+import com.geo.easypoint.common.dictionary.domain.Dictionary;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,5 +14,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @Table(name = "tool_states")
-public class ToolState extends BaseDictionary {
+public class ToolState extends Dictionary {
 }

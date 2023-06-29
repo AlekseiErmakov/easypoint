@@ -1,31 +1,17 @@
 package com.geo.easypoint.employees.workshifttype.web;
 
 
+import com.geo.easypoint.common.dictionary.web.DictionaryController;
+import com.geo.easypoint.employees.workshifttype.domain.WorkShiftType;
 import com.geo.easypoint.employees.workshifttype.service.WorkShiftTypeService;
-import java.util.List;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
-
 @RequestMapping("/work-shift-types")
-public class WorkShiftTypeController {
+public class WorkShiftTypeController extends DictionaryController<WorkShiftType, WorkShiftTypeDto, WorkShiftTypeCreateDto, WorkShiftTypeUpdateDto> {
 
-    private final WorkShiftTypeService workShiftTypeService;
-
-
-    @GetMapping
-    public List<WorkShiftTypeDto> findAll() {
-        return workShiftTypeService.findAll();
-    }
-
-    @PostMapping
-    public WorkShiftTypeDto save(@RequestBody WorkShiftTypeCreateRequest workShiftTypeCreateRequest) {
-        return workShiftTypeService.save(workShiftTypeCreateRequest);
+    public WorkShiftTypeController(WorkShiftTypeService workShiftTypeService) {
+        super(workShiftTypeService);
     }
 }
